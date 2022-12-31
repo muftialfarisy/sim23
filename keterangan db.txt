@@ -1,0 +1,14 @@
+user 
+
+id
+nama
+email
+username
+password
+alamat
+jabatan
+jenis_kelamin
+create at
+update at
+
+=================
