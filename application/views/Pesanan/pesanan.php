@@ -54,8 +54,10 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Nama Pesanan</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Tema Desain</th>
                                                 <th>tanggal Pesanan</th>
+                                                <th>invoice</th>
                                                 <th>Produk</th>
                                                 <th>Jumlah</th>
                                                 <th>Bahan Baku</th>
@@ -90,27 +92,42 @@
                             <form name="form" id="form">
                                 <input type="hidden" name="id">
                                 <div class="form-group">
-                                    <label>Nama Pemesanan</label>
-                                    <input type="text" class="form-control" placeholder="Nama Pemesanan" name="nama_pesanan" id="nama_pesanan" onchange="input()">
+                                    <label>Nama Pelanggan</label>
+                                    <input type="text" class="form-control" placeholder="Nama Pelanggan" name="nama_pelanggan" id="nama_pelanggan">
                                 </div>
                                 <div class="form-group">
-                                    <label>tanggal Pesanan</label>
-                                    <input type="date" class="form-control" name="tanggal_pesanan" id="tanggal_pesanan">
-                                </div>
-                                <div class="form-group">
-                                    <label>Produk</label>
-                                    <input type="text" class="form-control" placeholder="Produk" name="produk" id="produk">
-                                </div>
-                                <div class="form-group">
-                                    <label>jumlah</label>
-                                    <input type="number" class="form-control" placeholder="Jumlah" name="jumlah" id="jumlah">
-                                </div>
-                                <div class="form-group">
-                                    <label>Bahan Baku</label>
-                                    <input type="text" class="form-control" placeholder="Bahan Baku" name="bahan_baku" id="bahan_baku" onchange="input()">
-                                </div>
-                                <button class="btn btn-success" type="submit">Add</button>
-                                <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <div class="form-group">
+                                        <label>Tema Desain</label>
+                                        <input type="text" class="form-control" placeholder="Tema Desain" name="tema_desain" id="tema_desain">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>tanggal Pesanan</label>
+                                        <input type="date" class="form-control" name="tanggal_pesanan" id="tanggal_pesanan">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Invoice</label>
+                                        <select class="form-control" id="invoice" name="invoice">
+                                            <option value="lunas">Lunas</option>
+                                            <option value="belum_lunas">Belum Lunas</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Produk</label>
+                                        <select class="form-control" id="produk" name="produk">
+                                            <option value="jersey">Jersey</option>
+                                            <option value="jacket">Jacket</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>jumlah</label>
+                                        <input type="number" class="form-control" placeholder="Jumlah" name="jumlah" id="jumlah">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bahan Baku</label>
+                                        <input type="text" class="form-control" placeholder="Bahan Baku" name="bahan_baku" id="bahan_baku" onchange="input()">
+                                    </div>
+                                    <button class="btn btn-success" type="submit">Add</button>
+                                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
                             </form>
                         </div>
                     </div>
@@ -119,12 +136,8 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.1.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-        </footer>
+        <?php $this->load->view('includes/Footer'); ?>
+
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

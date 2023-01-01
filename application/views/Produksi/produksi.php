@@ -22,12 +22,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pesanan</h1>
+                            <h1>Produksigit</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pesanan</li>
+                                <li class="breadcrumb-item active">Produksi</li>
                             </ol>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Pesanan</h3>
+                                    <h3 class="card-title">Tabel Produksi</h3>
                                     <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
@@ -163,12 +163,8 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.1.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-        </footer>
+        <?php $this->load->view('includes/Footer'); ?>
+
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

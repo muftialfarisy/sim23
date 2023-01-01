@@ -16,10 +16,16 @@ let url,
 				data: null,
 			},
 			{
-				data: "nama_pesanan",
+				data: "nama_pelanggan",
+			},
+			{
+				data: "tema_desain",
 			},
 			{
 				data: "tanggal_pesanan",
+			},
+			{
+				data: "invoice",
 			},
 			{
 				data: "produk",
@@ -152,8 +158,10 @@ function edit(id) {
 		},
 		success: (res) => {
 			$('[name="id"]').val(res.id);
-			$('[name="nama_pesanan"]').val(res.nama_pesanan);
+			$('[name="nama_pelanggan"]').val(res.nama_pelanggan);
+			$('[name="tema_desain"]').val(res.tema_desain);
 			$('[name="tanggal_pesanan"]').val(res.tanggal_pesanan);
+			$('[name="invoice"]').val(res.invoice);
 			$('[name="produk"]').val(res.produk);
 			$('[name="jumlah"]').val(res.jumlah);
 			$('[name="bahan_baku"]').val(res.bahan_baku);

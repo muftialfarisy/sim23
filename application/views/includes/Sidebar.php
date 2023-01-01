@@ -104,7 +104,7 @@
                                             </a>
                                         </li>
                                     <?php } ?>
-                                    <?php if ($jabatan == "operasional_produksi" || $jabatan == "kepala_produksi") { ?>
+                                    <?php if ($jabatan == "kepala_produksi") { ?>
                                         <li class="nav-item">
                                             <!-- <a href="user" class="nav-link"> -->
                                             <a href="<?php echo site_url('produksi') ?>" class=" nav-link <?php echo $uri == 'produksi' || $uri == '' ? 'active' : 'no' ?>">

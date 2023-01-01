@@ -46,8 +46,10 @@ class Pesanan_controller extends CI_Controller
                 }
                 $data[] = array(
                     'id' => $this->session->userdata('id'),
-                    'nama_pesanan' => $pesanan->nama_pesanan,
+                    'nama_pelanggan' => $pesanan->nama_pelanggan,
+                    'tema_desain' => $pesanan->tema_desain,
                     'tanggal_pesanan' => $pesanan->tanggal_pesanan,
+                    'invoice' => $pesanan->invoice,
                     'produk' => $pesanan->produk,
                     'jumlah' => $pesanan->jumlah,
                     'bahan_baku' => $pesanan->bahan_baku,
@@ -65,8 +67,10 @@ class Pesanan_controller extends CI_Controller
     public function add()
     {
         $data = array(
-            'nama_pesanan' => $this->input->post('nama_pesanan'),
+            'nama_pelanggan' => $this->input->post('nama_pelanggan'),
+            'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
+            'invoice' => $this->input->post('invoice'),
             'produk' => $this->input->post('produk'),
             'jumlah' => $this->input->post('jumlah'),
             'bahan_baku' => $this->input->post('bahan_baku')
@@ -74,19 +78,6 @@ class Pesanan_controller extends CI_Controller
         $this->Pesanan_model->create($data);
         echo json_encode('sukses');
     }
-    // public function add()
-    // {
-    //     $data = array(
-    //         'username' => $this->input->post('username'),
-    //         'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-    //         'nama' => $this->input->post('nama'),
-    //         'email' => $this->input->post('email'),
-    //         'jabatan' => $this->input->post('jabatan')
-    //     );
-    //     if ($this->User_model->create($data)) {
-    //         echo json_encode('sukses');
-    //     }
-    // }
     public function delete()
     {
         $id = $this->input->post('id');
@@ -99,8 +90,10 @@ class Pesanan_controller extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = array(
-            'nama_pesanan' => $this->input->post('nama_pesanan'),
+            'nama_pelanggan' => $this->input->post('nama_pelanggan'),
+            'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
+            'invoice' => $this->input->post('invoice'),
             'produk' => $this->input->post('produk'),
             'jumlah' => $this->input->post('jumlah'),
             'bahan_baku' => $this->input->post('bahan_baku')
