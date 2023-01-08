@@ -39,6 +39,13 @@ class Pesanan_controller extends CI_Controller
         if ($this->Pesanan_model->read()->num_rows() > 0) {
             // var_dump($this->user_model->read()->result());
             foreach ($this->Pesanan_model->read()->result() as $pesanan) {
+                $tanggal_pesanan = new DateTime($pesanan->tanggal_pesanan);
+                $tgl = $tanggal_pesanan->format('d-m-Y');
+                $dateline =  $pesanan->dateline;
+                $finishing = $pesanan->finishing;
+                $day1  = date('d-m-Y', strtotime($tgl . '+'  . $dateline . 'days'));
+                // $day2 = date('d-m-Y', strtotime($tgl . ' + 5 days'));
+                $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing . 'days'));
                 if ($jabatan == "admin") {
                     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>';
                 } else {
@@ -46,13 +53,18 @@ class Pesanan_controller extends CI_Controller
                 }
                 $data[] = array(
                     'id' => $this->session->userdata('id'),
+                    'urutan_order' => $pesanan->urutan_order,
                     'nama_pelanggan' => $pesanan->nama_pelanggan,
                     'tema_desain' => $pesanan->tema_desain,
-                    'tanggal_pesanan' => $pesanan->tanggal_pesanan,
+                    'tanggal_pesanan' => $tgl,
                     'invoice' => $pesanan->invoice,
                     'produk' => $pesanan->produk,
                     'jumlah' => $pesanan->jumlah,
                     'bahan_baku' => $pesanan->bahan_baku,
+                    // 'dateline' => $pesanan->dateline,
+                    'dateline' => $day1,
+                    // 'finishing' => $pesanan->finishing,
+                    'finishing' => $day2,
                     'action' => $action
                 );
             }
@@ -67,13 +79,16 @@ class Pesanan_controller extends CI_Controller
     public function add()
     {
         $data = array(
+            'urutan_order' => $this->input->post('urutan_order'),
             'nama_pelanggan' => $this->input->post('nama_pelanggan'),
             'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
             'invoice' => $this->input->post('invoice'),
             'produk' => $this->input->post('produk'),
             'jumlah' => $this->input->post('jumlah'),
-            'bahan_baku' => $this->input->post('bahan_baku')
+            'bahan_baku' => $this->input->post('bahan_baku'),
+            'dateline' => $this->input->post('dateline'),
+            'finishing' => $this->input->post('finishing')
         );
         $this->Pesanan_model->create($data);
         echo json_encode('sukses');
@@ -90,13 +105,16 @@ class Pesanan_controller extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = array(
+            'urutan_order' => $this->input->post('urutan_order'),
             'nama_pelanggan' => $this->input->post('nama_pelanggan'),
             'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
             'invoice' => $this->input->post('invoice'),
             'produk' => $this->input->post('produk'),
             'jumlah' => $this->input->post('jumlah'),
-            'bahan_baku' => $this->input->post('bahan_baku')
+            'bahan_baku' => $this->input->post('bahan_baku'),
+            'dateline' => $this->input->post('dateline'),
+            'finishing' => $this->input->post('finishing')
         );
         if ($this->Pesanan_model->update($id, $data)) {
             echo json_encode('sukses');

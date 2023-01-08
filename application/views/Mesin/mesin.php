@@ -23,12 +23,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pesanan</h1>
+                            <h1>Mesin Jersey</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pesanan</li>
+                                <li class="breadcrumb-item active">Mesin Jersey</li>
                             </ol>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Pesanan</h3>
+                                    <h3 class="card-title">Tabel Mesin Jersey</h3>
                                     <?php if ($jabatan == "admin") { ?>
                                         <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
                                     <?php } ?>
@@ -50,20 +50,21 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="pesanan" class="table table-bordered table-hover" style="width: 100%;">
+                                    <table id="mesin" class="table table-bordered table-hover" style="width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Order</th>
-                                                <th>Nama Pelanggan</th>
-                                                <th>Tema Desain</th>
-                                                <th>tanggal Pesanan</th>
-                                                <th>invoice</th>
-                                                <th>Produk</th>
-                                                <th>Jumlah</th>
-                                                <th>Bahan Baku</th>
-                                                <th>Dateline</th>
-                                                <th>Finishing</th>
+                                                <th>Desain</th>
+                                                <th>Print</th>
+                                                <th>Cutting</th>
+                                                <th>Press</th>
+                                                <th>Jahit</th>
+                                                <th>Overdeck</th>
+                                                <th>Obras</th>
+                                                <th>QC</th>
+                                                <th>Waktu Total Cutting</th>
+                                                <th>Waktu Total QC</th>
+                                                <th>Waktu Total</th>
                                                 <th>Action</th>
 
                                             </tr>
@@ -93,60 +94,91 @@
                         </div>
                         <div class="modal-body">
                             <form name="form" id="form">
-                                <input type="hidden" name="id">
+                                <input type="text" name="id">
+                                <input type="text" name="no" id="no">
                                 <div class="form-group">
-                                    <label>Order</label>
-                                    <select class="form-control" id="urutan_order" name="urutan_order">
-                                        <?php
-                                        for ($x = 1; $x <= 10; $x++) {
+                                    <label>desain</label>
+                                    <input type="text" class="form-control" placeholder="Desain" name="desain" id="desain">
+                                </div>
+                                <div class="form-group">
+                                    <label>Print</label>
+                                    <input type="text" class="form-control" placeholder="Print" name="print" id="print">
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>Cutting</label>
+                                        <input type="text" class="form-control" placeholder="Cutting" name="cutting" id="cutting">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Press</label>
+                                        <input type="text" class="form-control" name="press" id="press">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jahit</label>
+                                        <input type="text" class="form-control" name="jahit" id="jahit">
 
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Overdeck</label>
+                                        <input type="text" class="form-control" name="overdeck" id="overdeck">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Obras</label>
+                                        <input type="text" class="form-control" placeholder="Obras" name="obras" id="obras">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>QC</label>
+                                        <input type="text" class="form-control" name="qc" id="qc">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>rata2</label>
+                                        <?php
+                                        $hasil = $this->db->select('id,NO,sum(desain) as desain, sum(print) as print, sum(cutting) as cutting, sum(press) as press, sum(jahit) as jahit, sum(overdeck) as overdeck, sum(obras) as obras, sum(qc) as qc')
+                                            ->from('mesin_jersey')
+                                            ->get()
+                                            ->result();
+                                        $result = $this->db->get('mesin_jersey')->num_rows();
+                                        foreach ($hasil as $mesin_jersey) {
+                                            $rata_desasin = $mesin_jersey->desain;
+                                            $rata_print = $mesin_jersey->print;
+                                            $rata_cutting = $mesin_jersey->cutting;
+                                            $rata_press = $mesin_jersey->press;
+                                            $rata_jahit = $mesin_jersey->jahit;
+                                            $rata_overdeck = $mesin_jersey->overdeck;
+                                            $rata_obras = $mesin_jersey->obras;
+                                            $rata_qc = $mesin_jersey->qc;
                                         ?>
-                                            <option value="order <?php echo $x ?>">order <?php echo $x ?></option>
+                                            <!-- <input type="text" class="form-control" placeholder="Desain" name="rata_desain" id="rata_desain"> -->
+                                            <input type="text" class="form-control" placeholder="Desain" name="rata_desain" id="rata_desain" value=<?= $rata_desasin ?>>
+                                            <!-- <input type="text" class="form-control" name="rata_print" id="rata_print"> -->
+                                            <input type="text" class="form-control" name="rata_print" id="rata_print" value=<?= $rata_print ?>>
+                                            <!-- <input type="text" class="form-control" name="rata_cutting" id="rata_cutting"> -->
+                                            <input type="text" class="form-control" name="rata_cutting" id="rata_cutting" value=<?= $rata_cutting ?>>
+                                            <!-- <input type="text" class="form-control" name="rata_press" id="rata_press"> -->
+                                            <input type="text" class="form-control" name="rata_press" id="rata_press" value=<?= $rata_press ?>>
+                                            <!-- <input type="text" class="form-control" name="rata_jahit" id="rata_jahit"> -->
+                                            <input type="text" class="form-control" name="rata_jahit" id="rata_jahit" value=<?= $rata_jahit ?>>
+                                            <!-- <input type="text" class="form-control" name="rata_overdeck" id="rata_overdeck"> -->
+                                            <input type="text" class="form-control" name="rata_overdeck" id="rata_overdeck" value=<?= $rata_overdeck ?>>
+                                            <!-- <input type="text" class="form-control" name="rata_obras" id="rata_obras"> -->
+                                            <input type="text" class="form-control" name="rata_obras" id="rata_obras" value=<?= $rata_obras ?>>
+                                            <!-- <input type="text" class="form-control" name="rata_qc" id="rata_qc"> -->
+                                            <input type="text" class="form-control" name="rata_qc" id="rata_qc" value=<?= $rata_qc ?>>
                                         <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Nama Pelanggan</label>
-                                    <input type="text" class="form-control" placeholder="Nama Pelanggan" name="nama_pelanggan" id="nama_pelanggan">
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Tema Desain</label>
-                                        <input type="text" class="form-control" placeholder="Tema Desain" name="tema_desain" id="tema_desain">
                                     </div>
                                     <div class="form-group">
-                                        <label>tanggal Pesanan</label>
-                                        <input type="date" class="form-control" name="tanggal_pesanan" id="tanggal_pesanan">
+                                        <label>Total Cutting</label>
+                                        <input type="text" class="form-control" placeholder="total cutting" name="total_cutting" id="total_cutting">
                                     </div>
                                     <div class="form-group">
-                                        <label>Invoice</label>
-                                        <select class="form-control" id="invoice" name="invoice">
-                                            <option value="lunas">Lunas</option>
-                                            <option value="belum_lunas">Belum Lunas</option>
-                                        </select>
+                                        <label>Total QC</label>
+                                        <input type="text" class="form-control" placeholder="Total QC" name="total_qc" id="total_qc">
                                     </div>
                                     <div class="form-group">
-                                        <label>Produk</label>
-                                        <select class="form-control" id="produk" name="produk">
-                                            <option value="jersey">Jersey</option>
-                                            <option value="jacket">Jacket</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>jumlah</label>
-                                        <input type="number" class="form-control" placeholder="Jumlah" name="jumlah" id="jumlah">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Bahan Baku</label>
-                                        <input type="text" class="form-control" placeholder="Bahan Baku" name="bahan_baku" id="bahan_baku" onchange="input()">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Dateline</label>
-                                        <input type="number" class="form-control" placeholder="Dateline" name="dateline" id="dateline">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Finishing</label>
-                                        <input type="number" class="form-control" placeholder="Finishing" name="finishing" id="finishing">
+                                        <label>Waktu Total</label>
+                                        <input type="text" class="form-control" placeholder="Waktu Total" name="waktu_total" id="waktu_total">
                                     </div>
                                     <button class="btn btn-success" type="submit">Add</button>
                                     <button class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -232,13 +264,14 @@
         });
     </script> -->
     <script>
-        var readUrl = '<?php echo site_url('Pesanan_controller/read') ?>';
-        var addUrl = '<?php echo site_url('Pesanan_controller/add') ?>';
-        var deleteUrl = '<?php echo site_url('Pesanan_controller/delete') ?>';
-        var editUrl = '<?php echo site_url('Pesanan_controller/edit') ?>';
-        var getPesananUrl = '<?php echo site_url('Pesanan_controller/get_pesanan') ?>';
+        var readUrl = '<?php echo site_url('Mesin_controller/read') ?>';
+        var addUrl = '<?php echo site_url('Mesin_controller/add') ?>';
+        var deleteUrl = '<?php echo site_url('Mesin_controller/delete') ?>';
+        var editUrl = '<?php echo site_url('Mesin_controller/edit') ?>';
+        var getMesinUrl = '<?php echo site_url('Mesin_controller/get_mesin') ?>';
+        var getRataUrl = '<?php echo site_url('Mesin_controller/get_rata') ?>';
     </script>
-    <script src="<?php echo base_url('assets/js/pesanan.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/mesin.js') ?>"></script>
 </body>
 
 </html>

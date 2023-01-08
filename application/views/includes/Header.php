@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>plugins/datatables-rowgroup/css/rowGroup.bootstrap4.css">
     <!-- summernote -->
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>plugins/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>plugins/sweetalert2/sweetalert2.min.css">

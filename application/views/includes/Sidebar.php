@@ -151,6 +151,33 @@
                                 </a>
                             </li>
                         <?php } ?>
+                        <li class="nav-item">
+                            <!-- <a href="user" class="nav-link"> -->
+                            <a href="<?php echo site_url('mesin') ?>" class=" nav-link <?php echo $uri == 'mesin' || $uri == '' ? 'active' : 'no' ?>">
+                                <i class="nav-icon fas fa-solid fa-circle"></i>
+                                <p>
+                                    Mesin Jersey
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- <a href="user" class="nav-link"> -->
+                            <a href="<?php echo site_url('mesin_jaket') ?>" class=" nav-link <?php echo $uri == 'mesin_jaket' || $uri == '' ? 'active' : 'no' ?>">
+                                <i class="nav-icon fas fa-solid fa-circle"></i>
+                                <p>
+                                    Mesin Jaket
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- <a href="user" class="nav-link"> -->
+                            <a href="<?php echo site_url('estimasi') ?>" class=" nav-link <?php echo $uri == 'estimasi' || $uri == '' ? 'active' : 'no' ?>">
+                                <i class="nav-icon fas fa-solid fa-circle"></i>
+                                <p>
+                                    Estimasi
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                     </li>
                     </ul>

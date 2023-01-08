@@ -1,5 +1,5 @@
 let url,
-	user = $("#pesanan").DataTable({
+	user = $("#mesin").DataTable({
 		responsive: true,
 		scrollX: true,
 		ajax: readUrl,
@@ -10,40 +10,42 @@ let url,
 				targets: 0,
 			},
 		],
-		order: [[1, "asc"]],
 		columns: [
 			{
 				data: null,
 			},
 			{
-				data: "urutan_order",
+				data: "desain",
 			},
 			{
-				data: "nama_pelanggan",
+				data: "print",
 			},
 			{
-				data: "tema_desain",
+				data: "cutting",
 			},
 			{
-				data: "tanggal_pesanan",
+				data: "press",
 			},
 			{
-				data: "invoice",
+				data: "jahit",
 			},
 			{
-				data: "produk",
+				data: "overdeck",
 			},
 			{
-				data: "jumlah",
+				data: "obras",
 			},
 			{
-				data: "bahan_baku",
+				data: "qc",
 			},
 			{
-				data: "dateline",
+				data: "total_cutting",
 			},
 			{
-				data: "finishing",
+				data: "total_qc",
+			},
+			{
+				data: "waktu_total",
 			},
 			{
 				data: "action",
@@ -54,6 +56,56 @@ let url,
 function reloadTable() {
 	user.ajax.reload();
 }
+$("#desain").change(function () {
+	let desain = parseFloat($("#desain").val());
+	let rata_desain = parseFloat($("#rata_desain").val());
+	// let rata = rata_desain2 + desain2 / 9;
+	// let rata2 = parseFloat(rata).toFixed(2);
+	let rata = (rata_desain + desain) / 9;
+	$("#rata_desain").val(rata);
+});
+$("#print").change(function () {
+	let print = parseFloat($("#print").val());
+	let rata_print = parseFloat($("#rata_print").val());
+	let rata = (rata_print + print) / 9;
+	$("#rata_print").val(rata);
+});
+$("#cutting").change(function () {
+	let cutting = parseFloat($("#cutting").val());
+	let rata_cutting = parseFloat($("#rata_cutting").val());
+	let rata = (rata_cutting + cutting) / 9;
+	$("#rata_cutting").val(rata);
+});
+$("#press").change(function () {
+	let press = parseFloat($("#press").val());
+	let rata_press = parseFloat($("#rata_press").val());
+	let rata = (rata_press + press) / 9;
+	$("#rata_press").val(rata);
+});
+$("#jahit").change(function () {
+	let jahit = parseFloat($("#jahit").val());
+	let rata_jahit = parseFloat($("#rata_jahit").val());
+	let rata = (rata_jahit + jahit) / 9;
+	$("#rata_jahit").val(rata);
+});
+$("#overdeck").change(function () {
+	let overdeck = parseFloat($("#overdeck").val());
+	let rata_overdeck = parseFloat($("#rata_overdeck").val());
+	let rata = (rata_overdeck + overdeck) / 9;
+	$("#rata_overdeck").val(rata);
+});
+$("#obras").change(function () {
+	let obras = parseFloat($("#obras").val());
+	let rata_obras = parseFloat($("#rata_obras").val());
+	let rata = (rata_obras + obras) / 9;
+	$("#rata_obras").val(rata);
+});
+$("#qc").change(function () {
+	let qc = parseFloat($("#qc").val());
+	let rata_qc = parseFloat($("#rata_qc").val());
+	let rata = (rata_qc + qc) / 9;
+	$("#rata_qc").val(rata);
+});
 
 function addData() {
 	$.ajax({
@@ -155,11 +207,34 @@ function add() {
 	url = "add";
 	$(".modal-title").html("Add Data");
 	$('.modal button[type="submit"]').html("Add");
+	// $.ajax({
+	// 	url: getRataUrl,
+	// 	type: "post",
+	// 	dataType: "json",
+	// 	// data: {
+	// 	// 	id: id,
+	// 	// },
+	// 	success: (res) => {
+	// 		$('[name="id"]').val(res.id);
+	// 		$('[name="no"]').val(res.NO);
+	// 		$('[name="rata_desain"]').val(res.desain);
+	// 		$('[name="rata_print"]').val(res.print);
+	// 		$('[name="rata_cutting"]').val(res.cutting);
+	// 		$('[name="rata_press"]').val(res.press);
+	// 		$('[name="rata_jahit"]').val(res.jahit);
+	// 		$('[name="rata_overdeck"]').val(res.overdeck);
+	// 		$('[name="rata_obras"]').val(res.obras);
+	// 		$('[name="rata_qc"]').val(res.qc);
+	// 	},
+	// 	error: (err) => {
+	// 		console.log(err);
+	// 	},
+	// });
 }
 
 function edit(id) {
 	$.ajax({
-		url: getPesananUrl,
+		url: getMesinUrl,
 		type: "post",
 		dataType: "json",
 		data: {
@@ -167,16 +242,33 @@ function edit(id) {
 		},
 		success: (res) => {
 			$('[name="id"]').val(res.id);
-			$('[name="urutan_order"]').val(res.urutan_order);
-			$('[name="nama_pelanggan"]').val(res.nama_pelanggan);
-			$('[name="tema_desain"]').val(res.tema_desain);
-			$('[name="tanggal_pesanan"]').val(res.tanggal_pesanan);
-			$('[name="invoice"]').val(res.invoice);
-			$('[name="produk"]').val(res.produk);
-			$('[name="jumlah"]').val(res.jumlah);
-			$('[name="bahan_baku"]').val(res.bahan_baku);
-			$('[name="dateline"]').val(res.dateline);
-			$('[name="finishing"]').val(res.finishing);
+			$('[name="desain"]').val(res.desain);
+			$('[name="print"]').val(res.print);
+			$('[name="cutting"]').val(res.cutting);
+			$('[name="press"]').val(res.press);
+			$('[name="jahit"]').val(res.jahit);
+			$('[name="overdeck"]').val(res.overdeck);
+			$('[name="obras"]').val(res.obras);
+			$('[name="qc"]').val(res.qc);
+			$('[name="rata_desain"]').val(res.rata_desain);
+			$('[name="rata_print"]').val(res.rata_print);
+			$('[name="rata_cutting"]').val(res.rata_cutting);
+			$('[name="rata_press"]').val(res.rata_press);
+			$('[name="rata_jahit"]').val(res.rata_jahit);
+			$('[name="rata_overdeck"]').val(res.rata_overdeck);
+			$('[name="rata_obras"]').val(res.rata_obras);
+			$('[name="rata_qc"]').val(res.rata_qc);
+			$('[name="total_cutting"]').val(res.rata_cutting * 90);
+			$total_cutting = parseFloat($("#total_cutting").val());
+			$('[name="total_qc"]').val(res.rata_qc * 90);
+			$total_qc = parseFloat($("#total_qc").val());
+			$cut = $total_cutting.toFixed(2);
+			$qc = $total_qc.toFixed(2);
+			$rata_desain = parseFloat($('[name="rata_desain"]').val());
+			$rata_desain2 = $rata_desain.toFixed(2);
+			$waktu_total = $cut + $qc + $rata_desain2;
+			$total_desain = $rata_desain2 * 90;
+			$('[name="waktu_total"]').val($total_desain.toFixed(2));
 			$(".modal").modal("show");
 			$(".modal-title").html("Edit Data");
 			$('.modal button[type="submit"]').html("Edit");

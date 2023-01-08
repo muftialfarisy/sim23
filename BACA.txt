@@ -1,0 +1,9 @@
+dikarenakan masih ada bug mohon baca tahapan ini ya
+
+estimasi ada di admin.
+
+1. klo mau input estimasi, awalnya harus input tanggal dulu
+2. pilih order sebanyak 2x, contoh itu kan awalannya silahkan pilih. jika ingin order 2 maka
+pilih order lain(selain order 2) lalu pilih order 2.
+3. buat itung lateness,nj itu 3ger dateline nya aja nanti otomatis ngitung
+4. dikarenakan perhitungannya masih ngaco untuk ci,lateness,dan nj masih belum sesuai excell
