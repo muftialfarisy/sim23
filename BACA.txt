@@ -7,3 +7,4 @@ estimasi ada di admin.
 pilih order lain(selain order 2) lalu pilih order 2.
 3. buat itung lateness,nj itu 3ger dateline nya aja nanti otomatis ngitung
 4. dikarenakan perhitungannya masih ngaco untuk ci,lateness,dan nj masih belum sesuai excell
+5. jangan apa2in data mesin jaket dan mesin jersey
