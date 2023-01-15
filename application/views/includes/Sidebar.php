@@ -178,6 +178,15 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('penjadwalan') ?>" class=" nav-link <?php echo $uri == 'penjadwalan' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Penjadwalan
+                                    </p>
+                                </a>
+                            </li>
                         <?php } ?>
                     </ul>
                     </li>

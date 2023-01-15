@@ -6,6 +6,7 @@ class Dashboard_model extends CI_Model
 
     private $table = 'mesin_jaket';
     private $estimasi = 'estimasi';
+    private $pesanan = 'pesanan';
 
     public function create($data)
     {
@@ -48,6 +49,13 @@ class Dashboard_model extends CI_Model
         // $this->db->select('*');
         // $this->db->where('urutan_order', $urutan_order);
         // return $this->db->get($this->estimasi);
+    }
+      function getJadwal()
+    {
+        $this->db->select('*');
+    $records = $this->db->get('pesanan');
+        $users = $records->result_array();
+        return $users;
     }
 }
 

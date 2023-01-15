@@ -40,7 +40,8 @@ class Estimasi_controller extends CI_Controller
             // var_dump($this->user_model->read()->result());
             foreach ($this->Estimasi_model->read()->result() as $estimasi) {
                 $data[] = array(
-                    'id' => $this->session->userdata('id'),
+                    'id' => $estimasi->id ,
+                    // 'id' => $this->session->userdata('id'),
                     'tanggal_order' => $estimasi->tanggal_order,
                     'urutan_order' => $estimasi->urutan_order,
                     // 'urutan_order' => $estimasi->urutan_order,
@@ -141,6 +142,7 @@ class Estimasi_controller extends CI_Controller
     public function get_all()
     {
         // $id = $this->input->post('id');
+        header('Content-type: application/json');
         $urutan_order = $this->input->post('urutan_order');
         $user = $this->Estimasi_model->getAll($urutan_order);
         if ($user->row()) {

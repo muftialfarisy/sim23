@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pesanan_model extends CI_Model
+class Penjadwalan_model extends CI_Model
 {
 
     private $table = 'pesanan';
@@ -13,15 +13,6 @@ class Pesanan_model extends CI_Model
     {
         return $this->db->insert($this->table, $data);
     }
-    public function create_order($order)
-    {
-        return $this->db->insert($this->mesin, $order);
-    }
-    public function create_sorting($sorting)
-    {
-        return $this->db->insert($this->sorting, $sorting);
-    }
-
     public function read()
     {
         // $this->db->where('role','2');
@@ -39,29 +30,13 @@ class Pesanan_model extends CI_Model
         $this->db->where('id', $id);
         return $this->db->delete($this->table);
     }
-    public function delete_order($urutan_order)
-    {
-        $this->db->where('urutan_order', $urutan_order);
-        return $this->db->delete($this->order);
-    }
-    public function delete_sorting($urutan_order)
-    {
-        $this->db->where('urutan_order', $urutan_order);
-        return $this->db->delete($this->sorting);
-    }
 
-    public function getMesin()
-    {
-        $this->db->select('*');
-        $this->db->order_by('id', 'DESC');
-        $this->db->where('NO', 9);
-        $this->db->limit(1);
-        return $this->db->get($this->rata);
-    }
+
     public function getPesanan($id)
     {
-        // $this->db->select('*');
-        $this->db->where('id', $id);
+        $this->db->select('*,pesanan.id as pesanan_id,estimasi.ci as ci');
+        $this->db->join('estimasi', 'pesanan.urutan_order = estimasi.urutan_order');
+        $this->db->where('pesanan.id', $id);
         return $this->db->get($this->table);
     }
 

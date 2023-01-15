@@ -9,11 +9,16 @@
     .gantt-container {
         width: 100%;
         margin: 0 auto;
-        overflow-x: scroll;
     }
+.gantt, .gantt3 {
+        overflow-x: scroll;
 
+}
     .gantt .bar {
         fill: red !important;
+    }
+    .gantt3 .bar {
+        fill: blue !important;
     }
 </style>
 
@@ -51,7 +56,7 @@
                     <?php $this->load->view('includes/Cards'); ?>
                     <?php if ($jabatan == "kepala_produksi") { ?>
                         <div class="row">
-                            <h3>Gantt chart penjadwalan</h3>
+                            <h3>Gantt chart Estimasi</h3>
                             <div class="gantt-container">
                                 <svg id="gantt" name="gantt">
                                 </svg>
@@ -73,6 +78,15 @@
                             </svg>
                         </div>
                     </div> -->
+                    <?php if ($jabatan == "kepala_produksi") { ?>
+                    <div class="row">
+                        <h3>Gantt chart Penjadwalan</h3>
+                        <div class="gantt-container">
+                            <svg id="gantt3" name="gantt3">
+                            </svg>
+                        </div>
+                    </div>
+                    <?php } ?> 
                 </div>
             </section>
             <!-- /.content -->
@@ -128,6 +142,7 @@
     <script src="<?php echo base_url('assets/js/dashboard.js') ?>"></script>
     <script>
         var readUrl = '<?php echo site_url('Dashboard_controller/read') ?>';
+        var jadwalUrl = '<?php echo site_url('Dashboard_controller/jadwal') ?>';
         var orderUrl = '<?php echo site_url('Dashboard_controller/order') ?>';
         // chartt();
         // read();

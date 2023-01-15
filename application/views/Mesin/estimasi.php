@@ -29,7 +29,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pesanan</li>
+                                <li class="breadcrumb-item active">Estimasi</li>
                             </ol>
                         </div>
                     </div>
@@ -125,23 +125,36 @@
                                         $tanggal = $estimasi->tanggal_order;
                                         $tanggal2 = date("d/m/Y", strtotime($tanggal));
                                     ?>
-                                        <input type="text" class="form-control" placeholder="Tanggal order" name="tanggal_order2" id="tanggal_order2" value="<?php echo $tanggal ?>">
+                                        <input type="text" class="form-control" placeholder="Tanggal order" name="tanggal_order2" id="tanggal_order2" value="<?php echo $tanggal ?>" disabled>
                                     <?php } ?>
                                 </div>
-                                <input type="text" class="form-control" placeholder="produk" name="produk" id="produk">
+                                <input type="text" class="form-control" placeholder="produk" name="produk" id="produk" disabled>
                                 <div class="form-group">
                                     <label>Order</label>
                                     <select class="form-control" id="urutan_order" name="urutan_order">
                                         <option value="#">silahkan pilih order</option>
 
-                                        <?php
+                                        <!-- <?php
                                         for ($x = 1; $x <= 10; $x++) {
 
                                         ?>
                                             <option value="Order <?php echo $x ?>">Order <?php echo $x ?></option>
+                                        <?php } ?> -->
+                                        
+                                            <?php
+                                        $hasil = $this->db->select('*')
+                                            ->from('mesin_sorting')
+                                            ->get()
+                                            ->result();
+                                        $result = $this->db->get('mesin_sorting')->num_rows();
+                                        foreach ($hasil as $mesin_jersey) {
+                                            $urutan_order = $mesin_jersey->urutan_order;
+                                        ?>
+                                        <option value="<?php echo $urutan_order?>"><?php echo  $urutan_order?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label>Print Sebelum</label>
                                     <input type="text" class="form-control" placeholder="Print Sebelum" name="print_sebelum" id="print_sebelum">
@@ -184,8 +197,8 @@
                                             <label>Obras Sesudah</label>
                                             <input type="text" class="form-control" placeholder="Obras Sesudah" name="obras_sesudah" id="obras_sesudah">
                                         </div>
-                                        <input type="text" class="form-control" placeholder="total_sudah" name="total_sudah" id="total_sudah">
-                                        <input type="text" class="form-control" placeholder="waktu total" name="waktu_total" id="waktu_total">
+                                        <input type="text" class="form-control" placeholder="total_sudah" name="total_sudah" id="total_sudah" hidden>
+                                        <input type="text" class="form-control" placeholder="waktu total" name="waktu_total" id="waktu_total" hidden>
                                         <div class="form-group">
                                             <label>Ci</label>
                                             <input type="text" class="form-control" placeholder="CI" name="ci" id="ci">
@@ -212,6 +225,7 @@
             </div>
             <!-- /.content -->
         </div>
+                                        </div>
         <!-- /.content-wrapper -->
         <?php $this->load->view('includes/Footer'); ?>
 

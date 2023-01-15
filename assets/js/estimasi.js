@@ -7,7 +7,7 @@ let url,
 		ajax: readUrl,
 		columnDefs: [
 			{
-				searcable: false,
+				searcable: true,
 				orderable: true,
 				targets: 0,
 			},
@@ -195,100 +195,12 @@ $("#urutan_order").change(function () {
 		type: "post",
 		dataType: "json",
 		data: {
-			urutan_order: urutan_order,
+			urutan_order: $("#urutan_order").val(),
 		},
 		success: (res) => {
 			hasil_produk = res.produk;
+			$('[name="produk"]').val(hasil_produk);
 			hitung(res);
-			// let waktu_total = total_waktu;
-			// $('[name="print_sebelum"]').val(0);
-			// if ($tanggal_sebelum == tgl_sekarang) {
-			// 	let print_sebelum = parseFloat($('[name="print_sebelum"]').val());
-			// 	let print_sorting = parseFloat(res.printer);
-			// 	let print_sesudah = print_sebelum + print_sorting;
-			// 	$('[name="print_sesudah"]').val(print_sesudah);
-			// 	$('[name="press_sebelum"]').val();
-			// 	let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
-			// 	let press_sorting = parseFloat(res.press);
-			// 	let press_sesudah = press_sebelum + press_sorting;
-			// 	$('[name="press_sesudah"]').val(press_sesudah);
-			// 	$('[name="jahit_sebelum"]').val();
-			// 	let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
-			// 	let jahit_sorting = parseFloat(res.jahit);
-			// 	let jahit_sesudah = jahit_sebelum + jahit_sorting;
-			// 	$('[name="jahit_sesudah"]').val(jahit_sesudah);
-			// 	$('[name="overdeck_sebelum"]').val();
-			// 	let overdeck_sebelum = parseFloat($('[name="overdeck_sebelum"]').val());
-			// 	let overdeck_sorting = parseFloat(res.overdeck);
-			// 	let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
-			// 	$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
-			// 	$('[name="obras_sebelum"]').val();
-			// 	let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
-			// 	let obras_sorting = parseFloat(res.obras);
-			// 	let obras_sesudah = obras_sebelum + obras_sorting;
-			// 	$('[name="obras_sesudah"]').val(obras_sesudah);
-			// 	$('[name="produk"]').val(res.produk);
-			// 	let waktu_total = parseFloat($('[name="waktu_total"]').val());
-			// 	let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
-			// 	let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
-			// 	let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
-			// 	let sesudah_overdeck = parseFloat($('[name="overdeck_sesudah"]').val());
-			// 	let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
-			// 	$total_sudah =
-			// 		sesudah_print +
-			// 		sesudah_press +
-			// 		sesudah_jahit +
-			// 		sesudah_overdeck +
-			// 		sesudah_obras +
-			// 		waktu_total;
-			// 	let total_sudah = parseFloat($total_sudah).toFixed(2);
-			// 	$('[name="total_sudah"]').val(total_sudah);
-			// 	let ci = total_sudah / 960;
-			// 	$('[name="ci"]').val(parseInt(ci));
-
-			// 	console.log(total_waktu);
-			// } else {
-			// 	$('[name="print_sesudah"]').val(res.printer);
-			// 	$('[name="press_sebelum"]').val(res.printer);
-			// 	let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
-			// 	let press_sorting = parseFloat(res.press);
-			// 	let press_sesudah = press_sebelum + press_sorting;
-			// 	$('[name="press_sesudah"]').val(press_sesudah);
-			// 	$('[name="jahit_sebelum"]').val(press_sesudah);
-			// 	let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
-			// 	let jahit_sorting = parseFloat(res.jahit);
-			// 	let jahit_sesudah = jahit_sebelum + jahit_sorting;
-			// 	$('[name="jahit_sesudah"]').val(jahit_sesudah);
-			// 	$('[name="overdeck_sebelum"]').val(jahit_sesudah);
-			// 	let overdeck_sebelum = parseFloat($('[name="overdeck_sebelum"]').val());
-			// 	let overdeck_sorting = parseFloat(res.overdeck);
-			// 	let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
-			// 	$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
-			// 	$('[name="obras_sebelum"]').val(overdeck_sesudah);
-			// 	let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
-			// 	let obras_sorting = parseFloat(res.obras);
-			// 	let obras_sesudah = obras_sebelum + obras_sorting;
-			// 	$('[name="obras_sesudah"]').val(obras_sesudah);
-			// 	$('[name="produk"]').val(res.produk);
-			// 	let waktu_total = parseFloat($('[name="waktu_total"]').val());
-			// 	let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
-			// 	let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
-			// 	let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
-			// 	let sesudah_overdeck = parseFloat($('[name="overdeck_sesudah"]').val());
-			// 	let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
-			// 	$total_sudah =
-			// 		sesudah_print +
-			// 		sesudah_press +
-			// 		sesudah_jahit +
-			// 		sesudah_overdeck +
-			// 		sesudah_obras +
-			// 		waktu_total;
-			// 	let total_sudah = parseFloat($total_sudah).toFixed(2);
-			// 	$('[name="total_sudah"]').val(total_sudah);
-			// 	let ci = total_sudah / 960;
-			// 	$('[name="ci"]').val(ci);
-			// 	console.log(total_waktu);
-			// }
 		},
 		error: (err) => {
 			console.log(err);
@@ -345,7 +257,7 @@ function hitung(data) {
 	// let sample;
 	let total_sudah = $('[name="total_sudah"]').val();
 	console.log(produk);
-	if (produk == "JERSEY") {
+	if (produk == "jersey") {
 		console.log(1);
 		$.ajax({
 			url: getHitungUrl,
@@ -402,14 +314,20 @@ function hitung(data) {
 						sesudah_overdeck +
 						sesudah_obras +
 						waktu_total;
-					let total_sudah = parseFloat($total_sudah).toFixed(2);
+					let total1 =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras;
+					let total2 = parseFloat(total1);
+					$total_sudahh = total2 + waktu_total;
+					let total_sudah = parseFloat($total_sudahh);
 					$('[name="total_sudah"]').val(total_sudah);
 					let ci = total_sudah / 960;
-					$('[name="ci"]').val(parseInt(ci));
-
-					console.log(total_waktu);
+					$('[name="ci"]').val(parseFloat(ci).toFixed(2));
 				} else {
-					$('[name="press_sebelum"]').val(0);
+					$('[name="print_sebelum"]').val(0);
 					$('[name="print_sesudah"]').val(data.printer);
 					$('[name="press_sebelum"]').val(data.printer);
 					let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
@@ -449,11 +367,19 @@ function hitung(data) {
 						sesudah_overdeck +
 						sesudah_obras +
 						waktu_total;
-					let total_sudah = parseFloat($total_sudah).toFixed(2);
+					let total1 =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras;
+					let total2 = parseFloat(total1);
+					$total_sudahh = total2 + waktu_total;
+					let total_sudah = parseFloat($total_sudahh);
 					$('[name="total_sudah"]').val(total_sudah);
 					let ci = total_sudah / 960;
-					$('[name="ci"]').val(ci);
-					console.log(total_waktu);
+					$('[name="ci"]').val(parseFloat(ci).toFixed(2));
+					// $('[name="ci"]').val(parseFloat(ci).toFixed(1));
 				}
 				//selesai data order
 				// let total =
@@ -469,7 +395,6 @@ function hitung(data) {
 			},
 		});
 	} else {
-		console.log(0);
 		$.ajax({
 			url: getHitung2Url,
 			type: "post",
@@ -479,7 +404,6 @@ function hitung(data) {
 			// },
 			success: (res) => {
 				$('[name="waktu_total"]').val(res.waktu_total);
-				console.log(res.waktu_total);
 				//order mulai
 				if ($tanggal_sebelum == tgl_sekarang) {
 					let print_sebelum = parseFloat($('[name="print_sebelum"]').val());
@@ -517,21 +441,22 @@ function hitung(data) {
 						$('[name="overdeck_sesudah"]').val()
 					);
 					let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
-					$total_sudah =
+					let total1 =
 						sesudah_print +
 						sesudah_press +
 						sesudah_jahit +
 						sesudah_overdeck +
-						sesudah_obras +
-						waktu_total;
-					let total_sudah = parseFloat($total_sudah).toFixed(2);
+						sesudah_obras;
+					let total2 = parseFloat(total1);
+					$total_sudahh = total2 + waktu_total;
+					let total_sudah = parseFloat($total_sudahh);
 					$('[name="total_sudah"]').val(total_sudah);
 					let ci = total_sudah / 960;
-					$('[name="ci"]').val(parseInt(ci));
+					$('[name="ci"]').val(parseFloat(ci).toFixed(2));
 
-					console.log(total_waktu);
+					console.log(total_sudah);
 				} else {
-					$('[name="press_sebelum"]').val(0);
+					$('[name="print_sebelum"]').val(0);
 					$('[name="print_sesudah"]').val(data.printer);
 					$('[name="press_sebelum"]').val(data.printer);
 					let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
@@ -571,11 +496,18 @@ function hitung(data) {
 						sesudah_overdeck +
 						sesudah_obras +
 						waktu_total;
-					let total_sudah = parseFloat($total_sudah).toFixed(2);
+					let total1 =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras;
+					let total2 = parseFloat(total1);
+					$total_sudahh = total2 + waktu_total;
+					let total_sudah = parseFloat($total_sudahh);
 					$('[name="total_sudah"]').val(total_sudah);
 					let ci = total_sudah / 960;
-					$('[name="ci"]').val(ci);
-					console.log(total_waktu);
+					$('[name="ci"]').val(parseFloat(ci).toFixed(2));
 				}
 				//order selesai
 			},

@@ -63,5 +63,6 @@ $route['estimasi'] = 'Estimasi_controller';
 $route['default_controller'] = 'Login_controller';
 $route['login'] = 'Login_controller/login';
 $route['register'] = 'Register_controller/register';
+$route['penjadwalan'] = 'Penjadwalan_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

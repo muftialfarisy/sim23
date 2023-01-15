@@ -61,6 +61,14 @@ class Dashboard_controller extends CI_Controller
         echo json_encode($estimasi);
         // }
     }
+    public function jadwal()
+    {
+        header('Content-type: application/json');
+        $estimasi2 = $this->Dashboard_model->getJadwal();
+
+        echo json_encode($estimasi2);
+        // }
+    }
     public function order()
     {
         header('Content-type: application/json');

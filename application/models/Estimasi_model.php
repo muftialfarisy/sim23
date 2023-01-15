@@ -8,6 +8,7 @@ class Estimasi_model extends CI_Model
     private $sorting = 'mesin_sorting';
     private $jersey = 'mesin_jersey';
     private $jaket = 'mesin_jaket';
+    private $pesanan = 'pesanan';
 
     public function create($data)
     {
@@ -32,6 +33,13 @@ class Estimasi_model extends CI_Model
         return $this->db->delete($this->table);
     }
 
+    // public function getAll($urutan_order)
+    // {
+    //     $this->db->select('*');
+    //     $this->db->where('urutan_order', $urutan_order);
+    //     // return $this->db->get();
+    //     return $this->db->get($this->pesanan);
+    // }
     public function getAll($urutan_order)
     {
         $this->db->select('*,pesanan.produk as produk');

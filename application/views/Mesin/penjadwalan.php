@@ -23,12 +23,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pesanan</h1>
+                            <h1>penjadwalan</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pesanan</li>
+                                <li class="breadcrumb-item active">penjadwalan</li>
                             </ol>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="pesanan" class="table table-bordered table-hover" style="width: 100%;">
+                                    <table id="penjadwalan" class="table table-bordered table-hover" style="width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
@@ -63,7 +63,7 @@
                                                 <th>Jumlah</th>
                                                 <th>Bahan Baku</th>
                                                 <th>Dateline</th>
-                                                <!-- <th>Finishing</th> -->
+                                                <th>Finishing</th>
                                                 <th>Action</th>
 
                                             </tr>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="modal-body">
                             <form name="form" id="form">
-                                <input type="hidden" name="id">
+                                <input type="text" name="id">
                                 <!-- <div class="form-group">
                                     <label>Order</label>
                                     <select class="form-control" id="urutan_order" name="urutan_order">
@@ -148,26 +148,11 @@
                                         <label>Dateline (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Dateline" name="dateline" id="dateline">
                                     </div>
-                                    <input type="text" class="form-control" placeholder="rata desain" name="rata_desain" id="rata_desain" hidden>
-                                    <input type="text" class="form-control" placeholder="rata print" name="rata_print" id="rata_print"hidden >
-                                    <input type="text" class="form-control" placeholder="print" name="print" id="print"hidden >
-                                    <input type="text" class="form-control" placeholder="rata cutting" name="rata_cutting" id="rata_cutting"hidden >
-                                    <input type="text" class="form-control" placeholder="rata press" name="rata_press" id="rata_press" hidden>
-                                    <input type="text" class="form-control" placeholder="press" name="press" id="press" hidden>
-                                    <input type="text" class="form-control" placeholder="rata jahit" name="rata_jahit" id="rata_jahit" hidden>
-                                    <input type="text" class="form-control" placeholder="jahit" name="jahit" id="jahit" hidden>
-                                    <input type="text" class="form-control" placeholder="rata overdeck" name="rata_overdeck" id="rata_overdeck" hidden>
-                                    <input type="text" class="form-control" placeholder="overdeck" name="overdeck" id="overdeck" hidden>
-                                    <input type="text" class="form-control" placeholder="rata obras" name="rata_obras" id="rata_obras" hidden>
-                                    <input type="text" class="form-control" placeholder="obras" name="obras" id="obras" hidden>
-                                    <input type="text" class="form-control" placeholder="rata qc" name="rata_qc" id="rata_qc"hidden >
-                                    <input type="text" class="form-control" placeholder="total cutting" name="total_cutting" id="total_cutting" hidden>
-                                    <input type="text" class="form-control" placeholder="total qc" name="total_qc" id="total_qc" hidden>
-                                    <input type="text" class="form-control" placeholder="waktu total" name="waktu_total" id="waktu_total" hidden>
-                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="CI" name="ci" id="ci">
+                                    <div class="form-group">
                                         <label>Finishing (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Finishing" name="finishing" id="finishing">
-                                    </div> -->
+                                    </div>
                                     <button class="btn btn-success" type="submit">Add</button>
                                     <button class="btn btn-danger" data-dismiss="modal">Close</button>
                             </form>
@@ -252,14 +237,14 @@
         });
     </script> -->
     <script>
-        var readUrl = '<?php echo site_url('Pesanan_controller/read') ?>';
-        var addUrl = '<?php echo site_url('Pesanan_controller/add') ?>';
-        var deleteUrl = '<?php echo site_url('Pesanan_controller/delete') ?>';
-        var editUrl = '<?php echo site_url('Pesanan_controller/edit') ?>';
-        var getPesananUrl = '<?php echo site_url('Pesanan_controller/get_pesanan') ?>';
-        var getMesinUrl = '<?php echo site_url('Pesanan_controller/get_mesin') ?>';
+        var readUrl = '<?php echo site_url('Penjadwalan_controller/read') ?>';
+        var addUrl = '<?php echo site_url('Penjadwalan_controller/add') ?>';
+        var deleteUrl = '<?php echo site_url('Penjadwalan_controller/delete') ?>';
+        var editUrl = '<?php echo site_url('Penjadwalan_controller/edit') ?>';
+        var getPesananUrl = '<?php echo site_url('Penjadwalan_controller/get_pesanan') ?>';
+        var getMesinUrl = '<?php echo site_url('Penjadwalan_controller/get_mesin') ?>';
     </script>
-    <script src="<?php echo base_url('assets/js/pesanan.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/penjadwalan.js') ?>"></script>
 </body>
 
 </html>
