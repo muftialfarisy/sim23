@@ -19,13 +19,63 @@ class Dashboard_controller extends CI_Controller
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/userguide3/general/urls.html
      */
+    public function __construct()
+    {
+        parent::__construct();
+        // if ($this->session->userdata('status') !== 'login') {
+        //     redirect('/');
+        // }
+        $this->load->model('Dashboard_model');
+    }
+
     public function index()
     {
-        // $this->load->view('dashboard');
-        if ($this->session->userdata('status') == 'login') {
-            $this->load->view('dashboard');
-        } else {
-            $this->load->view('Login/login');
-        }
+        $mesin_jaket = $this->Dashboard_model->getUsernames2();
+
+        $data['mesin_jaket'] = $mesin_jaket;
+
+        $this->load->view('Dashboard', $data);
+        // $this->load->view('Dashboard');
+        // echo ($data->result());
     }
+    // public function read()
+    // {
+    //     header('Content-type: application/json');
+    //     foreach ($this->Dashboard_model->read()->result() as $dashboard) {
+    //         $data[] = array(
+    //             'id' => $dashboard->id,
+    //             'urutan_order' => $dashboard->urutan_order,
+    //         );
+    //     }
+    //     $dashboard = array(
+    //         'data' => $data
+    //     );
+    //     echo json_encode($dashboard);
+    // }
+    public function read()
+    {
+        header('Content-type: application/json');
+        $estimasi = $this->Dashboard_model->getUsernames();
+        // if ($estimasi->row()) {
+        // echo json_encode($estimasi->row());
+        echo json_encode($estimasi);
+        // }
+    }
+    public function order()
+    {
+        header('Content-type: application/json');
+        $urutan_order = $this->input->post('urutan_order');
+        $estimasi = $this->Dashboard_model->getOrder($urutan_order);
+        echo json_encode($estimasi);
+    }
+    // public function order()
+    // {
+    //     header('Content-type: application/json');
+    //     $urutan_order = $this->input->post('urutan_order');
+    //     $estimasi = $this->Dashboard_model->getOrder($urutan_order);
+    //     if ($estimasi->row()) {
+    //         echo json_encode($estimasi->row());
+    //         // echo json_encode($estimasi->result());
+    //     }
+    // }
 }

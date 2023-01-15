@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Produksi_controller extends CI_Controller
+class LaporanProduksi_controller extends CI_Controller
 {
 
     /**
@@ -25,21 +25,37 @@ class Produksi_controller extends CI_Controller
         // if ($this->session->userdata('status') !== 'login') {
         //     redirect('/');
         // }
-        $this->load->model('Produksi_model');
+        $this->load->model('LaporanProduksi_model');
     }
 
     public function index()
     {
-        $this->load->view('Produksi/produksi');
+        $this->load->view('Produksi/laporan_produksi');
     }
     public function read()
     {
         header('Content-type: application/json');
-        if ($this->Produksi_model->read()->num_rows() > 0) {
+        $jabatan = $this->session->userdata('jabatan');
+        if ($this->LaporanProduksi_model->read()->num_rows() > 0) {
             // var_dump($this->user_model->read()->result());
-            foreach ($this->Produksi_model->read()->result() as $produksi) {
+            foreach ($this->LaporanProduksi_model->read()->result() as $produksi) {
                 $id = $produksi->idd;
                 $tanggal = new DateTime($produksi->tanggal_order);
+                $get_status = $produksi->status;
+                if ($get_status == "Belum Dikerjakan") {
+                    $status = "Belum Dikerjakan";
+                } else if ($get_status == "Dikerjakan") {
+                    $status = '<p style ="color: blue">Dikerjakan</p>';
+                } else if ($get_status == "Tepat Waktu") {
+                    $status = '<p style ="color: green";>Dikerjakan</p>';
+                } else if ($get_status == "Terlambat") {
+                    $status = '<p style ="color: red";>Terlambat</p>';
+                }
+                if ($jabatan == "operasional_produksi") {
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->id . ')">Delete</button>';
+                } else {
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->id . ')"hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->id . ')" hidden>Delete</button>';
+                }
                 $data[] = array(
                     'id' => $this->session->userdata('id'),
                     'tanggal_order' => $tanggal->format('d-m-Y'),
@@ -51,7 +67,18 @@ class Produksi_controller extends CI_Controller
                     'produk' => $produksi->produk,
                     'bahan' => $produksi->bahan,
                     'jumlah_produk' => $produksi->jumlah_produk,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $id . ')">Delete</button>'
+                    'desain' => $produksi->desain,
+                    'print' => $produksi->print,
+                    'cutting' => $produksi->cutting,
+                    'press' => $produksi->press,
+                    'jahit' => $produksi->jahit,
+                    'overdeck' => $produksi->overdeck,
+                    'obras' => $produksi->obras,
+                    'qc' => $produksi->qc,
+                    'status' => $status,
+                    // 'status' => $produksi->status,
+                    'action' => $action
+                    // 'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $id . ')">Delete</button>'
                 );
             }
         } else {
@@ -75,23 +102,14 @@ class Produksi_controller extends CI_Controller
             'produk' => $this->input->post('produk'),
             'bahan' => $this->input->post('bahan'),
             'jumlah_produk' => $this->input->post('jumlah_produk'),
-            'desain' => 0,
-            'print' => 0,
-            'cutting' => 0,
-            'press' => 0,
-            'jahit' => 0,
-            'overdeck' => 0,
-            'obras' => 0,
-            'qc' => 0,
-
         );
-        $this->Produksi_model->create($data);
+        $this->LaporanProduksi_model->create($data);
         echo json_encode('sukses');
     }
     public function delete()
     {
         $id = $this->input->post('id');
-        if ($this->Produksi_model->delete($id)) {
+        if ($this->LaporanProduksi_model->delete($id)) {
             echo json_encode('sukses');
         }
     }
@@ -118,9 +136,10 @@ class Produksi_controller extends CI_Controller
             'overdeck' => $this->input->post('overdeck'),
             'obras' => $this->input->post('obras'),
             'qc' => $this->input->post('qc'),
+            'status' => $this->input->post('status'),
 
         );
-        if ($this->Produksi_model->update($id, $data)) {
+        if ($this->LaporanProduksi_model->update($id, $data)) {
             echo json_encode('sukses');
         }
     }
@@ -128,7 +147,7 @@ class Produksi_controller extends CI_Controller
     public function get_produksi()
     {
         $id = $this->input->post('id');
-        $user = $this->Produksi_model->getProduksi($id);
+        $user = $this->LaporanProduksi_model->getProduksi($id);
         if ($user->row()) {
             echo json_encode($user->row());
         }
@@ -137,7 +156,7 @@ class Produksi_controller extends CI_Controller
     {
         $id = $this->input->post('id');
         $bahan = $this->input->post('bahan');
-        $user = $this->Produksi_model->getBahan($id);
+        $user = $this->LaporanProduksi_model->getBahan($id);
         if ($user->row()) {
             echo json_encode($user->row());
         }
@@ -146,7 +165,7 @@ class Produksi_controller extends CI_Controller
     {
         $id = $this->input->post('id');
         // $bahan = $this->input->post('bahan');
-        $user = $this->Produksi_model->getBahann($id);
+        $user = $this->LaporanProduksi_model->getBahann($id);
         // $user = $this->Produksi_model->getBahann($bahan);
         // $user = $this->Produksi_model->getBahann($id, $bahan);
         if ($user->row()) {

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>dist/css/adminlte.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>dist/css/frappe-gantt.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->

@@ -141,11 +141,11 @@
                                         <input type="text" class="form-control" placeholder="Bahan Baku" name="bahan_baku" id="bahan_baku" onchange="input()">
                                     </div>
                                     <div class="form-group">
-                                        <label>Dateline</label>
+                                        <label>Dateline (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Dateline" name="dateline" id="dateline">
                                     </div>
                                     <div class="form-group">
-                                        <label>Finishing</label>
+                                        <label>Finishing (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Finishing" name="finishing" id="finishing">
                                     </div>
                                     <button class="btn btn-success" type="submit">Add</button>

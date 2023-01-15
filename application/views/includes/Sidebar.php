@@ -104,10 +104,10 @@
                                             </a>
                                         </li>
                                     <?php } ?>
-                                    <?php if ($jabatan == "kepala_produksi") { ?>
+                                    <?php if ($jabatan == "kepala_produksi" || $jabatan == "operasional_produksi") { ?>
                                         <li class="nav-item">
                                             <!-- <a href="user" class="nav-link"> -->
-                                            <a href="<?php echo site_url('produksi') ?>" class=" nav-link <?php echo $uri == 'produksi' || $uri == '' ? 'active' : 'no' ?>">
+                                            <a href="<?php echo site_url('laporan_produksi') ?>" class=" nav-link <?php echo $uri == 'laporan_produksi' || $uri == '' ? 'active' : 'no' ?>">
                                                 <i class="nav-icon fas fa-solid fa-circle"></i>
                                                 <p>
                                                     Data Laporan Produksi
@@ -140,9 +140,8 @@
                                 </a>
                             </li>
                         <?php } ?>
-                        <?php if ($jabatan == "operasional_produksi" || $jabatan == "kepala_produksi") { ?>
+                        <!-- <?php if ($jabatan == "operasional_produksi" || $jabatan == "kepala_produksi") { ?>
                             <li class="nav-item">
-                                <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('bahan') ?>" class=" nav-link <?php echo $uri == 'bahan' || $uri == '' ? 'active' : 'no' ?>">
                                     <i class="nav-icon fas fa-solid fa-circle"></i>
                                     <p>
@@ -150,10 +149,10 @@
                                     </p>
                                 </a>
                             </li>
-                        <?php } ?>
+                        <?php } ?> -->
                         <li class="nav-item">
                             <!-- <a href="user" class="nav-link"> -->
-                            <a href="<?php echo site_url('mesin') ?>" class=" nav-link <?php echo $uri == 'mesin' || $uri == '' ? 'active' : 'no' ?>">
+                            <a href="<?php echo site_url('mesin') ?>" class=" nav-link <?php echo $uri == 'mesin' || $uri == '' ? 'active' : 'no' ?>" hidden>
                                 <i class="nav-icon fas fa-solid fa-circle"></i>
                                 <p>
                                     Mesin Jersey
@@ -162,22 +161,24 @@
                         </li>
                         <li class="nav-item">
                             <!-- <a href="user" class="nav-link"> -->
-                            <a href="<?php echo site_url('mesin_jaket') ?>" class=" nav-link <?php echo $uri == 'mesin_jaket' || $uri == '' ? 'active' : 'no' ?>">
+                            <a href="<?php echo site_url('mesin_jaket') ?>" class=" nav-link <?php echo $uri == 'mesin_jaket' || $uri == '' ? 'active' : 'no' ?>" hidden>
                                 <i class="nav-icon fas fa-solid fa-circle"></i>
                                 <p>
                                     Mesin Jaket
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <!-- <a href="user" class="nav-link"> -->
-                            <a href="<?php echo site_url('estimasi') ?>" class=" nav-link <?php echo $uri == 'estimasi' || $uri == '' ? 'active' : 'no' ?>">
-                                <i class="nav-icon fas fa-solid fa-circle"></i>
-                                <p>
-                                    Estimasi
-                                </p>
-                            </a>
-                        </li>
+                        <?php if ($jabatan == "operasional_produksi" || $jabatan == "kepala_produksi") { ?>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('estimasi') ?>" class=" nav-link <?php echo $uri == 'estimasi' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Estimasi
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
                     </ul>
                     </li>
                     </ul>

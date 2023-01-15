@@ -53,6 +53,7 @@ $route['dashboard'] = 'Dashboard_controller';
 $route['user'] = 'User_controller';
 $route['pesanan'] = 'Pesanan_controller';
 $route['produksi'] = 'Produksi_controller';
+$route['laporan_produksi'] = 'LaporanProduksi_controller';
 $route['bahan'] = 'Bahan_controller';
 $route['penggunaan_bahan'] = 'PenggunaanBahan_controller';
 $route['status_produksi'] = 'StatusProduksi_controller';

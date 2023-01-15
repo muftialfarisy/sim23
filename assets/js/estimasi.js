@@ -1,3 +1,5 @@
+let hasil_produk;
+let total_waktu;
 let url,
 	user = $("#estimasi").DataTable({
 		responsive: true,
@@ -177,7 +179,11 @@ $("#dateline").change(function () {
 	let total = ci - dateline;
 	$("#lateness").val(total);
 	let lateness = parseInt($("#lateness").val());
-	$("#nj").val(0);
+	if (lateness < 0) {
+		$("#nj").val(0);
+	} else {
+		$("#nj").val(lateness);
+	}
 });
 $("#urutan_order").change(function () {
 	let urutan_order = $("#urutan_order").val();
@@ -192,112 +198,264 @@ $("#urutan_order").change(function () {
 			urutan_order: urutan_order,
 		},
 		success: (res) => {
+			hasil_produk = res.produk;
+			hitung(res);
+			// let waktu_total = total_waktu;
 			// $('[name="print_sebelum"]').val(0);
-			if ($tanggal_sebelum == tgl_sekarang) {
-				let print_sebelum = parseFloat($('[name="print_sebelum"]').val());
-				let print_sorting = parseFloat(res.printer);
-				let print_sesudah = print_sebelum + print_sorting;
-				$('[name="print_sesudah"]').val(print_sesudah);
-				$('[name="press_sebelum"]').val();
-				let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
-				let press_sorting = parseFloat(res.press);
-				let press_sesudah = press_sebelum + press_sorting;
-				$('[name="press_sesudah"]').val(press_sesudah);
-				$('[name="jahit_sebelum"]').val();
-				let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
-				let jahit_sorting = parseFloat(res.jahit);
-				let jahit_sesudah = jahit_sebelum + jahit_sorting;
-				$('[name="jahit_sesudah"]').val(jahit_sesudah);
-				$('[name="overdeck_sebelum"]').val();
-				let overdeck_sebelum = parseFloat($('[name="overdeck_sebelum"]').val());
-				let overdeck_sorting = parseFloat(res.overdeck);
-				let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
-				$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
-				$('[name="obras_sebelum"]').val();
-				let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
-				let obras_sorting = parseFloat(res.obras);
-				let obras_sesudah = obras_sebelum + obras_sorting;
-				$('[name="obras_sesudah"]').val(obras_sesudah);
-				$('[name="produk"]').val(res.produk);
-				let waktu_total = parseFloat($('[name="waktu_total"]').val());
-				let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
-				let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
-				let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
-				let sesudah_overdeck = parseFloat($('[name="overdeck_sesudah"]').val());
-				let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
-				$total_sudah =
-					sesudah_print +
-					sesudah_press +
-					sesudah_jahit +
-					sesudah_overdeck +
-					sesudah_obras +
-					waktu_total;
-				$('[name="total_sudah"]').val($total_sudah);
-				let ci = $total_sudah / 960;
-				$('[name="ci"]').val(parseInt(ci));
+			// if ($tanggal_sebelum == tgl_sekarang) {
+			// 	let print_sebelum = parseFloat($('[name="print_sebelum"]').val());
+			// 	let print_sorting = parseFloat(res.printer);
+			// 	let print_sesudah = print_sebelum + print_sorting;
+			// 	$('[name="print_sesudah"]').val(print_sesudah);
+			// 	$('[name="press_sebelum"]').val();
+			// 	let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
+			// 	let press_sorting = parseFloat(res.press);
+			// 	let press_sesudah = press_sebelum + press_sorting;
+			// 	$('[name="press_sesudah"]').val(press_sesudah);
+			// 	$('[name="jahit_sebelum"]').val();
+			// 	let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
+			// 	let jahit_sorting = parseFloat(res.jahit);
+			// 	let jahit_sesudah = jahit_sebelum + jahit_sorting;
+			// 	$('[name="jahit_sesudah"]').val(jahit_sesudah);
+			// 	$('[name="overdeck_sebelum"]').val();
+			// 	let overdeck_sebelum = parseFloat($('[name="overdeck_sebelum"]').val());
+			// 	let overdeck_sorting = parseFloat(res.overdeck);
+			// 	let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
+			// 	$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
+			// 	$('[name="obras_sebelum"]').val();
+			// 	let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
+			// 	let obras_sorting = parseFloat(res.obras);
+			// 	let obras_sesudah = obras_sebelum + obras_sorting;
+			// 	$('[name="obras_sesudah"]').val(obras_sesudah);
+			// 	$('[name="produk"]').val(res.produk);
+			// 	let waktu_total = parseFloat($('[name="waktu_total"]').val());
+			// 	let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
+			// 	let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
+			// 	let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
+			// 	let sesudah_overdeck = parseFloat($('[name="overdeck_sesudah"]').val());
+			// 	let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
+			// 	$total_sudah =
+			// 		sesudah_print +
+			// 		sesudah_press +
+			// 		sesudah_jahit +
+			// 		sesudah_overdeck +
+			// 		sesudah_obras +
+			// 		waktu_total;
+			// 	let total_sudah = parseFloat($total_sudah).toFixed(2);
+			// 	$('[name="total_sudah"]').val(total_sudah);
+			// 	let ci = total_sudah / 960;
+			// 	$('[name="ci"]').val(parseInt(ci));
 
-				// console.log(waktu_total);
-			} else {
-				$('[name="print_sesudah"]').val(res.printer);
-				$('[name="press_sebelum"]').val(res.printer);
-				let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
-				let press_sorting = parseFloat(res.press);
-				let press_sesudah = press_sebelum + press_sorting;
-				$('[name="press_sesudah"]').val(press_sesudah);
-				$('[name="jahit_sebelum"]').val(press_sesudah);
-				let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
-				let jahit_sorting = parseFloat(res.jahit);
-				let jahit_sesudah = jahit_sebelum + jahit_sorting;
-				$('[name="jahit_sesudah"]').val(jahit_sesudah);
-				$('[name="overdeck_sebelum"]').val(jahit_sesudah);
-				let overdeck_sebelum = parseFloat($('[name="overdeck_sebelum"]').val());
-				let overdeck_sorting = parseFloat(res.overdeck);
-				let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
-				$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
-				$('[name="obras_sebelum"]').val(overdeck_sesudah);
-				let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
-				let obras_sorting = parseFloat(res.obras);
-				let obras_sesudah = obras_sebelum + obras_sorting;
-				$('[name="obras_sesudah"]').val(obras_sesudah);
-				$('[name="produk"]').val(res.produk);
-				let waktu_total = parseFloat($('[name="waktu_total"]').val());
-				let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
-				let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
-				let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
-				let sesudah_overdeck = parseFloat($('[name="overdeck_sesudah"]').val());
-				let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
-				$total_sudah =
-					sesudah_print +
-					sesudah_press +
-					sesudah_jahit +
-					sesudah_overdeck +
-					sesudah_obras +
-					waktu_total;
-				$('[name="total_sudah"]').val($total_sudah);
-				let ci = $total_sudah / 960;
-				$('[name="ci"]').val(parseInt(ci));
-				// console.log(waktu_total);
-			}
+			// 	console.log(total_waktu);
+			// } else {
+			// 	$('[name="print_sesudah"]').val(res.printer);
+			// 	$('[name="press_sebelum"]').val(res.printer);
+			// 	let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
+			// 	let press_sorting = parseFloat(res.press);
+			// 	let press_sesudah = press_sebelum + press_sorting;
+			// 	$('[name="press_sesudah"]').val(press_sesudah);
+			// 	$('[name="jahit_sebelum"]').val(press_sesudah);
+			// 	let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
+			// 	let jahit_sorting = parseFloat(res.jahit);
+			// 	let jahit_sesudah = jahit_sebelum + jahit_sorting;
+			// 	$('[name="jahit_sesudah"]').val(jahit_sesudah);
+			// 	$('[name="overdeck_sebelum"]').val(jahit_sesudah);
+			// 	let overdeck_sebelum = parseFloat($('[name="overdeck_sebelum"]').val());
+			// 	let overdeck_sorting = parseFloat(res.overdeck);
+			// 	let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
+			// 	$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
+			// 	$('[name="obras_sebelum"]').val(overdeck_sesudah);
+			// 	let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
+			// 	let obras_sorting = parseFloat(res.obras);
+			// 	let obras_sesudah = obras_sebelum + obras_sorting;
+			// 	$('[name="obras_sesudah"]').val(obras_sesudah);
+			// 	$('[name="produk"]').val(res.produk);
+			// 	let waktu_total = parseFloat($('[name="waktu_total"]').val());
+			// 	let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
+			// 	let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
+			// 	let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
+			// 	let sesudah_overdeck = parseFloat($('[name="overdeck_sesudah"]').val());
+			// 	let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
+			// 	$total_sudah =
+			// 		sesudah_print +
+			// 		sesudah_press +
+			// 		sesudah_jahit +
+			// 		sesudah_overdeck +
+			// 		sesudah_obras +
+			// 		waktu_total;
+			// 	let total_sudah = parseFloat($total_sudah).toFixed(2);
+			// 	$('[name="total_sudah"]').val(total_sudah);
+			// 	let ci = total_sudah / 960;
+			// 	$('[name="ci"]').val(ci);
+			// 	console.log(total_waktu);
+			// }
 		},
 		error: (err) => {
 			console.log(err);
 		},
 	});
-	// hitung();
-	let produk = $('[name="produk"]').val();
+	// let produk = $('[name="produk"]').val();
+	// let total_sudah = $('[name="total_sudah"]').val();
+	// // console.log(total_sudah);
+	// if (produk == "JERSEY") {
+	// 	$.ajax({
+	// 		url: getHitungUrl,
+	// 		type: "post",
+	// 		dataType: "json",
+	// 		data: {
+	// 			urutan_order: urutan_order,
+	// 		},
+	// 		success: (res) => {
+	// 			$('[name="waktu_total"]').val(res.waktu_total);
+	// 			let waktu_total = parseFloat($('[name="waktu_total"]').val());
+	// 			// let total =
+	// 			// 	print_sesudah +
+	// 			// 	press_sesudah +
+	// 			// 	jahit_sesudah +
+	// 			// 	overdeck_sesudah +
+	// 			// 	obras_sesudah;
+	// 			// $('[name="ci"]').val(total / 960);
+	// 		},
+	// 		error: (err) => {
+	// 			console.log(err);
+	// 		},
+	// 	});
+	// } else {
+	// 	$.ajax({
+	// 		url: getHitung2Url,
+	// 		type: "post",
+	// 		dataType: "json",
+	// 		// data: {
+	// 		// 	urutan_order: urutan_order,
+	// 		// },
+	// 		success: (res) => {
+	// 			$('[name="waktu_total"]').val(res.waktu_total);
+	// 		},
+	// 		error: (err) => {
+	// 			console.log(err);
+	// 		},
+	// 	});
+	// }
+});
+function hitung(data) {
+	let produk = hasil_produk;
+	$tanggal_sebelum = $('[name="tanggal_order2"]').val();
+	$tanggal_sekarang = $('[name="tanggal_order"]').val();
+	let tgl_sekarang = $tanggal_sekarang.toString();
+	// let sample;
 	let total_sudah = $('[name="total_sudah"]').val();
-	// console.log(total_sudah);
+	console.log(produk);
 	if (produk == "JERSEY") {
+		console.log(1);
 		$.ajax({
 			url: getHitungUrl,
 			type: "post",
 			dataType: "json",
 			data: {
-				urutan_order: urutan_order,
+				urutan_order: $("#urutan_order").val(),
 			},
 			success: (res) => {
 				$('[name="waktu_total"]').val(res.waktu_total);
-				let waktu_total = parseFloat($('[name="waktu_total"]').val());
+				total_waktu = res.waktu_total;
+				console.log(res.waktu_total);
+				//data order
+				if ($tanggal_sebelum == tgl_sekarang) {
+					let print_sebelum = parseFloat($('[name="print_sebelum"]').val());
+					let print_sorting = parseFloat(data.printer);
+					let print_sesudah = print_sebelum + print_sorting;
+					$('[name="print_sesudah"]').val(print_sesudah);
+					$('[name="press_sebelum"]').val();
+					let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
+					let press_sorting = parseFloat(data.press);
+					let press_sesudah = press_sebelum + press_sorting;
+					$('[name="press_sesudah"]').val(press_sesudah);
+					$('[name="jahit_sebelum"]').val();
+					let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
+					let jahit_sorting = parseFloat(data.jahit);
+					let jahit_sesudah = jahit_sebelum + jahit_sorting;
+					$('[name="jahit_sesudah"]').val(jahit_sesudah);
+					$('[name="overdeck_sebelum"]').val();
+					let overdeck_sebelum = parseFloat(
+						$('[name="overdeck_sebelum"]').val()
+					);
+					let overdeck_sorting = parseFloat(data.overdeck);
+					let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
+					$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
+					$('[name="obras_sebelum"]').val();
+					let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
+					let obras_sorting = parseFloat(data.obras);
+					let obras_sesudah = obras_sebelum + obras_sorting;
+					$('[name="obras_sesudah"]').val(obras_sesudah);
+					$('[name="produk"]').val(data.produk);
+					let waktu_total = parseFloat($('[name="waktu_total"]').val());
+					let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
+					let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
+					let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
+					let sesudah_overdeck = parseFloat(
+						$('[name="overdeck_sesudah"]').val()
+					);
+					let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
+					$total_sudah =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras +
+						waktu_total;
+					let total_sudah = parseFloat($total_sudah).toFixed(2);
+					$('[name="total_sudah"]').val(total_sudah);
+					let ci = total_sudah / 960;
+					$('[name="ci"]').val(parseInt(ci));
+
+					console.log(total_waktu);
+				} else {
+					$('[name="press_sebelum"]').val(0);
+					$('[name="print_sesudah"]').val(data.printer);
+					$('[name="press_sebelum"]').val(data.printer);
+					let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
+					let press_sorting = parseFloat(data.press);
+					let press_sesudah = press_sebelum + press_sorting;
+					$('[name="press_sesudah"]').val(press_sesudah);
+					$('[name="jahit_sebelum"]').val(press_sesudah);
+					let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
+					let jahit_sorting = parseFloat(data.jahit);
+					let jahit_sesudah = jahit_sebelum + jahit_sorting;
+					$('[name="jahit_sesudah"]').val(jahit_sesudah);
+					$('[name="overdeck_sebelum"]').val(jahit_sesudah);
+					let overdeck_sebelum = parseFloat(
+						$('[name="overdeck_sebelum"]').val()
+					);
+					let overdeck_sorting = parseFloat(data.overdeck);
+					let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
+					$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
+					$('[name="obras_sebelum"]').val(overdeck_sesudah);
+					let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
+					let obras_sorting = parseFloat(data.obras);
+					let obras_sesudah = obras_sebelum + obras_sorting;
+					$('[name="obras_sesudah"]').val(obras_sesudah);
+					$('[name="produk"]').val(data.produk);
+					let waktu_total = parseFloat($('[name="waktu_total"]').val());
+					let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
+					let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
+					let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
+					let sesudah_overdeck = parseFloat(
+						$('[name="overdeck_sesudah"]').val()
+					);
+					let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
+					$total_sudah =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras +
+						waktu_total;
+					let total_sudah = parseFloat($total_sudah).toFixed(2);
+					$('[name="total_sudah"]').val(total_sudah);
+					let ci = total_sudah / 960;
+					$('[name="ci"]').val(ci);
+					console.log(total_waktu);
+				}
+				//selesai data order
 				// let total =
 				// 	print_sesudah +
 				// 	press_sesudah +
@@ -311,6 +469,7 @@ $("#urutan_order").change(function () {
 			},
 		});
 	} else {
+		console.log(0);
 		$.ajax({
 			url: getHitung2Url,
 			type: "post",
@@ -320,47 +479,112 @@ $("#urutan_order").change(function () {
 			// },
 			success: (res) => {
 				$('[name="waktu_total"]').val(res.waktu_total);
+				console.log(res.waktu_total);
+				//order mulai
+				if ($tanggal_sebelum == tgl_sekarang) {
+					let print_sebelum = parseFloat($('[name="print_sebelum"]').val());
+					let print_sorting = parseFloat(data.printer);
+					let print_sesudah = print_sebelum + print_sorting;
+					$('[name="print_sesudah"]').val(print_sesudah);
+					$('[name="press_sebelum"]').val();
+					let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
+					let press_sorting = parseFloat(data.press);
+					let press_sesudah = press_sebelum + press_sorting;
+					$('[name="press_sesudah"]').val(press_sesudah);
+					$('[name="jahit_sebelum"]').val();
+					let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
+					let jahit_sorting = parseFloat(data.jahit);
+					let jahit_sesudah = jahit_sebelum + jahit_sorting;
+					$('[name="jahit_sesudah"]').val(jahit_sesudah);
+					$('[name="overdeck_sebelum"]').val();
+					let overdeck_sebelum = parseFloat(
+						$('[name="overdeck_sebelum"]').val()
+					);
+					let overdeck_sorting = parseFloat(data.overdeck);
+					let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
+					$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
+					$('[name="obras_sebelum"]').val();
+					let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
+					let obras_sorting = parseFloat(data.obras);
+					let obras_sesudah = obras_sebelum + obras_sorting;
+					$('[name="obras_sesudah"]').val(obras_sesudah);
+					$('[name="produk"]').val(data.produk);
+					let waktu_total = parseFloat($('[name="waktu_total"]').val());
+					let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
+					let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
+					let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
+					let sesudah_overdeck = parseFloat(
+						$('[name="overdeck_sesudah"]').val()
+					);
+					let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
+					$total_sudah =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras +
+						waktu_total;
+					let total_sudah = parseFloat($total_sudah).toFixed(2);
+					$('[name="total_sudah"]').val(total_sudah);
+					let ci = total_sudah / 960;
+					$('[name="ci"]').val(parseInt(ci));
+
+					console.log(total_waktu);
+				} else {
+					$('[name="press_sebelum"]').val(0);
+					$('[name="print_sesudah"]').val(data.printer);
+					$('[name="press_sebelum"]').val(data.printer);
+					let press_sebelum = parseFloat($('[name="press_sebelum"]').val());
+					let press_sorting = parseFloat(data.press);
+					let press_sesudah = press_sebelum + press_sorting;
+					$('[name="press_sesudah"]').val(press_sesudah);
+					$('[name="jahit_sebelum"]').val(press_sesudah);
+					let jahit_sebelum = parseFloat($('[name="jahit_sebelum"]').val());
+					let jahit_sorting = parseFloat(data.jahit);
+					let jahit_sesudah = jahit_sebelum + jahit_sorting;
+					$('[name="jahit_sesudah"]').val(jahit_sesudah);
+					$('[name="overdeck_sebelum"]').val(jahit_sesudah);
+					let overdeck_sebelum = parseFloat(
+						$('[name="overdeck_sebelum"]').val()
+					);
+					let overdeck_sorting = parseFloat(data.overdeck);
+					let overdeck_sesudah = overdeck_sebelum + overdeck_sorting;
+					$('[name="overdeck_sesudah"]').val(overdeck_sesudah);
+					$('[name="obras_sebelum"]').val(overdeck_sesudah);
+					let obras_sebelum = parseFloat($('[name="obras_sebelum"]').val());
+					let obras_sorting = parseFloat(data.obras);
+					let obras_sesudah = obras_sebelum + obras_sorting;
+					$('[name="obras_sesudah"]').val(obras_sesudah);
+					$('[name="produk"]').val(data.produk);
+					let waktu_total = parseFloat($('[name="waktu_total"]').val());
+					let sesudah_print = parseFloat($('[name="print_sesudah"]').val());
+					let sesudah_press = parseFloat($('[name="press_sesudah"]').val());
+					let sesudah_jahit = parseFloat($('[name="jahit_sesudah"]').val());
+					let sesudah_overdeck = parseFloat(
+						$('[name="overdeck_sesudah"]').val()
+					);
+					let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
+					$total_sudah =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras +
+						waktu_total;
+					let total_sudah = parseFloat($total_sudah).toFixed(2);
+					$('[name="total_sudah"]').val(total_sudah);
+					let ci = total_sudah / 960;
+					$('[name="ci"]').val(ci);
+					console.log(total_waktu);
+				}
+				//order selesai
 			},
 			error: (err) => {
 				console.log(err);
 			},
 		});
 	}
-});
-function hitung() {
-	let produk = $('[name="produk"]').val();
-	console.log(produk);
-	if (produk == "JERSEY") {
-		$.ajax({
-			url: getHitungUrl,
-			type: "post",
-			dataType: "json",
-			data: {
-				urutan_order: urutan_order,
-			},
-			success: (res) => {
-				$('[name="waktu_total"]').val(res.waktu_total);
-			},
-			error: (err) => {
-				console.log(err);
-			},
-		});
-	} else {
-		$.ajax({
-			url: getHitung2Url,
-			type: "post",
-			dataType: "json",
-			data: {
-				urutan_order: urutan_order,
-			},
-			success: (res) => {
-				$('[name="waktu_total"]').val(res.waktu_total);
-			},
-			error: (err) => {
-				console.log(err);
-			},
-		});
-	}
+	// sample(total_waktu);
 }
 function add() {
 	$("#tanggal_order").change(function () {

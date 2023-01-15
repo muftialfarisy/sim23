@@ -22,12 +22,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Produksi</h1>
+                            <h1>Laporan Produksi</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Produksi</li>
+                                <li class="breadcrumb-item active">Laporan Produksi</li>
                             </ol>
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Produksi</h3>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                    <h3 class="card-title">Tabel Laporan Produksi</h3>
+                                    <!-- <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button> -->
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
                                 <!-- /.card-header -->
@@ -60,6 +60,15 @@
                                                 <th>Produk</th>
                                                 <th>Bahan</th>
                                                 <th>Jumlah Produk</th>
+                                                <th>Desain</th>
+                                                <th>Print</th>
+                                                <th>Cutting</th>
+                                                <th>Press</th>
+                                                <th>Jahit</th>
+                                                <th>Overdeck</th>
+                                                <th>Obras</th>
+                                                <th>QC</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -137,7 +146,8 @@
                                             $id = $hasil_bahan->id;
                                             $bahan = $hasil_bahan->nama_bahan;
                                         ?>
-                                            <option value="<?php echo $id ?>"><?= $bahan ?></option>
+                                            <option value="<?php echo $bahan ?>"><?= $bahan ?></option>
+                                            <!-- <option value="<?php echo $id ?>"><?= $bahan ?></option> -->
                                 </div>
                             <?php } ?>
                             </select>
@@ -153,11 +163,52 @@
                             ?>
                                 <!-- <input type="text" name="id_bahan" id="id_bahan" value=" <?= $id ?>"> -->
                             <?php } ?>
-                            <input type="text" placeholder="id bahan" name="id_bahan" id="id_bahan" value="">
+                            <input type="text" name="id_bahan" id="id_bahan" value="">
 
                             <div class="form-group">
                                 <label>Jumlah Produk</label>
                                 <input type="number" class="form-control" placeholder="Jumlah Produk" name="jumlah_produk" id="jumlah_produk">
+                            </div>
+                            <div class="form-group">
+                                <label>Desain (%)</label>
+                                <input type="number" class="form-control" placeholder="Desain" name="desain" id="desain">
+                            </div>
+                            <div class="form-group">
+                                <label>Print (%)</label>
+                                <input type="number" class="form-control" placeholder="Print" name="print" id="print">
+                            </div>
+                            <div class="form-group">
+                                <label>Cutting (%)</label>
+                                <input type="number" class="form-control" placeholder="Cutting" name="cutting" id="cutting">
+                            </div>
+                            <div class="form-group">
+                                <label>Press (%)</label>
+                                <input type="number" class="form-control" placeholder="Press" name="press" id="press">
+                            </div>
+                            <div class="form-group">
+                                <label>Jahit (%)</label>
+                                <input type="number" class="form-control" placeholder="Jahit" name="jahit" id="jahit">
+                            </div>
+                            <div class="form-group">
+                                <label>Overdeck (%)</label>
+                                <input type="number" class="form-control" placeholder="Overdeck" name="overdeck" id="overdeck">
+                            </div>
+                            <div class="form-group">
+                                <label>Obras (%)</label>
+                                <input type="number" class="form-control" placeholder="Obras" name="obras" id="obras">
+                            </div>
+                            <div class="form-group">
+                                <label>QC (%)</label>
+                                <input type="number" class="form-control" placeholder="QC" name="qc" id="qc">
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control" id="status" name="status">
+                                    <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+                                    <option value="Dikerjakan">Dikerjakan</option>
+                                    <option value="Tepat Waktu">Tepat Waktu</option>
+                                    <option value="Terlambat">Terlambat</option>
+                                </select>
                             </div>
                             <button class="btn btn-success" type="submit">Add</button>
                             <button class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -244,15 +295,15 @@
     </script> -->
 
     <script>
-        var readUrl = '<?php echo site_url('Produksi_controller/read') ?>';
-        var addUrl = '<?php echo site_url('Produksi_controller/add') ?>';
-        var deleteUrl = '<?php echo site_url('Produksi_controller/delete') ?>';
-        var editUrl = '<?php echo site_url('Produksi_controller/edit') ?>';
-        var getProduksiUrl = '<?php echo site_url('Produksi_controller/get_produksi') ?>';
-        var getBahanUrl = '<?php echo site_url('Produksi_controller/get_bahan') ?>';
-        var getBahannUrl = '<?php echo site_url('Produksi_controller/get_bahann') ?>';
+        var readUrl = '<?php echo site_url('LaporanProduksi_controller/read') ?>';
+        var addUrl = '<?php echo site_url('LaporanProduksi_controller/add') ?>';
+        var deleteUrl = '<?php echo site_url('LaporanProduksi_controller/delete') ?>';
+        var editUrl = '<?php echo site_url('LaporanProduksi_controller/edit') ?>';
+        var getProduksiUrl = '<?php echo site_url('LaporanProduksi_controller/get_produksi') ?>';
+        var getBahanUrl = '<?php echo site_url('LaporanProduksi_controller/get_bahan') ?>';
+        var getBahannUrl = '<?php echo site_url('LaporanProduksi_controller/get_bahann') ?>';
     </script>
-    <script src="<?php echo base_url('assets/js/produksi.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/laporan_produksi.js') ?>"></script>
     <script>
         $(document).ready(function() {
             $("#bahan").change(function() {

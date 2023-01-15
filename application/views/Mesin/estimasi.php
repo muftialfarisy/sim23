@@ -4,6 +4,7 @@
 <?php $this->load->view('includes/Header'); ?>
 <?php $jabatan = $this->session->userdata('jabatan'); ?>
 
+
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
@@ -207,6 +208,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- /.content -->
         </div>
@@ -269,6 +271,8 @@
     <!-- <script src="assets/dist/js/demo.js"></script> -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="assets/dist/js/pages/dashboard.js"></script>
+    <script src="assets/dist/js/frappe-gantt.min.js"></script>
+    <script src="assets/dist/js/frappe-gantt.min.js.map"></script>
     <!-- Page specific script -->
     <!-- <script>
         $(function() {
