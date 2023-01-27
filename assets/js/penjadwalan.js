@@ -1,3 +1,8 @@
+let noo = [];
+let tasks = [];
+let tasks2 = [];
+let jadwal = [];
+let urutan;
 let url,
 	user = $("#penjadwalan").DataTable({
 		responsive: true,
@@ -54,7 +59,43 @@ let url,
 function reloadTable() {
 	user.ajax.reload();
 }
-
+$(document).ready(function () {
+	chart();
+});
+function chart() {
+	$.ajax({
+		url: jadwalUrl,
+		type: "post",
+		dataType: "json",
+		// data: {
+		// 	urutan_order: "order 1",
+		// },
+		success: (res) => {
+			$.each(res, function (i, value) {
+				let id = value.id;
+				tanggal_pesanan = value.tanggal_pesanan;
+				var today2 = new Date(tanggal_pesanan);
+				var tomorrow2 = new Date(today2);
+				var deadline2 = parseInt(value.finishing);
+				tomorrow2.setDate(today2.getDate() + deadline2);
+				tomorrow2.toLocaleDateString();
+				urutan_order = value.urutan_order;
+				nama_pelanggan = value.nama_pelanggan;
+				jadwal.push({
+					id: id,
+					name: nama_pelanggan,
+					start: today2,
+					end: tomorrow2,
+				});
+				let ganttChart3 = new Gantt("#gantt3", jadwal, {});
+				ganttChart3.change_view_mode("Day");
+			});
+		},
+		error: (err) => {
+			console.log(err);
+		},
+	});
+}
 function addData() {
 	$.ajax({
 		url: addUrl,
@@ -179,17 +220,28 @@ function edit(id) {
 			$('[name="dateline"]').val(res.dateline);
 			$('[name="ci"]').val(res.ci);
 			let ci = parseFloat(res.ci);
+			let pembulatan_ci;
 			let ci2;
 			if (ci == null || ci == "") {
 				ci2 = 0;
 			} else {
-				ci2 = ci;
+				// ci2 = ci;
+				pembulatan_ci = ci;
+				let angka = 1.5;
+				var getDecimalVal = pembulatan_ci.toString().split(".")[1];
+				if (getDecimalVal > 51) {
+					ci2 = Math.ceil(ci);
+				} else if (pembulatan_ci <= 51) {
+					ci2 = Math.floor(ci);
+				}
 			}
 			let day_tanggal_pesanan = tanggal_pesanan.getDay();
 			let total_tanggal = day_tanggal_pesanan + ci2;
-			// console.log(ci);
+			// console.log("ci2 : " + ci2);
+			// console.log("day" + day_tanggal_pesanan);
+			console.log(getDecimalVal);
 			// console.log(total_tanggal);
-			$('[name="finishing"]').val(total_tanggal);
+			$('[name="finishing"]').val(ci2);
 			$(".modal").modal("show");
 			$(".modal-title").html("Edit Data");
 			$('.modal button[type="submit"]').html("Edit");

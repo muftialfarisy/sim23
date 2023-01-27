@@ -45,6 +45,22 @@ class Penjadwalan_model extends CI_Model
         $this->db->like('kategori', $search);
         return $this->db->get($this->table)->result();
     }
+       function getUsernames2()
+    {
+
+        $this->db->select('*');
+        // $this->db->where('urutan_order', 'order 1');
+        $records = $this->db->get('estimasi');
+        $users = $records->result_array();
+        return $users;
+    }
+          function getJadwal()
+    {
+        $this->db->select('*');
+    $records = $this->db->get('pesanan');
+        $users = $records->result_array();
+        return $users;
+    }
 }
 
 /* End of file Pengguna_model.php */

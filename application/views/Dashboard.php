@@ -54,7 +54,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <?php $this->load->view('includes/Cards'); ?>
-                    <?php if ($jabatan == "kepala_produksi") { ?>
+                    <!-- <?php if ($jabatan == "kepala_produksi") { ?>
                         <div class="row">
                             <h3>Gantt chart Estimasi</h3>
                             <div class="gantt-container">
@@ -62,7 +62,7 @@
                                 </svg>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php } ?> -->
                     <!-- Select order : <select id='urutan_order' name="urutan_order">
                         <option>pilih order</option>
                         <?php
@@ -78,17 +78,63 @@
                             </svg>
                         </div>
                     </div> -->
-                    <?php if ($jabatan == "kepala_produksi") { ?>
-                    <div class="row">
-                        <h3>Gantt chart Penjadwalan</h3>
-                        <div class="gantt-container">
-                            <svg id="gantt3" name="gantt3">
-                            </svg>
-                        </div>
-                    </div>
-                    <?php } ?> 
                 </div>
             </section>
+ 
+            <?php if ($jabatan == "kepala_produksi") { ?>
+            <div class="row">
+          <!-- Left col -->
+          <section class="col connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-pie mr-1"></i>
+                  Progress Produksi
+                </h3>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <!-- Morris chart - Sales -->
+                  <div class="chart tab-pane active" id="revenue-chart"
+                       style="position: relative; height: 300px;">
+            <!-- <div class="row"> -->
+        <?php $this->load->view('Progress_produksi'); ?>
+            </div>
+                   <!-- </div> -->
+                </div>
+              </div><!-- /.card-body -->
+               </section>
+            </div>
+            <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-5 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+      <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Pengunaan Bahan</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+        <?php $this->load->view('Chart_penggunaan_bahan'); ?>
+
+                <!-- <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas> -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+              <!-- /.card-body -->
+               </section>
+            </div>
+            <?php } ?> 
+
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
@@ -144,6 +190,7 @@
         var readUrl = '<?php echo site_url('Dashboard_controller/read') ?>';
         var jadwalUrl = '<?php echo site_url('Dashboard_controller/jadwal') ?>';
         var orderUrl = '<?php echo site_url('Dashboard_controller/order') ?>';
+        
         // chartt();
         // read();
     </script>

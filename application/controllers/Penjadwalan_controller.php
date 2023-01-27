@@ -30,7 +30,10 @@ class Penjadwalan_controller extends CI_Controller
 
     public function index()
     {
-        $this->load->view('Mesin/penjadwalan');
+               $mesin_jaket = $this->Penjadwalan_model->getUsernames2();
+
+        $data['mesin_jaket'] = $mesin_jaket;
+        $this->load->view('Mesin/penjadwalan',$data);
     }
     public function read()
     {
@@ -50,14 +53,18 @@ class Penjadwalan_controller extends CI_Controller
                     
                 }
                 else{
-
+                    if($finishing == 0){
                     $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing . 'days'));
+                    }
+                    else{
+                        $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing-1 . 'days'));
+                    }
                 }
-                if ($jabatan == "admin") {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>';
-                } else {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')" hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')" hidden>Delete</button>';
-                }
+                // if ($jabatan == "admin") {
+                //     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>';
+                // } else {
+                //     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')" hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')" hidden>Delete</button>';
+                // }
                 $data[] = array(
                     'id' => $this->session->userdata('id'),
                     'urutan_order' => $pesanan->urutan_order,
@@ -72,7 +79,7 @@ class Penjadwalan_controller extends CI_Controller
                     'dateline' => $day1,
                     // 'finishing' => $pesanan->finishing,
                     'finishing' => $day2,
-                    'action' => $action
+                    'action' =>      '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>'
                 );
             }
         } else {
@@ -138,6 +145,14 @@ class Penjadwalan_controller extends CI_Controller
         if ($user->row()) {
             echo json_encode($user->row());
         }
+    }
+        public function jadwal()
+    {
+        header('Content-type: application/json');
+        $estimasi2 = $this->Penjadwalan_model->getJadwal();
+
+        echo json_encode($estimasi2);
+        // }
     }
 
 }

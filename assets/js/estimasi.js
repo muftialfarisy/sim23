@@ -1,8 +1,13 @@
 let hasil_produk;
 let total_waktu;
+let noo = [];
+let tasks = [];
+let tasks2 = [];
+let jadwal = [];
+let urutan;
 let url,
 	user = $("#estimasi").DataTable({
-		responsive: true,
+		// responsive: true,
 		scrollX: true,
 		ajax: readUrl,
 		columnDefs: [
@@ -12,7 +17,7 @@ let url,
 				targets: 0,
 			},
 		],
-		order: [[1, "asc"]],
+		// order: [[1, "asc"]],
 		// rowGroup: {
 		// 	dataSrc: ["tanggal_order"],
 		// },
@@ -77,7 +82,44 @@ let url,
 function reloadTable() {
 	user.ajax.reload();
 }
-
+$(document).ready(function () {
+	chart();
+	// data2();
+});
+function chart() {
+	$.ajax({
+		url: getChart,
+		type: "post",
+		dataType: "json",
+		// data: {
+		// 	urutan_order: "order 1",
+		// },
+		success: (res) => {
+			$.each(res, function (i, value) {
+				urutan = value.id;
+				tanggal_order = value.tanggal_order;
+				var today = new Date(tanggal_order);
+				var tomorrow = new Date(today);
+				var deadline = parseInt(value.dateline);
+				tomorrow.setDate(today.getDate() + deadline);
+				tomorrow.toLocaleDateString();
+				urutan_order = value.urutan_order;
+				noo = value;
+				tasks.push({
+					id: urutan,
+					name: urutan_order,
+					start: today,
+					end: tomorrow,
+				});
+				let ganttChart = new Gantt("#gantt", tasks, {});
+				ganttChart.change_view_mode("Day");
+			});
+		},
+		error: (err) => {
+			console.log(err);
+		},
+	});
+}
 function addData() {
 	$.ajax({
 		url: addUrl,
@@ -254,6 +296,7 @@ function hitung(data) {
 	$tanggal_sebelum = $('[name="tanggal_order2"]').val();
 	$tanggal_sekarang = $('[name="tanggal_order"]').val();
 	let tgl_sekarang = $tanggal_sekarang.toString();
+	console.log(tgl_sekarang);
 	// let sample;
 	let total_sudah = $('[name="total_sudah"]').val();
 	console.log(produk);

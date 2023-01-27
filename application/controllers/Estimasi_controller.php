@@ -176,4 +176,13 @@ class Estimasi_controller extends CI_Controller
             echo json_encode($user->row());
         }
     }
+        public function chart()
+    {
+        header('Content-type: application/json');
+        $estimasi = $this->Estimasi_model->getEstimasi();
+        // if ($estimasi->row()) {
+        // echo json_encode($estimasi->row());
+        echo json_encode($estimasi);
+        // }
+    }
 }

@@ -181,7 +181,7 @@ function edit(id) {
 		},
 		success: (res) => {
 			$('[name="id"]').val(res.id);
-			$('[name="id_bahan"]').val(res.id_bahan);
+			$('[name="id_bahan"]').val(res.bahan);
 			$('[name="tanggal_order"]').val(res.tanggal_order);
 			$('[name="no_po"]').val(res.no_po);
 			$('[name="invoice_po"]').val(res.invoice_po);

@@ -20,78 +20,78 @@ let urutan;
 // 		},
 // 	});
 // }
-$(document).ready(function () {
-	data1();
-	data2();
-});
-function data1() {
-	$.ajax({
-		url: readUrl,
-		type: "post",
-		dataType: "json",
-		// data: {
-		// 	urutan_order: "order 1",
-		// },
-		success: (res) => {
-			$.each(res, function (i, value) {
-				urutan = value.id;
-				tanggal_order = value.tanggal_order;
-				var today = new Date(tanggal_order);
-				var tomorrow = new Date(today);
-				var deadline = parseInt(value.dateline);
-				tomorrow.setDate(today.getDate() + deadline);
-				tomorrow.toLocaleDateString();
-				urutan_order = value.urutan_order;
-				noo = value;
-				tasks.push({
-					id: urutan,
-					name: urutan_order,
-					start: today,
-					end: tomorrow,
-				});
-				let ganttChart = new Gantt("#gantt", tasks, {});
-				ganttChart.change_view_mode("Day");
-			});
-		},
-		error: (err) => {
-			console.log(err);
-		},
-	});
-}
-function data2() {
-	$.ajax({
-		url: jadwalUrl,
-		type: "post",
-		dataType: "json",
-		// data: {
-		// 	urutan_order: "order 1",
-		// },
-		success: (res) => {
-			$.each(res, function (i, value) {
-				let id = value.id;
-				tanggal_pesanan = value.tanggal_pesanan;
-				var today2 = new Date(tanggal_pesanan);
-				var tomorrow2 = new Date(today2);
-				var deadline2 = parseInt(value.finishing);
-				tomorrow2.setDate(today2.getDate() + deadline2);
-				tomorrow2.toLocaleDateString();
-				urutan_order = value.urutan_order;
-				nama_pelanggan = value.nama_pelanggan;
-				jadwal.push({
-					id: id,
-					name: nama_pelanggan,
-					start: today2,
-					end: tomorrow2,
-				});
-				let ganttChart3 = new Gantt("#gantt3", jadwal, {});
-				ganttChart3.change_view_mode("Day");
-			});
-		},
-		error: (err) => {
-			console.log(err);
-		},
-	});
-}
+// $(document).ready(function () {
+// 	data1();
+// 	data2();
+// });
+// function data1() {
+// 	$.ajax({
+// 		url: readUrl,
+// 		type: "post",
+// 		dataType: "json",
+// 		// data: {
+// 		// 	urutan_order: "order 1",
+// 		// },
+// 		success: (res) => {
+// 			$.each(res, function (i, value) {
+// 				urutan = value.id;
+// 				tanggal_order = value.tanggal_order;
+// 				var today = new Date(tanggal_order);
+// 				var tomorrow = new Date(today);
+// 				var deadline = parseInt(value.dateline);
+// 				tomorrow.setDate(today.getDate() + deadline);
+// 				tomorrow.toLocaleDateString();
+// 				urutan_order = value.urutan_order;
+// 				noo = value;
+// 				tasks.push({
+// 					id: urutan,
+// 					name: urutan_order,
+// 					start: today,
+// 					end: tomorrow,
+// 				});
+// 				let ganttChart = new Gantt("#gantt", tasks, {});
+// 				ganttChart.change_view_mode("Day");
+// 			});
+// 		},
+// 		error: (err) => {
+// 			console.log(err);
+// 		},
+// 	});
+// }
+// function data2() {
+// 	$.ajax({
+// 		url: jadwalUrl,
+// 		type: "post",
+// 		dataType: "json",
+// 		// data: {
+// 		// 	urutan_order: "order 1",
+// 		// },
+// 		success: (res) => {
+// 			$.each(res, function (i, value) {
+// 				let id = value.id;
+// 				tanggal_pesanan = value.tanggal_pesanan;
+// 				var today2 = new Date(tanggal_pesanan);
+// 				var tomorrow2 = new Date(today2);
+// 				var deadline2 = parseInt(value.finishing);
+// 				tomorrow2.setDate(today2.getDate() + deadline2);
+// 				tomorrow2.toLocaleDateString();
+// 				urutan_order = value.urutan_order;
+// 				nama_pelanggan = value.nama_pelanggan;
+// 				jadwal.push({
+// 					id: id,
+// 					name: nama_pelanggan,
+// 					start: today2,
+// 					end: tomorrow2,
+// 				});
+// 				let ganttChart3 = new Gantt("#gantt3", jadwal, {});
+// 				ganttChart3.change_view_mode("Day");
+// 			});
+// 		},
+// 		error: (err) => {
+// 			console.log(err);
+// 		},
+// 	});
+// }
 $("#urutan_order").change(function () {
 	let order = $("#urutan_order").val();
 	let order2 = $('[name="urutan_order"]').val();

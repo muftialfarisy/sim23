@@ -49,7 +49,7 @@ class Produksi_controller extends CI_Controller
                     'tema_design' => $produksi->tema_design,
                     'jumlah_pesanan' => $produksi->jumlah_pesanan,
                     'produk' => $produksi->produk,
-                    'bahan' => $produksi->bahan,
+                    'bahan' => $produksi->bahann,
                     'jumlah_produk' => $produksi->jumlah_produk,
                     'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $id . ')">Delete</button>'
                 );
@@ -83,6 +83,8 @@ class Produksi_controller extends CI_Controller
             'overdeck' => 0,
             'obras' => 0,
             'qc' => 0,
+            'status' => "Belum Dikerjakan",
+
 
         );
         $this->Produksi_model->create($data);
@@ -100,7 +102,7 @@ class Produksi_controller extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = array(
-            'id_bahan' => $this->input->post('id_bahan'),
+            'id_bahan' => $this->input->post('bahan'),
             'tanggal_order' => $this->input->post('tanggal_order'),
             'no_po' => $this->input->post('no_po'),
             'invoice_po' => $this->input->post('invoice_po'),

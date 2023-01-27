@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .gantt-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+.gantt, .gantt3 {
+        overflow-x: scroll;
 
+}
+    .gantt .bar {
+        fill: red !important;
+    }
+    .gantt3 .bar {
+        fill: blue !important;
+    }
+</style>
 <?php $this->load->view('includes/Header'); ?>
 <?php $jabatan = $this->session->userdata('jabatan'); ?>
 
@@ -24,7 +39,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pesanan</h1>
+                            <h1>Estimasi</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -43,7 +58,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Pesanan</h3>
+                                    <h3 class="card-title">Tabel Estimasi</h3>
                                     <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
@@ -92,6 +107,25 @@
                     </div>
                     <!-- /.card -->
 
+                    <!-- gant start -->
+                             <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Gantt Chart</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                        <div class="gantt-container">
+                                <svg id="gantt" name="gantt">
+                                </svg>
+                            </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                    <!-- gant end -->
 
                     <!-- /.container-fluid -->
             </section>
@@ -313,6 +347,7 @@
         var getAll2Url = '<?php echo site_url('Estimasi_controller/get_all2') ?>';
         var getHitungUrl = '<?php echo site_url('Estimasi_controller/get_hitung') ?>';
         var getHitung2Url = '<?php echo site_url('Estimasi_controller/get_hitung2') ?>';
+        var getChart = '<?php echo site_url('Estimasi_controller/chart') ?>';
     </script>
     <script src="<?php echo base_url('assets/js/estimasi.js') ?>"></script>
 </body>

@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .gantt-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+.gantt, .gantt3 {
+        overflow-x: scroll;
+
+}
+    .gantt .bar {
+        fill: red !important;
+    }
+    .gantt3 .bar {
+        fill: blue !important;
+    }
+</style>
+<link rel="stylesheet" href="<?php echo base_url('assets/') ?>dist/css/frappe-gantt.min.css">
 
 <?php $this->load->view('includes/Header'); ?>
 <?php $jabatan = $this->session->userdata('jabatan'); ?>
@@ -42,7 +59,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Pesanan</h3>
+                                    <h3 class="card-title">Tabel Penjadwalan</h3>
                                     <?php if ($jabatan == "admin") { ?>
                                         <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
                                     <?php } ?>
@@ -77,6 +94,25 @@
                             </div>
                         </div>
                     </div>
+                     <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Gantt Chart</h3>
+                                    <!-- <button style="float:right;">Tambah Data User</button> -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                       <div class="gantt-container">
+                            <svg id="gantt3" name="gantt3">
+                            </svg>
+                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
                     <!-- /.card -->
 
 
@@ -148,7 +184,11 @@
                                         <label>Dateline (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Dateline" name="dateline" id="dateline">
                                     </div>
-                                        <input type="text" class="form-control" placeholder="CI" name="ci" id="ci">
+                                    <div class="form-group">
+                                        <label>ci</label>
+                                      <input type="text" class="form-control" placeholder="CI" name="ci" id="ci">
+                                    </div>
+                                        <!-- <input type="text" class="form-control" placeholder="CI" name="ci" id="ci"> -->
                                     <div class="form-group">
                                         <label>Finishing (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Finishing" name="finishing" id="finishing">
@@ -220,6 +260,8 @@
     <!-- <script src="assets/dist/js/demo.js"></script> -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="assets/dist/js/pages/dashboard.js"></script>
+        <script src="assets/dist/js/frappe-gantt.min.js"></script>
+    <script src="assets/dist/js/frappe-gantt.js.map"></script>
     <!-- Page specific script -->
     <!-- <script>
         $(function() {
@@ -243,6 +285,8 @@
         var editUrl = '<?php echo site_url('Penjadwalan_controller/edit') ?>';
         var getPesananUrl = '<?php echo site_url('Penjadwalan_controller/get_pesanan') ?>';
         var getMesinUrl = '<?php echo site_url('Penjadwalan_controller/get_mesin') ?>';
+        var jadwalUrl = '<?php echo site_url('Dashboard_controller/jadwal') ?>';
+
     </script>
     <script src="<?php echo base_url('assets/js/penjadwalan.js') ?>"></script>
 </body>

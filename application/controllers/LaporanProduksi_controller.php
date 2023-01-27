@@ -52,12 +52,13 @@ class LaporanProduksi_controller extends CI_Controller
                     $status = '<p style ="color: red";>Terlambat</p>';
                 }
                 if ($jabatan == "operasional_produksi") {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->id . ')">Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->idd . ')">Delete</button>';
                 } else {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->id . ')"hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->id . ')" hidden>Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')"hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->id . ')" hidden>Delete</button>';
                 }
                 $data[] = array(
-                    'id' => $this->session->userdata('id'),
+                    'id' => $produksi->id,
+                    // 'id' => $this->session->userdata('id'),
                     'tanggal_order' => $tanggal->format('d-m-Y'),
                     'no_po' => $produksi->no_po,
                     'invoice_po' => $produksi->invoice_po,
@@ -65,7 +66,7 @@ class LaporanProduksi_controller extends CI_Controller
                     'tema_design' => $produksi->tema_design,
                     'jumlah_pesanan' => $produksi->jumlah_pesanan,
                     'produk' => $produksi->produk,
-                    'bahan' => $produksi->bahan,
+                    'bahan' => $produksi->bahann,
                     'jumlah_produk' => $produksi->jumlah_produk,
                     'desain' => $produksi->desain,
                     'print' => $produksi->print,

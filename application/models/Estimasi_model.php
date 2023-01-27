@@ -88,6 +88,15 @@ class Estimasi_model extends CI_Model
         $this->db->like('kategori', $search);
         return $this->db->get($this->table)->result();
     }
+        function getEstimasi()
+    {
+
+        $this->db->select('*');
+        // $this->db->where('urutan_order', 'order 1');
+        $records = $this->db->get('estimasi');
+        $users = $records->result_array();
+        return $users;
+    }
 }
 
 /* End of file Pengguna_model.php */

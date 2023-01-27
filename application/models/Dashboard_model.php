@@ -7,6 +7,8 @@ class Dashboard_model extends CI_Model
     private $table = 'mesin_jaket';
     private $estimasi = 'estimasi';
     private $pesanan = 'pesanan';
+    private $produksi = 'produksi';
+    private $penggunaan_bahan = 'penggunaan_bahan';
 
     public function create($data)
     {
@@ -19,6 +21,20 @@ class Dashboard_model extends CI_Model
         $this->db->select('*');
         // $this->db->where('role','2');
         return $this->db->get($this->estimasi);
+    }
+    public function getPenggunaanBahan()
+    {
+        $this->db->select('penggunaan_bahan.id as idd,penggunaan_bahan.jenis_produk,penggunaan_bahan.nama_bahan,penggunaan_bahan.jumlah_pesanan,penggunaan_bahan.jumlah_bahan,penggunaan_bahan.total_bahan,penggunaan_bahan.status,bahan.id,bahan.nama_bahan as bahann,bahan.jumlah as jumlah,bahan.id as idd_bahan');
+        $this->db->from($this->table);
+        $this->db->join('bahan', 'penggunaan_bahan.id_bahan = bahan.id');
+        // return $this->db->get($this->table);
+        return $this->db->get();
+    }
+    public function get_progress_produksi()
+    {
+        $this->db->select('*');
+        // $this->db->where('role','2');
+        return $this->db->get($this->produksi);
     }
     function getUsernames()
     {

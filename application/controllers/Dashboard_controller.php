@@ -35,8 +35,11 @@ class Dashboard_controller extends CI_Controller
         $data['mesin_jaket'] = $mesin_jaket;
 
         $this->load->view('Dashboard', $data);
-        // $this->load->view('Dashboard');
-        // echo ($data->result());
+        //    $penggunaan_bahan = $this->Dashboard_model->getPenggunaanBahan();
+
+        // $data['penggunaan_bahan'] = $penggunaan_bahan;
+
+        // $this->load->view('Chart_penggunaan_bahan', $data);
     }
     // public function read()
     // {
@@ -76,6 +79,39 @@ class Dashboard_controller extends CI_Controller
         $estimasi = $this->Dashboard_model->getOrder($urutan_order);
         echo json_encode($estimasi);
     }
+    public function progress_produksi()
+    {
+  header('Content-type: application/json');
+        if ($this->Dashboard_model->read()->num_rows() > 0) {
+            // var_dump($this->user_model->read()->result());
+            foreach ($this->Dashboard_model->get_progress_produksi()->result() as $user) {
+                $desain = $user->desain;
+                $print= $user->print;
+                $cutting= $user->cutting;
+                $press= $user->press;
+                $jahit= $user->jahit;
+                $overdeck= $user->overdeck;
+                $obras= $user->obras;
+                $qc= $user->qc;
+                $progress = ($desain + $print + $cutting + $press + $jahit + $overdeck + $obras + $qc)/8;
+                $data[] = array(
+                    'id' => $user->id,
+                    'tanggal_order' => $user->tanggal_order,
+                    'customer' => $user->customer,
+                    'tema_design' => $user->tema_design,
+                    // 'dateline' => $user->dateline,
+                    'progress' =>  ceil($progress) ."%",
+                );
+            }
+        } else {
+            $data = array();
+        }
+        $user = array(
+            'data' => $data
+        );
+        echo json_encode($user);
+    }
+    
     // public function order()
     // {
     //     header('Content-type: application/json');
