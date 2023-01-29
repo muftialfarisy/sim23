@@ -169,6 +169,31 @@ function editData() {
 // 	console.log(id);
 // }
 function add() {
+	$("#no_po").change(function () {
+		var no_po = $("#no_po").val();
+		$.ajax({
+			url: getPesananUrl,
+			type: "post",
+			dataType: "json",
+			data: {
+				no_po: no_po,
+			},
+			success: (res) => {
+				$('[name="tanggal_order"]').val(res.tanggal_pesanan);
+				$('[name="dateline"]').val(res.dateline);
+				$('[name="customer"]').val(res.nama_pelanggan);
+				$('[name="tema_design"]').val(res.tema_desain);
+				$('[name="invoice_po"]').val(res.invoice);
+				$('[name="jumlah_pesanan"]').val(res.jumlah);
+				$('[name="produk"]').val(res.produk);
+				$('[name="bahan"]').val(res.bahan_baku);
+				$('[name="jumlah_produk"]').val(res.jumlah);
+			},
+			error: (err) => {
+				console.log(err);
+			},
+		});
+	});
 	url = "add";
 	$(".modal-title").html("Add Data");
 	$('.modal button[type="submit"]').html("Add");

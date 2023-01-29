@@ -40,11 +40,15 @@ class Produksi_controller extends CI_Controller
             foreach ($this->Produksi_model->read()->result() as $produksi) {
                 $id = $produksi->idd;
                 $tanggal = new DateTime($produksi->tanggal_order);
-                $dateline = new DateTime($produksi->dateline);
+                $tgl = $tanggal->format('d-m-Y');
+                // $dateline = new DateTime($produksi->dateline);
+                $dateline =  $produksi->dateline;
+                $day1  = date('d-m-Y', strtotime($tgl . '+'  . $dateline . 'days'));
                 $data[] = array(
                     'id' => $this->session->userdata('id'),
-                    'tanggal_order' => $tanggal->format('d-m-Y'),
-                    'dateline' => $dateline->format('d-m-Y'),
+                    'tanggal_order' => $tgl,
+                    // 'dateline' => $day1,
+                    'dateline' => $produksi->dateline,
                     'no_po' => $produksi->no_po,
                     'invoice_po' => $produksi->invoice_po,
                     'customer' => $produksi->customer,
@@ -135,6 +139,14 @@ class Produksi_controller extends CI_Controller
     {
         $id = $this->input->post('id');
         $user = $this->Produksi_model->getProduksi($id);
+        if ($user->row()) {
+            echo json_encode($user->row());
+        }
+    }
+    public function get_pesanan()
+    {
+        $no_po = $this->input->post('no_po');
+        $user = $this->Produksi_model->getPesanan($no_po);
         if ($user->row()) {
             echo json_encode($user->row());
         }

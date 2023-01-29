@@ -39,7 +39,7 @@ class Pesanan_controller extends CI_Controller
         if ($this->Pesanan_model->read()->num_rows() > 0) {
             // var_dump($this->user_model->read()->result());
             foreach ($this->Pesanan_model->read()->result() as $pesanan) {
-                $id = $pesanan ->id;
+                $id = $pesanan->id;
                 $tanggal_pesanan = new DateTime($pesanan->tanggal_pesanan);
                 $tgl = $tanggal_pesanan->format('d-m-Y');
                 $dateline =  $pesanan->dateline;
@@ -48,9 +48,9 @@ class Pesanan_controller extends CI_Controller
                 // $day2 = date('d-m-Y', strtotime($tgl . ' + 5 days'));
                 $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing . 'days'));
                 if ($jabatan == "admin") {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id .')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id.')">Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>';
                 } else {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id .')" hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id .')" hidden>Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')" hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')" hidden>Delete</button>';
                 }
                 // if ($jabatan == "admin") {
                 //     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id.',' .$pesanan->urutan_order.',' . $pesanan->produk. ')">Delete</button>';
@@ -68,8 +68,8 @@ class Pesanan_controller extends CI_Controller
                     'produk' => $pesanan->produk,
                     'jumlah' => $pesanan->jumlah,
                     'bahan_baku' => $pesanan->bahan_baku,
-                    // 'dateline' => $pesanan->dateline,
-                    'dateline' => $day1,
+                    'dateline' => $pesanan->dateline,
+                    // 'dateline' => $day1,
                     // 'finishing' => $pesanan->finishing,
                     // 'finishing' => $day2,
                     'action' => $action
@@ -85,13 +85,14 @@ class Pesanan_controller extends CI_Controller
     }
     public function add()
     {
-        if( $this->input->post('produk') == 'jersey'){
+        if ($this->input->post('produk') == 'jersey') {
             $no_rata = 9;
-        } else{
+        } else {
             $no_rata = 10;
         };
         $data = array(
             'urutan_order' =>  $this->input->post('urutan_order'),
+            'no_po' =>  $this->input->post('no_po'),
             'nama_pelanggan' => $this->input->post('nama_pelanggan'),
             'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
@@ -110,22 +111,22 @@ class Pesanan_controller extends CI_Controller
             'total_qc' => $this->input->post('total_qc'),
             'waktu_total' => $this->input->post('waktu_total')
         );
-    $sorting = array(
+        $sorting = array(
             'urutan_order' => $this->input->post('urutan_order'),
             'printer' => $this->input->post('print'),
             'press' => $this->input->post('press'),
             'jahit' => $this->input->post('jahit'),
             'overdeck' => $this->input->post('overdeck'),
             'obras' => $this->input->post('obras'),
-            'dateline' => $this->input->post('dateline'),
+            // 'dateline' => $this->input->post('dateline'),
 
         );
-        if($this->input->post('produk') == 'jersey'){     
-            if (($this->Pesanan_model->create($data))&& ($this->Pesanan_model->create_order($order))&& ($this->Pesanan_model->create_sorting($sorting))) {
+        if ($this->input->post('produk') == 'jersey') {
+            if (($this->Pesanan_model->create($data)) && ($this->Pesanan_model->create_order($order)) && ($this->Pesanan_model->create_sorting($sorting))) {
                 echo json_encode('sukses');
             }
-        }else{
-            if (($this->Pesanan_model->create($data))&& ($this->Pesanan_model->create_order_jaket($order))&& ($this->Pesanan_model->create_sorting($sorting))) {
+        } else {
+            if (($this->Pesanan_model->create($data)) && ($this->Pesanan_model->create_order_jaket($order)) && ($this->Pesanan_model->create_sorting($sorting))) {
                 echo json_encode('sukses');
             }
         }
@@ -135,21 +136,20 @@ class Pesanan_controller extends CI_Controller
     public function delete()
     {
         $id = $this->input->post('id');
-        $urutan_order =$this->input->post('urutan_order');
-        $produk =$this->input->post('produk');
-        if($produk == "jersey"){
-            if (($this->Pesanan_model->delete($id))&&($this->Pesanan_model->delete_jersey($urutan_order))&&($this->Pesanan_model->delete_shorting($urutan_order))) {
-                echo json_encode('sukses');
-            }
-        }
-        else{
-                if (($this->Pesanan_model->delete($id))&&($this->Pesanan_model->delete_jaket($urutan_order))&&($this->Pesanan_model->delete_shorting($urutan_order))) {
-                echo json_encode('sukses');
-            }
-        }
-        // if ($this->Pesanan_model->delete($id)) {
-        //     echo json_encode('sukses');
+        $urutan_order = $this->input->post('urutan_order');
+        $produk = $this->input->post('produk');
+        // if ($produk == "jersey") {
+        //     if (($this->Pesanan_model->delete($id)) && ($this->Pesanan_model->delete_jersey($urutan_order)) && ($this->Pesanan_model->delete_shorting($urutan_order))) {
+        //         echo json_encode('sukses');
+        //     }
+        // } else {
+        //     if (($this->Pesanan_model->delete($id)) && ($this->Pesanan_model->delete_jaket($urutan_order)) && ($this->Pesanan_model->delete_shorting($urutan_order))) {
+        //         echo json_encode('sukses');
+        //     }
         // }
+        if ($this->Pesanan_model->delete($id)) {
+            echo json_encode('sukses');
+        }
     }
 
     public function edit()
@@ -157,13 +157,14 @@ class Pesanan_controller extends CI_Controller
         $id = $this->input->post('id');
         $urutan_order = $this->input->post('urutan_order');
         $produk = $this->input->post('produk');
-               if( $this->input->post('produk') == 'jersey'){
+        if ($this->input->post('produk') == 'jersey') {
             $no_rata = 9;
-        } else{
+        } else {
             $no_rata = 10;
         };
         $data = array(
             'urutan_order' => $urutan_order,
+            'no_po' =>  $this->input->post('no_po'),
             'nama_pelanggan' => $this->input->post('nama_pelanggan'),
             'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
@@ -174,15 +175,15 @@ class Pesanan_controller extends CI_Controller
             'dateline' => $this->input->post('dateline'),
             // 'finishing' => $this->input->post('finishing')
         );
-            $order = array(
-            'NO' => 9,
+        $order = array(
+            'NO' => $no_rata,
             'no_rata' => $no_rata,
             'urutan_order' => $this->input->post('urutan_order'),
             'total_cutting' => $this->input->post('total_cutting'),
             'total_qc' => $this->input->post('total_qc'),
             'waktu_total' => $this->input->post('waktu_total')
         );
-    $sorting = array(
+        $sorting = array(
             'urutan_order' => $this->input->post('urutan_order'),
             'printer' => $this->input->post('print'),
             'press' => $this->input->post('press'),
@@ -192,13 +193,13 @@ class Pesanan_controller extends CI_Controller
             'dateline' => $this->input->post('dateline'),
 
         );
-        if($produk == "jersey"){
-            if (($this->Pesanan_model->update($id, $data))&&($this->Pesanan_model->update_jersey($urutan_order, $order))&&($this->Pesanan_model->update_shorting($urutan_order, $sorting))) {
+        // var_dump($data);
+        if ($produk == "jersey") {
+            if (($this->Pesanan_model->update($id, $data)) && ($this->Pesanan_model->update_jersey($urutan_order, $order)) && ($this->Pesanan_model->update_shorting($urutan_order, $sorting))) {
                 echo json_encode('sukses');
             }
-        }
-        else{
-             if ($this->Pesanan_model->update($id, $data)&&($this->Pesanan_model->update_jaket($urutan_order, $order))&&($this->Pesanan_model->update_shorting($urutan_order, $sorting))) {
+        } else {
+            if (($this->Pesanan_model->update($id, $data)) && ($this->Pesanan_model->update_jaket($urutan_order, $order)) && ($this->Pesanan_model->update_shorting($urutan_order, $sorting))) {
                 echo json_encode('sukses');
             }
         }
@@ -220,26 +221,26 @@ class Pesanan_controller extends CI_Controller
         //         echo json_encode($user->row());
         //     }
         // }
-          $user = $this->Pesanan_model->getPesanan($id);
-            if ($user->row()) {
-                echo json_encode($user->row());
-            }
+        $user = $this->Pesanan_model->getPesanan($id);
+        if ($user->row()) {
+            echo json_encode($user->row());
+        }
     }
     public function get_jersey()
     {
         $id = $this->input->post('id');
-          $user = $this->Pesanan_model->getJersey($id);
-            if ($user->row()) {
-                echo json_encode($user->row());
-            }
+        $user = $this->Pesanan_model->getJersey($id);
+        if ($user->row()) {
+            echo json_encode($user->row());
+        }
     }
     public function get_jaket()
     {
         $id = $this->input->post('id');
-          $user = $this->Pesanan_model->getJaket($id);
-            if ($user->row()) {
-                echo json_encode($user->row());
-            }
+        $user = $this->Pesanan_model->getJaket($id);
+        if ($user->row()) {
+            echo json_encode($user->row());
+        }
     }
     public function get_mesin()
     {

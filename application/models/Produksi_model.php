@@ -5,6 +5,7 @@ class Produksi_model extends CI_Model
 {
 
     private $table = 'produksi';
+    private $pesanan = 'pesanan';
     private $bahan = 'bahan';
 
     public function create($data)
@@ -42,6 +43,12 @@ class Produksi_model extends CI_Model
         // $this->db->select('*');
         $this->db->where('id', $id);
         return $this->db->get($this->table);
+    }
+    public function getPesanan($no_po)
+    {
+        // $this->db->select('*');
+        $this->db->where('no_po', $no_po);
+        return $this->db->get($this->pesanan);
     }
     public function getBahan($id)
     {

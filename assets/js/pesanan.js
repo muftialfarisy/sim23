@@ -259,8 +259,9 @@ function edit(id) {
 			id: id,
 		},
 		success: (res) => {
-			$('[name="id"]').val(res.idd);
+			$('[name="id"]').val(res.id);
 			$('[name="urutan_order"]').val(res.urutan_order);
+			$('[name="no_po"]').val(res.no_po);
 			$('[name="nama_pelanggan"]').val(res.nama_pelanggan);
 			$('[name="tema_desain"]').val(res.tema_desain);
 			$('[name="tanggal_pesanan"]').val(res.tanggal_pesanan);

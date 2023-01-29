@@ -91,61 +91,77 @@
                             <form name="form" id="form">
                                 <input type="hidden" name="id">
                                 <div class="form-group">
-                                    <label>tanggal Order</label>
-                                    <input type="date" class="form-control" name="tanggal_order" id="tanggal_order">
-                                </div>
-                                <div class="form-group">
-                                    <label>Dateline</label>
-                                    <input type="date" class="form-control" name="dateline" id="dateline">
-                                </div>
-                                <div class="form-group">
                                     <label>No.PO</label>
-                                    <input type="number" class="form-control" placeholder="No.PO" name="no_po" id="no_po">
-                                </div>
-                                <div class=" form-group">
-                                    <label>Invoice PO</label>
-                                    <input type="text" class="form-control" placeholder="Invoice PO" name="invoice_po" id="invoice_po">
-                                </div>
-                                <div class="form-group">
-                                    <label>Customer</label>
-                                    <input type="text" class="form-control" placeholder="Customer" name="customer" id="customer">
-                                </div>
-                                <div class="form-group">
-                                    <label>Tema Design</label>
-                                    <input type="text" class="form-control" placeholder="Tema Design" name="tema_design" id="tema_design">
-                                </div>
-                                <div class="form-group">
-                                    <label>Jumlah Pesanan</label>
-                                    <input type="text" class="form-control" placeholder="Jumlah Pesanan" name="jumlah_pesanan" id="jumlah_pesanan">
-                                </div>
-                                <div class="form-group">
-                                    <label>Produk</label>
-                                    <select class="form-control" id="produk" name="produk">
-                                        <option value="JERSEY">JERSEY</option>
-                                        <option value="JAKET">JAKET</option>
-                                    </select>
-                                </div>
-                                <!-- <div class="form-group">
-                                    <label>Produk</label>
-                                    <input type="text" class="form-control" placeholder="Produk" name="produk" id="produk">
-                                </div> -->
-                                <div class="form-group">
-                                    <label>Bahan</label>
-                                    <select class="form-control" id="bahan" name="bahan">
+                                    <select class="form-control" id="no_po" name="no_po">
+                                        <option>pilih</option>
                                         <?php
                                         $hasil = $this->db->select('*')
-                                            ->from('bahan')
+                                            ->from('pesanan')
                                             ->get()
                                             ->result();
-                                        $result = $this->db->get('bahan')->num_rows();
                                         foreach ($hasil as $hasil_bahan) {
-                                            $id = $hasil_bahan->id;
-                                            $bahan = $hasil_bahan->nama_bahan;
-                                        ?>
-                                            <option value="<?php echo $id ?>"><?= $bahan ?></option>
+                                            $no_po = $hasil_bahan->no_po;
+                                            ?>
+                                            <option value="<?php echo $no_po ?>"><?= $no_po ?></option>
                                 </div>
                             <?php } ?>
                             </select>
+                            <div class="form-group">
+                                <label>tanggal Order</label>
+                                <input type="text" class="form-control" name="tanggal_order" id="tanggal_order">
+                            </div>
+                            <div class="form-group">
+                                <label>Dateline</label>
+                                <input type="text" class="form-control" name="dateline" id="dateline">
+                            </div>
+                            <!-- <div class="form-group">
+                                    <label>No.PO</label>
+                                    <input type="number" class="form-control" placeholder="No.PO" name="no_po" id="no_po">
+                                </div> -->
+                            <div class=" form-group">
+                                <label>Invoice PO</label>
+                                <input type="text" class="form-control" placeholder="Invoice PO" name="invoice_po" id="invoice_po">
+                            </div>
+                            <div class="form-group">
+                                <label>Customer</label>
+                                <input type="text" class="form-control" placeholder="Customer" name="customer" id="customer">
+                            </div>
+                            <div class="form-group">
+                                <label>Tema Design</label>
+                                <input type="text" class="form-control" placeholder="Tema Design" name="tema_design" id="tema_design">
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah Pesanan</label>
+                                <input type="text" class="form-control" placeholder="Jumlah Pesanan" name="jumlah_pesanan" id="jumlah_pesanan">
+                            </div>
+                            <div class="form-group">
+                                <label>Produk</label>
+                                <select class="form-control" id="produk" name="produk">
+                                    <option value="jersey">JERSEY</option>
+                                    <option value="jaket">JAKET</option>
+                                </select>
+                            </div>
+                            <!-- <div class="form-group">
+                                    <label>Produk</label>
+                                    <input type="text" class="form-control" placeholder="Produk" name="produk" id="produk">
+                                </div> -->
+                            <div class="form-group">
+                                <label>Bahan</label>
+                                <select class="form-control" id="bahan" name="bahan">
+                                    <?php
+                                    $hasil = $this->db->select('*')
+                                        ->from('bahan')
+                                        ->get()
+                                        ->result();
+                                    $result = $this->db->get('bahan')->num_rows();
+                                    foreach ($hasil as $hasil_bahan) {
+                                        $id = $hasil_bahan->id;
+                                        $bahan = $hasil_bahan->nama_bahan;
+                                        ?>
+                                        <option value="<?php echo $id ?>"><?= $bahan ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
                             <?php
                             $hasil = $this->db->select('*')
                                 ->from('bahan')
@@ -155,7 +171,7 @@
                             foreach ($hasil as $hasil_bahan) {
                                 $id = $hasil_bahan->id;
                                 $bahan = $hasil_bahan->nama_bahan;
-                            ?>
+                                ?>
                                 <!-- <input type="text" name="id_bahan" id="id_bahan" value=" <?= $id ?>"> -->
                             <?php } ?>
                             <input type="text" placeholder="id bahan" name="id_bahan" id="id_bahan" value="">
@@ -256,6 +272,7 @@
         var getProduksiUrl = '<?php echo site_url('Produksi_controller/get_produksi') ?>';
         var getBahanUrl = '<?php echo site_url('Produksi_controller/get_bahan') ?>';
         var getBahannUrl = '<?php echo site_url('Produksi_controller/get_bahann') ?>';
+        var getPesananUrl = '<?php echo site_url('Produksi_controller/get_pesanan') ?>';
     </script>
     <script src="<?php echo base_url('assets/js/produksi.js') ?>"></script>
     <script>
