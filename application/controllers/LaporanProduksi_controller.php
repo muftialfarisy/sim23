@@ -41,6 +41,7 @@ class LaporanProduksi_controller extends CI_Controller
             foreach ($this->LaporanProduksi_model->read()->result() as $produksi) {
                 $id = $produksi->idd;
                 $tanggal = new DateTime($produksi->tanggal_order);
+                $dateline = new DateTime($produksi->dateline);
                 $get_status = $produksi->status;
                 if ($get_status == "Belum Dikerjakan") {
                     $status = "Belum Dikerjakan";
@@ -52,14 +53,15 @@ class LaporanProduksi_controller extends CI_Controller
                     $status = '<p style ="color: red";>Terlambat</p>';
                 }
                 if ($jabatan == "operasional_produksi") {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->idd . ')">Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')">Edit</button>';
                 } else {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')"hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $produksi->id . ')" hidden>Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')"hidden>Edit</button>';
                 }
                 $data[] = array(
                     'id' => $produksi->id,
                     // 'id' => $this->session->userdata('id'),
                     'tanggal_order' => $tanggal->format('d-m-Y'),
+                    'dateline' => $dateline->format('d-m-Y'),
                     'no_po' => $produksi->no_po,
                     'invoice_po' => $produksi->invoice_po,
                     'customer' => $produksi->customer,
@@ -68,14 +70,14 @@ class LaporanProduksi_controller extends CI_Controller
                     'produk' => $produksi->produk,
                     'bahan' => $produksi->bahann,
                     'jumlah_produk' => $produksi->jumlah_produk,
-                    'desain' => $produksi->desain,
-                    'print' => $produksi->print,
-                    'cutting' => $produksi->cutting,
-                    'press' => $produksi->press,
-                    'jahit' => $produksi->jahit,
-                    'overdeck' => $produksi->overdeck,
-                    'obras' => $produksi->obras,
-                    'qc' => $produksi->qc,
+                    'desain' => $produksi->desain . "%",
+                    'print' => $produksi->print . "%",
+                    'cutting' => $produksi->cutting . "%",
+                    'press' => $produksi->press . "%",
+                    'jahit' => $produksi->jahit . "%",
+                    'overdeck' => $produksi->overdeck . "%",
+                    'obras' => $produksi->obras . "%",
+                    'qc' => $produksi->qc . "%",
                     'status' => $status,
                     // 'status' => $produksi->status,
                     'action' => $action
@@ -95,6 +97,7 @@ class LaporanProduksi_controller extends CI_Controller
         $data = array(
             'id_bahan' => $this->input->post('bahan'),
             'tanggal_order' => $this->input->post('tanggal_order'),
+            'dateline' => $this->input->post('dateline'),
             'no_po' => $this->input->post('no_po'),
             'invoice_po' => $this->input->post('invoice_po'),
             'customer' => $this->input->post('customer'),
@@ -119,16 +122,17 @@ class LaporanProduksi_controller extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = array(
-            'id_bahan' => $this->input->post('id_bahan'),
-            'tanggal_order' => $this->input->post('tanggal_order'),
-            'no_po' => $this->input->post('no_po'),
-            'invoice_po' => $this->input->post('invoice_po'),
-            'customer' => $this->input->post('customer'),
-            'tema_design' => $this->input->post('tema_design'),
-            'jumlah_pesanan' => $this->input->post('jumlah_pesanan'),
-            'produk' => $this->input->post('produk'),
-            'bahan' => $this->input->post('bahan'),
-            'jumlah_produk' => $this->input->post('jumlah_produk'),
+            // 'id_bahan' => $this->input->post('bahan'),
+            // 'tanggal_order' => $this->input->post('tanggal_order'),
+            // 'dateline' => $this->input->post('dateline'),
+            // 'no_po' => $this->input->post('no_po'),
+            // 'invoice_po' => $this->input->post('invoice_po'),
+            // 'customer' => $this->input->post('customer'),
+            // 'tema_design' => $this->input->post('tema_design'),
+            // 'jumlah_pesanan' => $this->input->post('jumlah_pesanan'),
+            // 'produk' => $this->input->post('produk'),
+            // 'bahan' => $this->input->post('bahan'),
+            // 'jumlah_produk' => $this->input->post('jumlah_produk'),
             'desain' => $this->input->post('desain'),
             'print' => $this->input->post('print'),
             'cutting' => $this->input->post('cutting'),

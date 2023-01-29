@@ -442,9 +442,9 @@ function hitung(data) {
 			url: getHitung2Url,
 			type: "post",
 			dataType: "json",
-			// data: {
-			// 	urutan_order: urutan_order,
-			// },
+			data: {
+				urutan_order: $("#urutan_order").val(),
+			},
 			success: (res) => {
 				$('[name="waktu_total"]').val(res.waktu_total);
 				//order mulai
@@ -484,6 +484,13 @@ function hitung(data) {
 						$('[name="overdeck_sesudah"]').val()
 					);
 					let sesudah_obras = parseFloat($('[name="obras_sesudah"]').val());
+					$total_sudah =
+						sesudah_print +
+						sesudah_press +
+						sesudah_jahit +
+						sesudah_overdeck +
+						sesudah_obras +
+						waktu_total;
 					let total1 =
 						sesudah_print +
 						sesudah_press +
@@ -495,9 +502,13 @@ function hitung(data) {
 					let total_sudah = parseFloat($total_sudahh);
 					$('[name="total_sudah"]').val(total_sudah);
 					let ci = total_sudah / 960;
-					$('[name="ci"]').val(parseFloat(ci).toFixed(2));
-
-					console.log(total_sudah);
+					console.log("print_sesudah".$print_sesudah);
+					console.log("total1".$total1);
+					console.log("total2".$total2);
+					console.log("total_sudahh".$total_sudahh);
+					console.log("total_sudah".$total_sudah);
+					console.log("ci".$ci);
+					$('[name="ci"]').val(parseFloat(ci));
 				} else {
 					$('[name="print_sebelum"]').val(0);
 					$('[name="print_sesudah"]').val(data.printer);

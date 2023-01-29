@@ -60,16 +60,6 @@
                         <?php } ?>
 
                         <?php if ($jabatan == "admin" || $jabatan == "operasional_produksi") { ?>
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-solid fa-table"></i>
-                                    <!-- <i class="fa-solid fa-table"></i> -->
-                                    <p>
-                                        Pesanan
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <!-- <a href="user" class="nav-link"> -->
                                         <a href="<?php echo site_url('pesanan') ?>" class=" nav-link <?php echo $uri == 'pesanan' || $uri == '' ? 'active' : 'no' ?>">
@@ -79,22 +69,10 @@
                                             </p>
                                         </a>
                                     </li>
-                                </ul>
-                            </li>
+        
                         <?php } ?>
-                        <?php if ($jabatan == "operasional_produksi" ) { ?>
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-solid fa-table"></i>
-                                    <!-- <i class="fa-solid fa-table"></i> -->
-                                    <p>
-                                        Produksi
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <?php if ($jabatan == "operasional_produksi") { ?>
-                                        <li class="nav-item">
+                            <?php if ($jabatan == "operasional_produksi") { ?>
+                                      <li class="nav-item">
                                             <!-- <a href="user" class="nav-link"> -->
                                             <a href="<?php echo site_url('produksi') ?>" class=" nav-link <?php echo $uri == 'produksi' || $uri == '' ? 'active' : 'no' ?>">
                                                 <i class="nav-icon fas fa-solid fa-circle"></i>
@@ -103,21 +81,8 @@
                                                 </p>
                                             </a>
                                         </li>
-                                    <?php } ?>
-                                    <?php if ($jabatan == "kepala_produksi" || $jabatan == "operasional_produksi") { ?>
-                                        <li class="nav-item">
-                                            <!-- <a href="user" class="nav-link"> -->
-                                            <a href="<?php echo site_url('laporan_produksi') ?>" class=" nav-link <?php echo $uri == 'laporan_produksi' || $uri == '' ? 'active' : 'no' ?>">
-                                                <i class="nav-icon fas fa-solid fa-circle"></i>
-                                                <p>
-                                                    Data Laporan Produksi
-                                                </p>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                            </li>
                             <?php } ?>
+
                             <?php if ($jabatan == "kepala_produksi" || $jabatan == "operasional_produksi") { ?>
                                 <li class="nav-item">
                                     <!-- <a href="user" class="nav-link"> -->

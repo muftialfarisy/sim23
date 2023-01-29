@@ -1,6 +1,6 @@
 let url,
 	user = $("#produksi").DataTable({
-		responsive: true,
+		// responsive: true,
 		scrollX: true,
 		scrollY: true,
 		ajax: readUrl,
@@ -18,6 +18,9 @@ let url,
 			},
 			{
 				data: "tanggal_order",
+			},
+			{
+				data: "dateline",
 			},
 			{
 				data: "no_po",
@@ -208,16 +211,17 @@ function edit(id) {
 			id: id,
 		},
 		success: (res) => {
-			$('[name="id"]').val(res.id);
+			$('[name="id"]').val(res.idd);
 			$('[name="id_bahan"]').val(res.id_bahan);
 			$('[name="tanggal_order"]').val(res.tanggal_order);
+			$('[name="dateline"]').val(res.dateline);
 			$('[name="no_po"]').val(res.no_po);
 			$('[name="invoice_po"]').val(res.invoice_po);
 			$('[name="customer"]').val(res.customer);
 			$('[name="tema_design"]').val(res.tema_design);
 			$('[name="jumlah_pesanan"]').val(res.jumlah_pesanan);
 			$('[name="produk"]').val(res.produk);
-			$('[name="bahan"]').val(res.bahan);
+			$('[name="bahan"]').val(res.bahann);
 			$('[name="jumlah_bahan"]').val(res.jumlah_bahan);
 			$('[name="jumlah_produk"]').val(res.jumlah_produk);
 			$('[name="desain"]').val(res.desain);

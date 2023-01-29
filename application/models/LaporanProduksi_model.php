@@ -14,7 +14,7 @@ class LaporanProduksi_model extends CI_Model
 
     public function read()
     {
-        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.no_po,produksi.invoice_po,produksi.customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,produksi.desain,produksi.print,produksi.cutting,produksi.press,produksi.jahit,produksi.overdeck,produksi.obras,produksi.qc,produksi.status,bahan.id,bahan.nama_bahan as bahann');
+        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.dateline,produksi.no_po,produksi.invoice_po,produksi.customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,produksi.desain,produksi.print,produksi.cutting,produksi.press,produksi.jahit,produksi.overdeck,produksi.obras,produksi.qc,produksi.status,bahan.id,bahan.nama_bahan as bahann');
         $this->db->from($this->table);
         $this->db->join('bahan', 'produksi.id_bahan = bahan.id');
         // return $this->db->get($this->table);
@@ -39,8 +39,10 @@ class LaporanProduksi_model extends CI_Model
     }
     public function getProduksi($id)
     {
-        // $this->db->select('*');
-        $this->db->where('id', $id);
+        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.dateline,produksi.no_po,produksi.invoice_po,produksi.customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,produksi.desain,produksi.print,produksi.cutting,produksi.press,produksi.jahit,produksi.overdeck,produksi.obras,produksi.qc,produksi.status,bahan.id as id_bahan,bahan.nama_bahan as bahann');
+        // $this->db->select('produksi.*,bahan.*,bahan.nama_bahan as bahann');
+        $this->db->join('bahan', 'bahan.id = produksi.id_bahan');
+        $this->db->where('produksi.id', $id);
         return $this->db->get($this->table);
     }
     public function getBahan($id)

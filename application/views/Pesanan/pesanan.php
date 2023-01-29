@@ -148,22 +148,23 @@
                                         <label>Dateline (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Dateline" name="dateline" id="dateline">
                                     </div>
-                                    <input type="text" class="form-control" placeholder="rata desain" name="rata_desain" id="rata_desain" hidden>
-                                    <input type="text" class="form-control" placeholder="rata print" name="rata_print" id="rata_print"hidden >
-                                    <input type="text" class="form-control" placeholder="print" name="print" id="print"hidden >
-                                    <input type="text" class="form-control" placeholder="rata cutting" name="rata_cutting" id="rata_cutting"hidden >
-                                    <input type="text" class="form-control" placeholder="rata press" name="rata_press" id="rata_press" hidden>
-                                    <input type="text" class="form-control" placeholder="press" name="press" id="press" hidden>
-                                    <input type="text" class="form-control" placeholder="rata jahit" name="rata_jahit" id="rata_jahit" hidden>
-                                    <input type="text" class="form-control" placeholder="jahit" name="jahit" id="jahit" hidden>
-                                    <input type="text" class="form-control" placeholder="rata overdeck" name="rata_overdeck" id="rata_overdeck" hidden>
-                                    <input type="text" class="form-control" placeholder="overdeck" name="overdeck" id="overdeck" hidden>
-                                    <input type="text" class="form-control" placeholder="rata obras" name="rata_obras" id="rata_obras" hidden>
-                                    <input type="text" class="form-control" placeholder="obras" name="obras" id="obras" hidden>
-                                    <input type="text" class="form-control" placeholder="rata qc" name="rata_qc" id="rata_qc"hidden >
-                                    <input type="text" class="form-control" placeholder="total cutting" name="total_cutting" id="total_cutting" hidden>
-                                    <input type="text" class="form-control" placeholder="total qc" name="total_qc" id="total_qc" hidden>
-                                    <input type="text" class="form-control" placeholder="waktu total" name="waktu_total" id="waktu_total" hidden>
+                                    <input type="text" class="form-control" placeholder="no" name="no" id="no" >
+                                    <input type="text" class="form-control" placeholder="rata desain" name="rata_desain" id="rata_desain" >
+                                    <input type="text" class="form-control" placeholder="rata print" name="rata_print" id="rata_print" >
+                                    <input type="text" class="form-control" placeholder="print" name="print" id="print" >
+                                    <input type="text" class="form-control" placeholder="rata cutting" name="rata_cutting" id="rata_cutting" >
+                                    <input type="text" class="form-control" placeholder="rata press" name="rata_press" id="rata_press" >
+                                    <input type="text" class="form-control" placeholder="press" name="press" id="press" >
+                                    <input type="text" class="form-control" placeholder="rata jahit" name="rata_jahit" id="rata_jahit" >
+                                    <input type="text" class="form-control" placeholder="jahit" name="jahit" id="jahit" >
+                                    <input type="text" class="form-control" placeholder="rata overdeck" name="rata_overdeck" id="rata_overdeck" >
+                                    <input type="text" class="form-control" placeholder="overdeck" name="overdeck" id="overdeck" >
+                                    <input type="text" class="form-control" placeholder="rata obras" name="rata_obras" id="rata_obras" >
+                                    <input type="text" class="form-control" placeholder="obras" name="obras" id="obras" >
+                                    <input type="text" class="form-control" placeholder="rata qc" name="rata_qc" id="rata_qc" >
+                                    <input type="text" class="form-control" placeholder="total cutting" name="total_cutting" id="total_cutting" >
+                                    <input type="text" class="form-control" placeholder="total qc" name="total_qc" id="total_qc" >
+                                    <input type="text" class="form-control" placeholder="waktu total" name="waktu_total" id="waktu_total" >
                                     <!-- <div class="form-group">
                                         <label>Finishing (dalam hari)</label>
                                         <input type="number" class="form-control" placeholder="Finishing" name="finishing" id="finishing">
@@ -257,7 +258,10 @@
         var deleteUrl = '<?php echo site_url('Pesanan_controller/delete') ?>';
         var editUrl = '<?php echo site_url('Pesanan_controller/edit') ?>';
         var getPesananUrl = '<?php echo site_url('Pesanan_controller/get_pesanan') ?>';
+        var getJerseyUrl = '<?php echo site_url('Pesanan_controller/get_jersey') ?>';
+        var getJaketUrl = '<?php echo site_url('Pesanan_controller/get_jaket') ?>';
         var getMesinUrl = '<?php echo site_url('Pesanan_controller/get_mesin') ?>';
+        var getMesinJaketUrl = '<?php echo site_url('Pesanan_controller/get_mesin_jaket') ?>';
     </script>
     <script src="<?php echo base_url('assets/js/pesanan.js') ?>"></script>
 </body>

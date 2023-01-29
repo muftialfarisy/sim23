@@ -52,6 +52,7 @@
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Tanggal Order</th>
+                                                <th>Dateline</th>
                                                 <th>No.PO</th>
                                                 <th>Invoice PO</th>
                                                 <th>Customer</th>
@@ -92,6 +93,10 @@
                                 <div class="form-group">
                                     <label>tanggal Order</label>
                                     <input type="date" class="form-control" name="tanggal_order" id="tanggal_order">
+                                </div>
+                                <div class="form-group">
+                                    <label>Dateline</label>
+                                    <input type="date" class="form-control" name="dateline" id="dateline">
                                 </div>
                                 <div class="form-group">
                                     <label>No.PO</label>

@@ -85,7 +85,8 @@ class PenggunaanBahan_controller extends CI_Controller
             'jumlah_pesanan' => $this->input->post('jumlah_pesanan'),
             'jumlah_bahan' => $this->input->post('jumlah_bahan'),
             'total_bahan' => $this->input->post('total_bahan'),
-            'status' => $this->input->post('status')
+            'status' => $this->input->post('status'),
+            'notifikasi' => 3
         );
         $this->PenggunaanBahan_model->create($data);
         echo json_encode('sukses');
@@ -107,6 +108,11 @@ class PenggunaanBahan_controller extends CI_Controller
         $total_bahan =  $this->input->post('total_bahan');
         $jumlah_bahan =  $this->input->post('jumlahbahan');
         $total = $jumlah_bahan - $total_bahan;
+        if($status == 3){
+            $notifikasi = 2;
+        }else if ($status == 1){
+            $notifikasi = 3;
+        }
         // if ($status == 3) {
         //     $data = array(
         //         'jenis_baju' => $this->input->post('jenis_baju'),
@@ -146,7 +152,9 @@ class PenggunaanBahan_controller extends CI_Controller
             'jumlah_pesanan' => $this->input->post('jumlah_pesanan'),
             'jumlah_bahan' => $this->input->post('jumlah_bahan'),
             'total_bahan' => $this->input->post('total_bahan'),
-            'status' => $this->input->post('status')
+            'status' => $this->input->post('status'),
+            'notifikasi' => $notifikasi
+
         );
         $bahan = array(
             'jumlah' => $total

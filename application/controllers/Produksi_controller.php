@@ -40,9 +40,11 @@ class Produksi_controller extends CI_Controller
             foreach ($this->Produksi_model->read()->result() as $produksi) {
                 $id = $produksi->idd;
                 $tanggal = new DateTime($produksi->tanggal_order);
+                $dateline = new DateTime($produksi->dateline);
                 $data[] = array(
                     'id' => $this->session->userdata('id'),
                     'tanggal_order' => $tanggal->format('d-m-Y'),
+                    'dateline' => $dateline->format('d-m-Y'),
                     'no_po' => $produksi->no_po,
                     'invoice_po' => $produksi->invoice_po,
                     'customer' => $produksi->customer,
@@ -67,6 +69,7 @@ class Produksi_controller extends CI_Controller
         $data = array(
             'id_bahan' => $this->input->post('bahan'),
             'tanggal_order' => $this->input->post('tanggal_order'),
+            'dateline' => $this->input->post('dateline'),
             'no_po' => $this->input->post('no_po'),
             'invoice_po' => $this->input->post('invoice_po'),
             'customer' => $this->input->post('customer'),
@@ -75,7 +78,7 @@ class Produksi_controller extends CI_Controller
             'produk' => $this->input->post('produk'),
             'bahan' => $this->input->post('bahan'),
             'jumlah_produk' => $this->input->post('jumlah_produk'),
-            'desain' => 0,
+            'desain' => 100,
             'print' => 0,
             'cutting' => 0,
             'press' => 0,
@@ -104,6 +107,7 @@ class Produksi_controller extends CI_Controller
         $data = array(
             'id_bahan' => $this->input->post('bahan'),
             'tanggal_order' => $this->input->post('tanggal_order'),
+            'dateline' => $this->input->post('dateline'),
             'no_po' => $this->input->post('no_po'),
             'invoice_po' => $this->input->post('invoice_po'),
             'customer' => $this->input->post('customer'),

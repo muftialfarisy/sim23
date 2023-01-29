@@ -16,9 +16,6 @@ let url,
 		// },
 		columns: [
 			{
-				data: null,
-			},
-			{
 				data: "tanggal_order",
 			},
 			{
@@ -30,9 +27,9 @@ let url,
 			{
 				data: "progress",
 			},
-			// {
-			// 	data: "dateline",
-			// },
+			{
+				data: "dateline",
+			},
 		],
 	});
 

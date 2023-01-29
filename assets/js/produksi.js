@@ -19,6 +19,9 @@ let url,
 				data: "tanggal_order",
 			},
 			{
+				data: "dateline",
+			},
+			{
 				data: "no_po",
 			},
 			{
@@ -183,6 +186,7 @@ function edit(id) {
 			$('[name="id"]').val(res.id);
 			$('[name="id_bahan"]').val(res.bahan);
 			$('[name="tanggal_order"]').val(res.tanggal_order);
+			$('[name="dateline"]').val(res.dateline);
 			$('[name="no_po"]').val(res.no_po);
 			$('[name="invoice_po"]').val(res.invoice_po);
 			$('[name="customer"]').val(res.customer);

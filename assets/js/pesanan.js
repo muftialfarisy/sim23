@@ -181,30 +181,69 @@ $("#jumlah").change(function () {
 	console.log(total_obras);
 });
 function add() {
-	$.ajax({
-		url: getMesinUrl,
-		type: "post",
-		dataType: "json",
-		// data: {
-		// 	id: id,
-		// },
-		success: (res) => {
-			// $('[name="id"]').val(res.id);
-			$('[name="rata_desain"]').val(res.desain);
-			$('[name="rata_print"]').val(res.print);
-			$('[name="rata_cutting"]').val(res.cutting);
-			$('[name="rata_press"]').val(res.press);
-			$('[name="rata_jahit"]').val(res.jahit);
-			// console.log(res.jahit);
-			$('[name="rata_overdeck"]').val(res.overdeck);
-			$('[name="rata_obras"]').val(res.obras);
-			// console.log(res.obras);
+	$("#produk").change(function () {
+		let produk = $("#produk").val();
+		let no;
+		if (produk == "jersey") {
+			$('[name="no"]').val("9");
+			no = $('[name="no"]').val();
+			console.log(produk);
+			$.ajax({
+				url: getMesinUrl,
+				type: "post",
+				dataType: "json",
+				// data: {
+				// 	NO: no,
+				// },
+				success: (res) => {
+					// $('[name="id"]').val(res.id);
+					$('[name="rata_desain"]').val(res.desain);
+					$('[name="rata_print"]').val(res.print);
+					$('[name="rata_cutting"]').val(res.cutting);
+					$('[name="rata_press"]').val(res.press);
+					$('[name="rata_jahit"]').val(res.jahit);
+					// console.log(res.jahit);
+					$('[name="rata_overdeck"]').val(res.overdeck);
+					$('[name="rata_obras"]').val(res.obras);
+					// console.log(res.obras);
 
-			$('[name="rata_qc"]').val(res.qc);
-		},
-		error: (err) => {
-			console.log(err);
-		},
+					$('[name="rata_qc"]').val(res.qc);
+				},
+				error: (err) => {
+					console.log(err);
+				},
+			});
+		} else {
+			$('[name="no"]').val("10");
+			no = $('[name="no"]').val();
+			console.log(produk);
+
+			$.ajax({
+				url: getMesinJaketUrl,
+				type: "post",
+				dataType: "json",
+				// data: {
+				// 	NO: no,
+				// },
+				success: (res) => {
+					// $('[name="id"]').val(res.id);
+					$('[name="rata_desain"]').val(res.desain);
+					$('[name="rata_print"]').val(res.print);
+					$('[name="rata_cutting"]').val(res.cutting);
+					$('[name="rata_press"]').val(res.press);
+					$('[name="rata_jahit"]').val(res.jahit);
+					// console.log(res.jahit);
+					$('[name="rata_overdeck"]').val(res.overdeck);
+					$('[name="rata_obras"]').val(res.obras);
+					// console.log(res.obras);
+
+					$('[name="rata_qc"]').val(res.qc);
+				},
+				error: (err) => {
+					console.log(err);
+				},
+			});
+		}
 	});
 	url = "add";
 	$(".modal-title").html("Add Data");
@@ -220,17 +259,111 @@ function edit(id) {
 			id: id,
 		},
 		success: (res) => {
-			$('[name="id"]').val(res.id);
+			$('[name="id"]').val(res.idd);
 			$('[name="urutan_order"]').val(res.urutan_order);
 			$('[name="nama_pelanggan"]').val(res.nama_pelanggan);
 			$('[name="tema_desain"]').val(res.tema_desain);
 			$('[name="tanggal_pesanan"]').val(res.tanggal_pesanan);
 			$('[name="invoice"]').val(res.invoice);
 			$('[name="produk"]').val(res.produk);
+			let produk = res.produk;
 			$('[name="jumlah"]').val(res.jumlah);
 			$('[name="bahan_baku"]').val(res.bahan_baku);
 			$('[name="dateline"]').val(res.dateline);
 			$('[name="finishing"]').val(res.finishing);
+			if (produk == "jersey") {
+				$.ajax({
+					url: getJerseyUrl,
+					type: "post",
+					dataType: "json",
+					// data: {
+					// 	id: id,
+					// },
+					success: (res) => {
+						let jumlah = $('[name="jumlah"]').val();
+						let rata_desain = $('[name="rata_desain"]').val(res.desain);
+						let rata_print = $('[name="rata_print"]').val(res.print);
+						let total_print =
+							(parseFloat(rata_print) * parseFloat(jumlah)) / (4 * 1);
+						let rata_cutting = $('[name="rata_cutting"]').val(res.cutting);
+						let rata_press = $('[name="rata_press"]').val(res.press);
+						let total_press =
+							(parseFloat(rata_press) * parseFloat(jumlah)) / (4 * 1);
+						let rata_jahit = $('[name="rata_jahit"]').val(res.jahit);
+						let total_jahit =
+							(parseFloat(rata_jahit) * parseFloat(jumlah)) / (4 * 1);
+						let rata_overdeck = $('[name="rata_overdeck"]').val(res.overdeck);
+						let total_overdeck =
+							(parseFloat(rata_overdeck) * parseFloat(jumlah)) / (4 * 1);
+						let rata_obras = $('[name="rata_obras"]').val(res.obras);
+						let total_obras =
+							(parseFloat(rata_obras) * parseFloat(jumlah)) / (4 * 1);
+						let rata_qc = $('[name="rata_qc"]').val(res.qc);
+						let total_cutting = parseFloat(rata_cutting) * parseFloat(jumlah);
+						let total_qc = parseFloat(rata_qc) * parseFloat(jumlah);
+						let waktu_total =
+							total_cutting + total_qc + parseFloat(rata_desain);
+						$('[name="total_cutting"]').val(total_cutting);
+						$('[name="total_qc"]').val(total_qc);
+						$('[name="waktu_total"]').val(waktu_total);
+						$('[name="print"]').val(total_print);
+						$('[name="press"]').val(total_press);
+						$('[name="jahit"]').val(total_jahit);
+						console.log(total_jahit);
+						$('[name="overdeck"]').val(total_overdeck);
+						$('[name="obras"]').val(total_obras);
+					},
+					error: (err) => {
+						console.log(err);
+					},
+				});
+			} else {
+				$.ajax({
+					url: getJaketUrl,
+					type: "post",
+					dataType: "json",
+					// data: {
+					// 	id: id,
+					// },
+					success: (res) => {
+						let jumlah = $('[name="jumlah"]').val();
+						let rata_desain = $('[name="rata_desain"]').val(res.desain);
+						let rata_print = $('[name="rata_print"]').val(res.print);
+						let total_print =
+							(parseFloat(rata_print) * parseFloat(jumlah)) / (4 * 1);
+						let rata_cutting = $('[name="rata_cutting"]').val(res.cutting);
+						let rata_press = $('[name="rata_press"]').val(res.press);
+						let total_press =
+							(parseFloat(rata_press) * parseFloat(jumlah)) / (4 * 1);
+						let rata_jahit = $('[name="rata_jahit"]').val(res.jahit);
+						let total_jahit =
+							(parseFloat(rata_jahit) * parseFloat(jumlah)) / (4 * 1);
+						let rata_overdeck = $('[name="rata_overdeck"]').val(res.overdeck);
+						let total_overdeck =
+							(parseFloat(rata_overdeck) * parseFloat(jumlah)) / (4 * 1);
+						let rata_obras = $('[name="rata_obras"]').val(res.obras);
+						let total_obras =
+							(parseFloat(rata_obras) * parseFloat(jumlah)) / (4 * 1);
+						let rata_qc = $('[name="rata_qc"]').val(res.qc);
+						let total_cutting = parseFloat(rata_cutting) * parseFloat(jumlah);
+						let total_qc = parseFloat(rata_qc) * parseFloat(jumlah);
+						let waktu_total =
+							total_cutting + total_qc + parseFloat(rata_desain);
+						$('[name="total_cutting"]').val(total_cutting);
+						$('[name="total_qc"]').val(total_qc);
+						$('[name="waktu_total"]').val(waktu_total);
+						$('[name="print"]').val(total_print);
+						$('[name="press"]').val(total_press);
+						$('[name="jahit"]').val(total_jahit);
+						console.log(total_jahit);
+						$('[name="overdeck"]').val(total_overdeck);
+						$('[name="obras"]').val(total_obras);
+					},
+					error: (err) => {
+						console.log(err);
+					},
+				});
+			}
 			$(".modal").modal("show");
 			$(".modal-title").html("Edit Data");
 			$('.modal button[type="submit"]').html("Edit");

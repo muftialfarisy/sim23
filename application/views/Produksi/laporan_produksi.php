@@ -52,6 +52,7 @@
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Tanggal Order</th>
+                                                <th>Dateline</th>
                                                 <th>No.PO</th>
                                                 <th>Invoice PO</th>
                                                 <th>Customer</th>
@@ -100,31 +101,35 @@
                                 <input type="hidden" name="id">
                                 <div class="form-group">
                                     <label>tanggal Order</label>
-                                    <input type="date" class="form-control" name="tanggal_order" id="tanggal_order">
+                                    <input type="date" class="form-control" name="tanggal_order" id="tanggal_order" readonly>
+                                </div>
+                                  <div class="form-group">
+                                    <label>Dateline</label>
+                                    <input type="date" class="form-control" name="dateline" id="dateline" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>No.PO</label>
-                                    <input type="number" class="form-control" placeholder="No.PO" name="no_po" id="no_po">
+                                    <input type="number" class="form-control" placeholder="No.PO" name="no_po" id="no_po" readonly>
                                 </div>
                                 <div class=" form-group">
                                     <label>Invoice PO</label>
-                                    <input type="text" class="form-control" placeholder="Invoice PO" name="invoice_po" id="invoice_po">
+                                    <input type="text" class="form-control" placeholder="Invoice PO" name="invoice_po" id="invoice_po" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>Customer</label>
-                                    <input type="text" class="form-control" placeholder="Customer" name="customer" id="customer">
+                                    <input type="text" class="form-control" placeholder="Customer" name="customer" id="customer" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>Tema Design</label>
-                                    <input type="text" class="form-control" placeholder="Tema Design" name="tema_design" id="tema_design">
+                                    <input type="text" class="form-control" placeholder="Tema Design" name="tema_design" id="tema_design" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah Pesanan</label>
-                                    <input type="text" class="form-control" placeholder="Jumlah Pesanan" name="jumlah_pesanan" id="jumlah_pesanan">
+                                    <input type="text" class="form-control" placeholder="Jumlah Pesanan" name="jumlah_pesanan" id="jumlah_pesanan" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>Produk</label>
-                                    <select class="form-control" id="produk" name="produk">
+                                    <select class="form-control" id="produk" name="produk" readonly>
                                         <option value="JERSEY">JERSEY</option>
                                         <option value="JAKET">JAKET</option>
                                     </select>
@@ -135,7 +140,7 @@
                                 </div> -->
                                 <div class="form-group">
                                     <label>Bahan</label>
-                                    <select class="form-control" id="bahan" name="bahan">
+                                    <select class="form-control" id="bahan" name="bahan" readonly>
                                         <?php
                                         $hasil = $this->db->select('*')
                                             ->from('bahan')
@@ -163,11 +168,11 @@
                             ?>
                                 <!-- <input type="text" name="id_bahan" id="id_bahan" value=" <?= $id ?>"> -->
                             <?php } ?>
-                            <input type="text" name="id_bahan" id="id_bahan" value="">
+                            <input type="text" name="id_bahan" id="id_bahan" value="" readonly hidden>
 
                             <div class="form-group">
                                 <label>Jumlah Produk</label>
-                                <input type="number" class="form-control" placeholder="Jumlah Produk" name="jumlah_produk" id="jumlah_produk">
+                                <input type="number" class="form-control" placeholder="Jumlah Produk" name="jumlah_produk" id="jumlah_produk" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Desain (%)</label>
@@ -304,33 +309,6 @@
         var getBahannUrl = '<?php echo site_url('LaporanProduksi_controller/get_bahann') ?>';
     </script>
     <script src="<?php echo base_url('assets/js/laporan_produksi.js') ?>"></script>
-    <script>
-        $(document).ready(function() {
-            $("#bahan").change(function() {
-                // var id = $("#bahan").val();
-                var id = $(this).val();
-
-                // $.ajax({
-                //     url: '<?php echo site_url('Produksi_controller/get_bahann') ?>';,
-                //     method: "POST",
-                //     type: "post",
-                //     data: {
-                //         id: id,
-                //     },
-                //     async: true,
-                //     dataType: "json",
-                //     success: (data) => {
-                //         $('#id_bahan').val(data.id);
-
-                //     },
-                // });
-                // $("#id_bahan").val(id);
-                console.log(id);
-                // return false;
-                // console.log($("#bahan").val());
-                // console.log($("#id_bahan").val());
-            });
-        });
     </script>
 </body>
 

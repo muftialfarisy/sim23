@@ -1,8 +1,8 @@
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?php echo base_url('assets/') ?>dist/img/logo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
-
+        </div> -->
+<?php $jabatan = $this->session->userdata('jabatan'); ?>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #774c35">
             <!-- Left navbar links -->
@@ -13,6 +13,15 @@
             </ul>
 
             <ul class="navbar-nav ml-auto">
+
+                     <!-- Notifications Dropdown Menu -->
+                     <?php if ($jabatan != "admin"){
+
+                         $this->load->view('includes/Notification');
+                     }
+                     ?>
+                <!-- end Notifications -->
+
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-toggle="dropdown">
                         <i class="far fa-user"></i>

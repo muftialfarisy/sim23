@@ -1,41 +1,6 @@
                 <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
 
-    <!-- jQuery -->
-    <script src="<?php echo base_url('assets/') ?>plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="<?php echo base_url('assets/') ?>plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="<?php echo base_url('assets/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="<?php echo base_url('assets/') ?>plugins/chart.js/Chart.min.js"></script>
-    <!-- Sparkline -->
-    <script src="<?php echo base_url('assets/') ?>plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="<?php echo base_url('assets/') ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="<?php echo base_url('assets/') ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="<?php echo base_url('assets/') ?>plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="<?php echo base_url('assets/') ?>plugins/moment/moment.min.js"></script>
-    <script src="<?php echo base_url('assets/') ?>plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="<?php echo base_url('assets/') ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="<?php echo base_url('assets/') ?>plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="<?php echo base_url('assets/') ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="<?php echo base_url('assets/') ?>dist/js/adminlte.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <!-- <script src="<?php echo base_url('assets/') ?>dist/js/demo.js"></script> -->
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo base_url('assets/') ?>dist/js/pages/dashboard.js"></script>
-    <script src="assets/dist/js/frappe-gantt.min.js"></script>
-    <script src="assets/dist/js/frappe-gantt.js.map"></script>
+
 <script>
         //-------------
     //- DONUT CHART -
@@ -80,7 +45,7 @@
                             echo $bahann . ",";
                             ?>
               ],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#33FF55','#DAFF33', '#33FFEC','#229389','#226293','#C30BFF','#F50BFF','#FF0B6F','#FFAA0B','#A8FF0B','#0F2B66','#696E76'],
         }
       ]
     }

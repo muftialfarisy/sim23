@@ -66,14 +66,30 @@ class Dashboard_model extends CI_Model
         // $this->db->where('urutan_order', $urutan_order);
         // return $this->db->get($this->estimasi);
     }
-      function getJadwal()
+    function getJadwal()
     {
         $this->db->select('*');
-    $records = $this->db->get('pesanan');
+        $records = $this->db->get('pesanan');
         $users = $records->result_array();
         return $users;
     }
+    function updateProduksi($data)
+    {
+        $this->db->where('notifikasi', 1);
+        return $this->db->update($this->produksi, $data);
+    }
+    function updatePenggunaanBahan($data)
+    {
+        $this->db->where('notifikasi', 2);
+        return $this->db->update($this->produksi, $data);
+    }
+    function getProduksi()
+    {
+        $this->db->select('*');
+        return $this->db->get($this->produksi);
+    }
 }
+
 
 /* End of file Pengguna_model.php */
 /* Location: ./application/models/Pengguna_model.php */

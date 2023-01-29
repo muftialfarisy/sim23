@@ -73,7 +73,8 @@ class Estimasi_model extends CI_Model
     public function getHitung2($urutan_order)
     {
         $this->db->select('*');
-        $this->db->where('urutan_order', 'order 4');
+        // $this->db->where('urutan_order', "order 4");
+        $this->db->where('urutan_order', $urutan_order);
         return $this->db->get($this->jaket);
     }
     public function getPesanan($id)
