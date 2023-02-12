@@ -10,3 +10,35 @@ jika statusnya sedang dikerjakan maka progress dianggap 50%
 jika statusnya belum dikerjakan maka progress dianggap 0%
 
 file gambar desain ada di folder design
+
+user
+
+admin
+admin
+
+admincs
+admin
+
+kproduksi
+123123
+
+oproduksi
+123123
+
+gudang
+123123
+
+desain
+123123
+
+print
+123123
+
+press
+123123
+
+cutting
+123123
+
+qc
+123123
