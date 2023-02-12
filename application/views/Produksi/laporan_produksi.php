@@ -103,7 +103,7 @@
                                     <label>tanggal Order</label>
                                     <input type="date" class="form-control" name="tanggal_order" id="tanggal_order" readonly>
                                 </div>
-                                  <div class="form-group">
+                                <div class="form-group">
                                     <label>Dateline</label>
                                     <input type="date" class="form-control" name="dateline" id="dateline" readonly>
                                 </div>
@@ -150,7 +150,7 @@
                                         foreach ($hasil as $hasil_bahan) {
                                             $id = $hasil_bahan->id;
                                             $bahan = $hasil_bahan->nama_bahan;
-                                        ?>
+                                            ?>
                                             <option value="<?php echo $bahan ?>"><?= $bahan ?></option>
                                             <!-- <option value="<?php echo $id ?>"><?= $bahan ?></option> -->
                                 </div>
@@ -165,7 +165,7 @@
                             foreach ($hasil as $hasil_bahan) {
                                 $id = $hasil_bahan->id;
                                 $bahan = $hasil_bahan->nama_bahan;
-                            ?>
+                                ?>
                                 <!-- <input type="text" name="id_bahan" id="id_bahan" value=" <?= $id ?>"> -->
                             <?php } ?>
                             <input type="text" name="id_bahan" id="id_bahan" value="" readonly hidden>
@@ -173,38 +173,6 @@
                             <div class="form-group">
                                 <label>Jumlah Produk</label>
                                 <input type="number" class="form-control" placeholder="Jumlah Produk" name="jumlah_produk" id="jumlah_produk" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>Desain (%)</label>
-                                <input type="number" class="form-control" placeholder="Desain" name="desain" id="desain">
-                            </div>
-                            <div class="form-group">
-                                <label>Print (%)</label>
-                                <input type="number" class="form-control" placeholder="Print" name="print" id="print">
-                            </div>
-                            <div class="form-group">
-                                <label>Cutting (%)</label>
-                                <input type="number" class="form-control" placeholder="Cutting" name="cutting" id="cutting">
-                            </div>
-                            <div class="form-group">
-                                <label>Press (%)</label>
-                                <input type="number" class="form-control" placeholder="Press" name="press" id="press">
-                            </div>
-                            <div class="form-group">
-                                <label>Jahit (%)</label>
-                                <input type="number" class="form-control" placeholder="Jahit" name="jahit" id="jahit">
-                            </div>
-                            <div class="form-group">
-                                <label>Overdeck (%)</label>
-                                <input type="number" class="form-control" placeholder="Overdeck" name="overdeck" id="overdeck">
-                            </div>
-                            <div class="form-group">
-                                <label>Obras (%)</label>
-                                <input type="number" class="form-control" placeholder="Obras" name="obras" id="obras">
-                            </div>
-                            <div class="form-group">
-                                <label>QC (%)</label>
-                                <input type="number" class="form-control" placeholder="QC" name="qc" id="qc">
                             </div>
                             <div class="form-group">
                                 <label>Status</label>

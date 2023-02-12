@@ -1,0 +1,12 @@
+alur nya
+
+1. desain upload gambar ( INI MASIH ADA BUG KLO PERTAMA KALI UPLOAD GAADA PEMBERITAHUANNYA TINGGAL REFRESH AJA)
+2. masukin progress print dll ( SESUAI SAMA BPMN LU)
+
+itu retur bahan jika ada kendala dalam permintaan bahan.
+itu total progress di dashboard diambil dari total progress / 8
+jika statusnya sudah selesai maka progress dianggap 100%
+jika statusnya sedang dikerjakan maka progress dianggap 50%
+jika statusnya belum dikerjakan maka progress dianggap 0%
+
+file gambar desain ada di folder design

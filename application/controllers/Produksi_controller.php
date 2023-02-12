@@ -46,6 +46,7 @@ class Produksi_controller extends CI_Controller
                 $day1  = date('d-m-Y', strtotime($tgl . '+'  . $dateline . 'days'));
                 $data[] = array(
                     'id' => $this->session->userdata('id'),
+                    'urutan_order' => $produksi->urutan_order,
                     'tanggal_order' => $tgl,
                     // 'dateline' => $day1,
                     'dateline' => $produksi->dateline,
@@ -72,6 +73,7 @@ class Produksi_controller extends CI_Controller
     {
         $data = array(
             'id_bahan' => $this->input->post('bahan'),
+            'urutan_order' => $this->input->post('urutan_order'),
             'tanggal_order' => $this->input->post('tanggal_order'),
             'dateline' => $this->input->post('dateline'),
             'no_po' => $this->input->post('no_po'),

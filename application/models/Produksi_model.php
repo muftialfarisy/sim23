@@ -15,7 +15,7 @@ class Produksi_model extends CI_Model
 
     public function read()
     {
-        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.dateline,produksi.no_po,produksi.invoice_po,produksi.customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,bahan.id,bahan.nama_bahan as bahann');
+        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.dateline,produksi.no_po,produksi.invoice_po,produksi.customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,produksi.urutan_order,bahan.id,bahan.nama_bahan as bahann');
         $this->db->from($this->table);
         $this->db->join('bahan', 'produksi.id_bahan = bahan.id');
         // return $this->db->get($this->table);

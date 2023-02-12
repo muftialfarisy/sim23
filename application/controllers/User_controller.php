@@ -45,6 +45,7 @@ class User_controller extends CI_Controller
                     'email' => $user->email,
                     'alamat' => $user->alamat,
                     'jabatan' => $user->jabatan,
+                    'divisi' => $user->divisi,
                     'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $user->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $user->id . ')">Delete</button>'
                 );
             }
@@ -70,7 +71,8 @@ class User_controller extends CI_Controller
                 'nama' => $this->input->post('nama'),
                 'email' => $this->input->post('email'),
                 'alamat' => $this->input->post('alamat'),
-                'jabatan' => $this->input->post('jabatan')
+                'jabatan' => $this->input->post('jabatan'),
+                'divisi' => $this->input->post('divisi')
             );
             $this->User_model->create($data);
             echo json_encode('sukses');

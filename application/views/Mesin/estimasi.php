@@ -5,13 +5,17 @@
         width: 100%;
         margin: 0 auto;
     }
-.gantt, .gantt3 {
+
+    .gantt,
+    .gantt3 {
         overflow-x: scroll;
 
-}
+    }
+
     .gantt .bar {
         fill: red !important;
     }
+
     .gantt3 .bar {
         fill: blue !important;
     }
@@ -108,14 +112,13 @@
                     <!-- /.card -->
 
                     <!-- gant start -->
-                             <div class="container-fluid">
-                    <div class="row">
+                    <div class="container-fluid">
+                        <!-- <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Gantt Chart</h3>
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                         <div class="gantt-container">
                                 <svg id="gantt" name="gantt">
@@ -124,10 +127,10 @@
                                 </div>
                                 </div>
                                 </div>
-                                </div>
-                    <!-- gant end -->
+                                </div> -->
+                        <!-- gant end -->
 
-                    <!-- /.container-fluid -->
+                        <!-- /.container-fluid -->
             </section>
             <div class="modal fade" id="modal">
                 <div class="modal-dialog">
@@ -158,7 +161,7 @@
                                     foreach ($hasil as $estimasi) {
                                         $tanggal = $estimasi->tanggal_order;
                                         $tanggal2 = date("d/m/Y", strtotime($tanggal));
-                                    ?>
+                                        ?>
                                         <input type="text" class="form-control" placeholder="Tanggal order" name="tanggal_order2" id="tanggal_order2" value="<?php echo $tanggal ?>" disabled>
                                     <?php } ?>
                                 </div>
@@ -169,13 +172,13 @@
                                         <option value="#">silahkan pilih order</option>
 
                                         <!-- <?php
-                                        for ($x = 1; $x <= 10; $x++) {
+                                                for ($x = 1; $x <= 10; $x++) {
 
-                                        ?>
+                                                    ?>
                                             <option value="Order <?php echo $x ?>">Order <?php echo $x ?></option>
                                         <?php } ?> -->
-                                        
-                                            <?php
+
+                                        <?php
                                         $hasil = $this->db->select('*')
                                             ->from('mesin_sorting')
                                             ->get()
@@ -183,12 +186,12 @@
                                         $result = $this->db->get('mesin_sorting')->num_rows();
                                         foreach ($hasil as $mesin_jersey) {
                                             $urutan_order = $mesin_jersey->urutan_order;
-                                        ?>
-                                        <option value="<?php echo $urutan_order?>"><?php echo  $urutan_order?></option>
+                                            ?>
+                                            <option value="<?php echo $urutan_order ?>"><?php echo  $urutan_order ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Print Sebelum</label>
                                     <input type="text" class="form-control" placeholder="Print Sebelum" name="print_sebelum" id="print_sebelum">
@@ -259,16 +262,16 @@
             </div>
             <!-- /.content -->
         </div>
-                                        </div>
-        <!-- /.content-wrapper -->
-        <?php $this->load->view('includes/Footer'); ?>
+    </div>
+    <!-- /.content-wrapper -->
+    <?php $this->load->view('includes/Footer'); ?>
 
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 

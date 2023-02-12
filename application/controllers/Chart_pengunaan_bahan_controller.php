@@ -36,7 +36,4 @@ class Chart_pengunaan_bahan_controller extends CI_Controller
 
         $this->load->view('Chart_penggunaan_bahan', $penggunaan_bahan);
     }
-
-
-
 }

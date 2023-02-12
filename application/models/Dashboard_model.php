@@ -8,6 +8,7 @@ class Dashboard_model extends CI_Model
     private $estimasi = 'estimasi';
     private $pesanan = 'pesanan';
     private $produksi = 'produksi';
+    private $progress = 'progress';
     private $penggunaan_bahan = 'penggunaan_bahan';
 
     public function create($data)
@@ -32,10 +33,20 @@ class Dashboard_model extends CI_Model
     }
     public function get_progress_produksi()
     {
-        $this->db->select('*');
-        // $this->db->where('role','2');
-        return $this->db->get($this->produksi);
+        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.dateline,produksi.no_po,produksi.invoice_po,produksi.customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,produksi.desain,progress.print as print,progress.cutting as cutting,progress.press as press,progress.jahit as jahit ,progress.overdeck as overdeck,progress.obras as obras,qc.status as qc,produksi.status as status,bahan.id,bahan.nama_bahan as bahann');
+        $this->db->from($this->produksi);
+        $this->db->join('bahan', 'produksi.id_bahan = bahan.id');
+        $this->db->join('progress', 'produksi.id = progress.produksi_id');
+        $this->db->join('qc', 'produksi.id = qc.produksi_id');
+        // return $this->db->get($this->table);
+        return $this->db->get();
     }
+    // public function get_progress_produksi()
+    // {
+    //     $this->db->select('*');
+    //     // $this->db->where('role','2');
+    //     return $this->db->get($this->produksi);
+    // }
     function getUsernames()
     {
 
@@ -83,10 +94,24 @@ class Dashboard_model extends CI_Model
         $this->db->where('notifikasi', 2);
         return $this->db->update($this->produksi, $data);
     }
-    function getProduksi()
+    function getProduksi($nama_customer)
     {
         $this->db->select('*');
+        // $this->db->where('urutan_order', "order 4");
+        // $this->db->where('customer', $nama_customer);
         return $this->db->get($this->produksi);
+    }
+    function getProgress($nama_customer)
+    {
+        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.dateline,produksi.no_po,produksi.invoice_po,produksi.customer as customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,produksi.desain,progress.print as print,progress.cutting as cutting,progress.press as press,progress.jahit as jahit ,progress.overdeck as overdeck,progress.obras as obras,qc.status as qc,produksi.status as status,bahan.id,bahan.nama_bahan as bahann');
+        $this->db->from($this->produksi);
+        $this->db->join('bahan', 'produksi.id_bahan = bahan.id');
+        $this->db->join('progress', 'progress.produksi_id = produksi.id');
+        $this->db->join('qc', 'produksi.id = qc.produksi_id');
+        // $this->db->where('customer', "bang rachman");
+        $this->db->where('produksi.customer', $nama_customer);
+        // return $this->db->get($this->progress);
+        return $this->db->get();
     }
 }
 

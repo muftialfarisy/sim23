@@ -1,1 +1,0 @@
-SELECT sum(desain /9) as rata_desain, sum(print /9) as rata_print, sum(cutting /9) as rata_cutting, sum(press /9) as rata_press,sum(jahit / 9) as rata_jahit, sum(overdeck /9) as rata_overdeck, sum(obras /9 ) as rata_obras, sum(qc /9 ) as rata_qc  FROM `mesin_jersey`;

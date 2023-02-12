@@ -96,7 +96,7 @@
               <?php } ?>
               <!-- /.card-body -->
             </section>
-            <section class="col connectedSortable">
+            <section class="col-md-7 connectedSortable">
               <?php if ($jabatan == "kepala_produksi") { ?>
                 <div class="card card-danger">
                   <div class="card-header">
@@ -113,7 +113,7 @@
                   </div>
                   <div class="card-body">
 
-                    <?php $this->load->view('Chart_progress_produksi'); ?>
+                    <?php $this->load->view('chart_dateline'); ?>
 
                   </div>
                   <!-- /.card-body -->
@@ -121,6 +121,7 @@
               <?php } ?>
               <!-- /.card-body -->
             </section>
+
           </div>
           <!-- /.container-fluid -->
       </section>
@@ -139,7 +140,7 @@
   </div>
   <!-- ./wrapper -->
 
-  <?php if ($jabatan == "admin"  || $jabatan == "gudang") { ?>
+  <?php if ($jabatan == "admin"  || $jabatan == "gudang" || $jabatan == "kasir") { ?>
     <?php $this->load->view('includes/Script'); ?>
   <?php } ?>
   <script src="<?php echo base_url('assets/js/dashboard.js') ?>"></script>

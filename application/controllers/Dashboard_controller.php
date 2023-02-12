@@ -106,13 +106,62 @@ class Dashboard_controller extends CI_Controller
         foreach ($this->Dashboard_model->get_progress_produksi()->result() as $user) {
             $desain = $user->desain;
             $print = $user->print;
+            if ($print == "Selesai Dikerjakan") {
+                $total_print = 100;
+            } else if ($print == "Sedang Dikerjakan") {
+                $total_print = 50;
+            } else {
+                $total_print = 0;
+            }
             $cutting = $user->cutting;
+            if ($cutting == "Selesai Dikerjakan") {
+                $total_cutting = 100;
+            } else if ($cutting == "Sedang Dikerjakan") {
+                $total_cutting = 50;
+            } else {
+                $total_cutting = 0;
+            }
             $press = $user->press;
+            if ($press == "Selesai Dikerjakan") {
+                $total_press = 100;
+            } else if ($press == "Sedang Dikerjakan") {
+                $total_press = 50;
+            } else {
+                $total_press = 0;
+            }
             $jahit = $user->jahit;
+            if ($jahit == "Selesai Dikerjakan") {
+                $total_jahit = 100;
+            } else if ($jahit == "Sedang Dikerjakan") {
+                $total_jahit = 50;
+            } else {
+                $total_jahit = 0;
+            }
             $overdeck = $user->overdeck;
+            if ($overdeck == "Selesai Dikerjakan") {
+                $total_overdeck = 100;
+            } else if ($overdeck == "Sedang Dikerjakan") {
+                $total_overdeck = 50;
+            } else {
+                $total_overdeck = 0;
+            }
             $obras = $user->obras;
+            if ($obras == "Selesai Dikerjakan") {
+                $total_obras = 100;
+            } else if ($obras == "Sedang Dikerjakan") {
+                $total_obras = 50;
+            } else {
+                $total_obras = 0;
+            }
             $qc = $user->qc;
-            $progress = ((int) $desain + (int) $print + (int) $cutting + (int) $press + (int) $jahit + (int) $overdeck + (int) $obras + (int) $qc) / 8;
+            if ($qc == "diterima") {
+                $total_qc = 100;
+            } else if ($qc == "Sedang Dikerjakan") {
+                $total_qc = 50;
+            } else {
+                $total_qc = 0;
+            }
+            $progress = ((int) $desain +  $total_print +  $total_cutting +  $total_press + $total_jahit +  $total_overdeck +  $total_obras +  $total_qc) / 8;
             $data[] = array(
                 'id' => $user->id,
                 'tanggal_order' => $user->tanggal_order,
@@ -129,8 +178,16 @@ class Dashboard_controller extends CI_Controller
     }
     public function get_produksi()
     {
-        $id = $this->input->post('id');
-        $user = $this->Dashboard_model->getProduksi();
+        $nama_customer = $this->input->post('nama_customer');
+        $user = $this->Dashboard_model->getProduksi($nama_customer);
+        if ($user->row()) {
+            echo json_encode($user->row());
+        }
+    }
+    public function get_progress()
+    {
+        $nama_customer = $this->input->post('customer');
+        $user = $this->Dashboard_model->getProgress($nama_customer);
         if ($user->row()) {
             echo json_encode($user->row());
         }

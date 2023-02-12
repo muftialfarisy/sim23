@@ -55,10 +55,12 @@
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Order</th>
+                                                <th>No. PO</th>
                                                 <th>Nama Pelanggan</th>
                                                 <th>Tema Desain</th>
                                                 <th>tanggal Pesanan</th>
-                                                <th>invoice</th>
+                                                <!-- <th>invoice</th> -->
+                                                <th>persetujuan</th>
                                                 <th>Produk</th>
                                                 <th>Jumlah</th>
                                                 <th>Bahan Baku</th>
@@ -93,7 +95,8 @@
                         </div>
                         <div class="modal-body">
                             <form name="form" id="form">
-                                <input type="text" name="id">
+                                <input type="hidden" name="id">
+                                <input type="hidden" name="jabatan" id="jabatan" value="<?php echo $jabatan ?>">
                                 <!-- <div class="form-group">
                                     <label>Order</label>
                                     <select class="form-control" id="urutan_order" name="urutan_order">
@@ -126,11 +129,19 @@
                                         <label>tanggal Pesanan</label>
                                         <input type="date" class="form-control" name="tanggal_pesanan" id="tanggal_pesanan">
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Invoice</label>
                                         <select class="form-control" id="invoice" name="invoice">
                                             <option value="lunas">Lunas</option>
                                             <option value="belum_lunas">Belum Lunas</option>
+                                        </select>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label>persetujuan</label>
+                                        <select class="form-control" id="persetujuan" name="persetujuan">
+                                            <option value="0">proses</option>
+                                            <option value="1">disetujui</option>
+                                            <option value="2">ditolak</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

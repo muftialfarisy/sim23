@@ -2,6 +2,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #774c35">
             <?php $uri = $this->uri->segment(1) ?>
             <?php $jabatan = $this->session->userdata('jabatan'); ?>
+            <?php $divisi = $this->session->userdata('divisi'); ?>
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <img src="<?php echo base_url('assets/') ?>dist/img/logo.png" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -46,7 +47,7 @@
                                 </p>
                             </a>
                         </li>
-                        <?php if ($jabatan == "admin") { ?>
+                        <?php if ($divisi == "admin") { ?>
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('user') ?>" class=" nav-link <?php echo $uri == 'user' || $uri == '' ? 'active' : 'no' ?>">
@@ -59,7 +60,7 @@
                             </li>
                         <?php } ?>
 
-                        <?php if ($jabatan == "admin" || $jabatan == "operasional_produksi") { ?>
+                        <?php if ($divisi == "admin_cs" || $jabatan == "operasional_produksi") { ?>
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('pesanan') ?>" class=" nav-link <?php echo $uri == 'pesanan' || $uri == '' ? 'active' : 'no' ?>">
@@ -101,6 +102,15 @@
                                     <i class="nav-icon fas fa-solid fa-circle"></i>
                                     <p>
                                         Data Penggunaan Bahan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('retur_bahan') ?>" class=" nav-link <?php echo $uri == 'retur_bahan' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Data Retur Bahan
                                     </p>
                                 </a>
                             </li>
@@ -162,6 +172,72 @@
                                     <i class="nav-icon fas fa-solid fa-circle"></i>
                                     <p>
                                         Penjadwalan
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($divisi == "desain") { ?>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('desain') ?>" class=" nav-link <?php echo $uri == 'desain' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Desain
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($divisi == "qc") { ?>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('qc') ?>" class=" nav-link <?php echo $uri == 'qc' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        QC
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($divisi == "print") { ?>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('print') ?>" class=" nav-link <?php echo $uri == 'print' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Print
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($divisi == "press") { ?>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('press') ?>" class=" nav-link <?php echo $uri == 'press' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Press
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($divisi == "cutting") { ?>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('cutting') ?>" class=" nav-link <?php echo $uri == 'cutting' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Cutting
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($divisi == "jahit") { ?>
+                            <li class="nav-item">
+                                <!-- <a href="user" class="nav-link"> -->
+                                <a href="<?php echo site_url('jahit') ?>" class=" nav-link <?php echo $uri == 'jahit' || $uri == '' ? 'active' : 'no' ?>">
+                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <p>
+                                        Jahit
                                     </p>
                                 </a>
                             </li>

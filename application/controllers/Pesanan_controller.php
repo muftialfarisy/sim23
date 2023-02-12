@@ -47,10 +47,18 @@ class Pesanan_controller extends CI_Controller
                 $day1  = date('d-m-Y', strtotime($tgl . '+'  . $dateline . 'days'));
                 // $day2 = date('d-m-Y', strtotime($tgl . ' + 5 days'));
                 $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing . 'days'));
-                if ($jabatan == "admin") {
+                if ($jabatan == "admin" || $jabatan == "operasional_produksi") {
                     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>';
                 } else {
                     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')" hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')" hidden>Delete</button>';
+                }
+                $persetujuan = $pesanan->persetujuan;
+                if ($persetujuan == 0) {
+                    $isi_persetujuan = "proses";
+                } else if ($persetujuan == 1) {
+                    $isi_persetujuan = "disetujui";
+                } else {
+                    $isi_persetujuan = "ditolak";
                 }
                 // if ($jabatan == "admin") {
                 //     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id.',' .$pesanan->urutan_order.',' . $pesanan->produk. ')">Delete</button>';
@@ -61,10 +69,12 @@ class Pesanan_controller extends CI_Controller
                     'id' => $id,
                     // 'id' => $this->session->userdata('id'),
                     'urutan_order' => $pesanan->urutan_order,
+                    'no_po' => $pesanan->no_po,
                     'nama_pelanggan' => $pesanan->nama_pelanggan,
                     'tema_desain' => $pesanan->tema_desain,
                     'tanggal_pesanan' => $tgl,
-                    'invoice' => $pesanan->invoice,
+                    // 'invoice' => $pesanan->invoice,
+                    'persetujuan' => $isi_persetujuan,
                     'produk' => $pesanan->produk,
                     'jumlah' => $pesanan->jumlah,
                     'bahan_baku' => $pesanan->bahan_baku,
@@ -92,11 +102,11 @@ class Pesanan_controller extends CI_Controller
         };
         $data = array(
             'urutan_order' =>  $this->input->post('urutan_order'),
-            'no_po' =>  $this->input->post('no_po'),
+            // 'no_po' =>  $this->input->post('no_po'),
             'nama_pelanggan' => $this->input->post('nama_pelanggan'),
             'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
-            'invoice' => $this->input->post('invoice'),
+            // 'invoice' => $this->input->post('invoice'),
             'produk' => $this->input->post('produk'),
             'jumlah' => $this->input->post('jumlah'),
             'bahan_baku' => $this->input->post('bahan_baku'),
@@ -168,7 +178,8 @@ class Pesanan_controller extends CI_Controller
             'nama_pelanggan' => $this->input->post('nama_pelanggan'),
             'tema_desain' => $this->input->post('tema_desain'),
             'tanggal_pesanan' => $this->input->post('tanggal_pesanan'),
-            'invoice' => $this->input->post('invoice'),
+            // 'invoice' => $this->input->post('invoice'),
+            'persetujuan' => $this->input->post('persetujuan'),
             'produk' => $this->input->post('produk'),
             'jumlah' => $this->input->post('jumlah'),
             'bahan_baku' => $this->input->post('bahan_baku'),

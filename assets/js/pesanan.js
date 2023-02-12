@@ -19,6 +19,9 @@ let url,
 				data: "urutan_order",
 			},
 			{
+				data: "no_po",
+			},
+			{
 				data: "nama_pelanggan",
 			},
 			{
@@ -27,8 +30,11 @@ let url,
 			{
 				data: "tanggal_pesanan",
 			},
+			// {
+			// 	data: "invoice",
+			// },
 			{
-				data: "invoice",
+				data: "persetujuan",
 			},
 			{
 				data: "produk",
@@ -181,6 +187,8 @@ $("#jumlah").change(function () {
 	console.log(total_obras);
 });
 function add() {
+	document.getElementById("no_po").disabled = true;
+	document.getElementById("persetujuan").disabled = true;
 	$("#produk").change(function () {
 		let produk = $("#produk").val();
 		let no;
@@ -251,6 +259,7 @@ function add() {
 }
 
 function edit(id) {
+	document.getElementById("no_po").disabled = false;
 	$.ajax({
 		url: getPesananUrl,
 		type: "post",
@@ -265,7 +274,8 @@ function edit(id) {
 			$('[name="nama_pelanggan"]').val(res.nama_pelanggan);
 			$('[name="tema_desain"]').val(res.tema_desain);
 			$('[name="tanggal_pesanan"]').val(res.tanggal_pesanan);
-			$('[name="invoice"]').val(res.invoice);
+			// $('[name="invoice"]').val(res.invoice);
+			$('[name="persetujuan"]').val(res.persetujuan);
 			$('[name="produk"]').val(res.produk);
 			let produk = res.produk;
 			$('[name="jumlah"]').val(res.jumlah);

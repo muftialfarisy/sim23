@@ -1,4 +1,5 @@
 <?php $jabatan = $this->session->userdata('jabatan'); ?>
+<?php $divisi = $this->session->userdata('divisi'); ?>
 
 <!-- Small boxes (Stat box) -->
 <div class="row">
@@ -212,7 +213,7 @@
         </div>
     <?php } ?>
     <!-- ./col -->
-    <?php if ($jabatan == "operasional_produksi" || $jabatan == "admin") { ?>
+    <?php if ($jabatan == "operasional_produksi" || $divisi == "admin") { ?>
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-light">

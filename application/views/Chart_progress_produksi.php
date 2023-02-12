@@ -1,17 +1,20 @@
-<select name="nama_customer" id="nama_customer">
-    <option>pilih</option>
-    <?php
+<div>
+    <select class="form-control" name="nama_customer" id="nama_customer">
+        <option>pilih</option>
+        <?php
 
-    $hasil = $this->db->select('*')
-        ->from('produksi')
-        ->get()
-        ->result();
-    foreach ($hasil as $hasil_produksi) {
-        // $id = $hasil_bahan->id;
-        $customer = $hasil_produksi->customer;
-    } ?>
-    <option value=<?php echo $customer ?>><?php echo $customer ?></option>
-</select>
+        $hasil = $this->db->select('*')
+            ->from('produksi')
+            ->get()
+            ->result();
+        foreach ($hasil as $hasil_produksi) {
+            $id = $hasil_produksi->id;
+            $customer = $hasil_produksi->customer;
+            ?>
+            <option value="<?php echo $customer ?>"><?php echo $customer ?></option>
+        <?php } ?>
+    </select>
+</div>
 <canvas id="donutChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
 
 
@@ -24,18 +27,22 @@
     let overdeck;
     let obras;
     let qc;
+    let nama_customer;
     $("#nama_customer").change(function() {
-        var nama_customer = $("#nama_customer").val();
+        nama_customer = $("#nama_customer").val();
+        console.log(nama_customer);
         $.ajax({
-            url: produksiUrl,
+            url: '<?php echo base_url("Chart_progress_controller/get_produksi"); ?>',
+            // url: produksiUrl,
             type: "post",
             dataType: "json",
             data: {
-                customer: nama_customer,
+                customer: $("#nama_customer").val(),
             },
             success: (res) => {
 
                 chart(res)
+                console.log(res.customer)
             },
             error: (err) => {
                 console.log(err);

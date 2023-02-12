@@ -28,7 +28,8 @@ class Login_controller extends CI_Controller
                         'nama' => $data->nama,
                         'email' => $data->email,
                         'status' => true,
-                        'jabatan' => $data->jabatan
+                        'jabatan' => $data->jabatan,
+                        'divisi' => $data->divisi
                     );
                     $this->session->set_userdata($userdata);
                     echo json_encode('sukses');

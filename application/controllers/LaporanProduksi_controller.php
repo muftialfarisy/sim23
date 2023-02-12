@@ -48,7 +48,7 @@ class LaporanProduksi_controller extends CI_Controller
                 } else if ($get_status == "Dikerjakan") {
                     $status = '<p style ="color: blue">Dikerjakan</p>';
                 } else if ($get_status == "Tepat Waktu") {
-                    $status = '<p style ="color: green";>Dikerjakan</p>';
+                    $status = '<p style ="color: green";>Tepat Waktu</p>';
                 } else if ($get_status == "Terlambat") {
                     $status = '<p style ="color: red";>Terlambat</p>';
                 }
@@ -57,6 +57,10 @@ class LaporanProduksi_controller extends CI_Controller
                 } else {
                     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')"hidden>Edit</button>';
                 }
+                $desain = $produksi->desain;
+                if ($desain == 100) {
+                    $status_desain = "Selesai Dikerjakan";
+                };
                 $data[] = array(
                     'id' => $produksi->id,
                     // 'id' => $this->session->userdata('id'),
@@ -70,14 +74,14 @@ class LaporanProduksi_controller extends CI_Controller
                     'produk' => $produksi->produk,
                     'bahan' => $produksi->bahann,
                     'jumlah_produk' => $produksi->jumlah_produk,
-                    'desain' => $produksi->desain . "%",
-                    'print' => $produksi->print . "%",
-                    'cutting' => $produksi->cutting . "%",
-                    'press' => $produksi->press . "%",
-                    'jahit' => $produksi->jahit . "%",
-                    'overdeck' => $produksi->overdeck . "%",
-                    'obras' => $produksi->obras . "%",
-                    'qc' => $produksi->qc . "%",
+                    'desain' => $status_desain,
+                    'print' => $produksi->print,
+                    'cutting' => $produksi->cutting,
+                    'press' => $produksi->press,
+                    'jahit' => $produksi->jahit,
+                    'overdeck' => $produksi->overdeck,
+                    'obras' => $produksi->obras,
+                    'qc' => $produksi->qc,
                     'status' => $status,
                     // 'status' => $produksi->status,
                     'action' => $action
@@ -133,14 +137,14 @@ class LaporanProduksi_controller extends CI_Controller
             // 'produk' => $this->input->post('produk'),
             // 'bahan' => $this->input->post('bahan'),
             // 'jumlah_produk' => $this->input->post('jumlah_produk'),
-            'desain' => $this->input->post('desain'),
-            'print' => $this->input->post('print'),
-            'cutting' => $this->input->post('cutting'),
-            'press' => $this->input->post('press'),
-            'jahit' => $this->input->post('jahit'),
-            'overdeck' => $this->input->post('overdeck'),
-            'obras' => $this->input->post('obras'),
-            'qc' => $this->input->post('qc'),
+            // 'desain' => $this->input->post('desain'),
+            // 'print' => $this->input->post('print'),
+            // 'cutting' => $this->input->post('cutting'),
+            // 'press' => $this->input->post('press'),
+            // 'jahit' => $this->input->post('jahit'),
+            // 'overdeck' => $this->input->post('overdeck'),
+            // 'obras' => $this->input->post('obras'),
+            // 'qc' => $this->input->post('qc'),
             'status' => $this->input->post('status'),
 
         );

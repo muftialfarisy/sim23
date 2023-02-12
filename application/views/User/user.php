@@ -109,12 +109,28 @@
                                     <input type="text" class="form-control" placeholder="Alamat" name="alamat" id="alamat" onchange="input()">
                                 </div>
                                 <div class="form-group">
-                                    <label>Pekerjaan</label>
+                                    <label>Jabatan</label>
                                     <select class="form-control" id="jabatan" name="jabatan">
                                         <option value="admin">admin</option>
                                         <option value="gudang">Gudang</option>
                                         <option value="kepala_produksi">Kepala Produksi</option>
                                         <option value="operasional_produksi">Operasional Produksi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Divisi</label>
+                                    <select class="form-control" id="divisi" name="divisi">
+                                        <option value="admin">admin</option>
+                                        <option value="admin_cs">admin cs</option>
+                                        <option value="kasir">kasir</option>
+                                        <option value="gudang">Gudang</option>
+                                        <option value="kepala_produksi">Kepala Produksi</option>
+                                        <option value="desain">Desain</option>
+                                        <option value="print">Print</option>
+                                        <option value="press">press</option>
+                                        <option value="cutting">cutting</option>
+                                        <option value="jahit">jahit</option>
+                                        <option value="qc">qc</option>
                                     </select>
                                 </div>
                                 <button class="btn btn-success" type="submit">Add</button>
