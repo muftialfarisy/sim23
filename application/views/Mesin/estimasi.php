@@ -62,8 +62,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Estimasi</h3>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                    <h3 class="card-title">Data Estimasi</h3>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;"><i class="fa-solid fa-plus"></i>Add Estimasi</button>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
                                 <!-- /.card-header -->
@@ -250,7 +250,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>NJ</label>
-                                            <input type="text" class="form-control" placeholder="NJ" name="nj" id="nj">
+                                            <input type="text" class="form-control" placeholder="NJ" name="nj" id="nj" hidden>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>NJ</label>
+                                            <input type="text" class="form-control" placeholder="NJ" name="nj2" id="nj2" readonly>
                                         </div>
                                         <button class="btn btn-success" type="submit">Add</button>
                                         <button class="btn btn-danger" data-dismiss="modal">Close</button>

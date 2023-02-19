@@ -40,7 +40,7 @@ class Estimasi_controller extends CI_Controller
             // var_dump($this->user_model->read()->result());
             foreach ($this->Estimasi_model->read()->result() as $estimasi) {
                 $data[] = array(
-                    'id' => $estimasi->id ,
+                    'id' => $estimasi->id,
                     // 'id' => $this->session->userdata('id'),
                     'tanggal_order' => $estimasi->tanggal_order,
                     'urutan_order' => $estimasi->urutan_order,
@@ -59,7 +59,7 @@ class Estimasi_controller extends CI_Controller
                     'dateline' => $estimasi->dateline,
                     'lateness' => $estimasi->lateness,
                     'nj' => $estimasi->nj,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $estimasi->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $estimasi->id . ')">Delete</button>'
+                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $estimasi->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $estimasi->id . ')">Hapus</button>'
                 );
             }
         } else {
@@ -176,7 +176,7 @@ class Estimasi_controller extends CI_Controller
             echo json_encode($user->row());
         }
     }
-        public function chart()
+    public function chart()
     {
         header('Content-type: application/json');
         $estimasi = $this->Estimasi_model->getEstimasi();

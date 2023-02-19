@@ -22,7 +22,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pesanan</h1>
+                            <h1>Bahan</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -41,8 +41,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Bahan</h3>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                    <h3 class="card-title">Data Bahan</h3>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;"><i class="fa-solid fa-plus"></i>Add Bahan</button>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
                                 <!-- /.card-header -->

@@ -22,12 +22,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pesanan</h1>
+                            <h1>Retur Bahan</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Bahan</li>
+                                <li class="breadcrumb-item active">Retur Bahan</li>
                             </ol>
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Bahan</h3>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                    <h3 class="card-title">Data Retur Bahan</h3>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;"><i class="fa-solid fa-plus"></i>Add Retur Bahan</button>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
                                 <!-- /.card-header -->
@@ -119,6 +119,7 @@
                                         <option value="Pengajuan">Pengajuan</option>
                                         <option value="Diproses">Diproses</option>
                                         <option value="Ditolak">Ditolak</option>
+                                        <option value="Selesai">Selesai</option>
                                     </select>
                                 </div>
                                 <button class="btn btn-success" type="submit">Add</button>

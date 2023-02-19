@@ -90,7 +90,7 @@ function addData() {
 		data: $("#form").serialize(),
 		success: () => {
 			$(".modal").modal("hide");
-			Swal.fire("Sukses", "Sukses Menambahkan Data", "success");
+			Swal.fire("Sukses", "Data berhasil di simpan", "success");
 			reloadTable();
 		},
 		error: (err) => {
@@ -101,12 +101,11 @@ function addData() {
 
 function remove(id) {
 	Swal.fire({
-		title: "Apakah Anda Yakin?",
-		text: "Kamu Tidak Bisa Mengembalikan Data, Yang Terhapus",
+		title: "Are you sure?",
 		showCancelButton: true,
 		confirmButtonColor: "#3085d6",
 		cancelButtonColor: "#d33",
-		confirmButtonText: "Ya, Hapus!",
+		confirmButtonText: "OK",
 	}).then((result) => {
 		if (result.value) {
 			$.ajax({
@@ -127,7 +126,7 @@ function remove(id) {
 						// 	title: "Hapus Gagal!!.",
 						// });
 						// Swal.fire("data gagal dihapus");
-						Swal.fire("Hapus!", "Data telah terhapus .", "Berhasil");
+						Swal.fire("Hapus!", "Data berhasil di hapus .", "Berhasil");
 						reloadTable();
 					}
 				},
@@ -170,7 +169,7 @@ function editData() {
 		data: $("#form").serialize(),
 		success: () => {
 			$(".modal").modal("hide");
-			Swal.fire("Sukses", "Sukses Mengedit Data", "success"), reloadTable();
+			Swal.fire("Sukses", "Data berhasil di update", "success"), reloadTable();
 		},
 		error: (err) => {
 			console.log(err);

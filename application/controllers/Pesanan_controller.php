@@ -48,9 +48,9 @@ class Pesanan_controller extends CI_Controller
                 // $day2 = date('d-m-Y', strtotime($tgl . ' + 5 days'));
                 $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing . 'days'));
                 if ($jabatan == "admin" || $jabatan == "operasional_produksi") {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Hapus</button>';
                 } else {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')" hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')" hidden>Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')" hidden>Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')" hidden>Hapus</button>';
                 }
                 $persetujuan = $pesanan->persetujuan;
                 if ($persetujuan == 0) {
@@ -79,6 +79,12 @@ class Pesanan_controller extends CI_Controller
                     'jumlah' => $pesanan->jumlah,
                     'bahan_baku' => $pesanan->bahan_baku,
                     'dateline' => $pesanan->dateline,
+                    'xs' => $pesanan->xs,
+                    's' => $pesanan->s,
+                    'm' => $pesanan->m,
+                    'l' => $pesanan->l,
+                    'xl' => $pesanan->xl,
+                    'xxl' => $pesanan->xxl,
                     // 'dateline' => $day1,
                     // 'finishing' => $pesanan->finishing,
                     // 'finishing' => $day2,
@@ -111,6 +117,12 @@ class Pesanan_controller extends CI_Controller
             'jumlah' => $this->input->post('jumlah'),
             'bahan_baku' => $this->input->post('bahan_baku'),
             'dateline' => $this->input->post('dateline'),
+            'xs' => $this->input->post('xs'),
+            's' => $this->input->post('s'),
+            'm' => $this->input->post('m'),
+            'l' => $this->input->post('l'),
+            'xl' => $this->input->post('xl'),
+            'xxl' => $this->input->post('xxl'),
             // 'finishing' => $this->input->post('finishing')
         );
         $order = array(
@@ -184,6 +196,12 @@ class Pesanan_controller extends CI_Controller
             'jumlah' => $this->input->post('jumlah'),
             'bahan_baku' => $this->input->post('bahan_baku'),
             'dateline' => $this->input->post('dateline'),
+            'xs' => $this->input->post('xs'),
+            's' => $this->input->post('s'),
+            'm' => $this->input->post('m'),
+            'l' => $this->input->post('l'),
+            'xl' => $this->input->post('xl'),
+            'xxl' => $this->input->post('xxl'),
             // 'finishing' => $this->input->post('finishing')
         );
         $order = array(

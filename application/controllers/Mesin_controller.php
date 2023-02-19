@@ -53,7 +53,7 @@ class Mesin_controller extends CI_Controller
                     'total_cutting' => $mesin->total_cutting,
                     'total_qc' => $mesin->total_qc,
                     'waktu_total' => $mesin->waktu_total,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $mesin->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $mesin->id . ')">Delete</button>'
+                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $mesin->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $mesin->id . ')">Hapus</button>'
                 );
             }
         } else {

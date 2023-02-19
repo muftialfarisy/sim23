@@ -42,7 +42,7 @@ class Bahan_controller extends CI_Controller
                     'id' => $this->session->userdata('id'),
                     'nama_bahan' => $bahan->nama_bahan,
                     'jumlah' => $bahan->jumlah,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->id . ')">Delete</button>'
+                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->id . ')">Hapus</button>'
                 );
             }
         } else {

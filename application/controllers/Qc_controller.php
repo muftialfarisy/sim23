@@ -54,7 +54,7 @@ class Qc_controller extends CI_Controller
                     'jumlah_ditolak' => $qc->jumlah_ditolak,
                     'alasan' => $qc->alasan,
                     'status' => $qc->status,
-                    'action' => ' <button class="btn btn-sm btn-success" onclick="edit(' . $qc->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $qc->id . ')">Delete</button>'
+                    'action' => ' <button class="btn btn-sm btn-success" onclick="edit(' . $qc->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $qc->id . ')">Hapus</button>'
                 );
             }
         } else {

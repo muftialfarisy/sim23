@@ -46,7 +46,7 @@ class User_controller extends CI_Controller
                     'alamat' => $user->alamat,
                     'jabatan' => $user->jabatan,
                     'divisi' => $user->divisi,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $user->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $user->id . ')">Delete</button>'
+                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $user->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $user->id . ')">Hapus</button>'
                 );
             }
         } else {

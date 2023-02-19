@@ -42,9 +42,9 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Pesanan</h3>
+                                    <h3 class="card-title">Data Pesanan</h3>
                                     <?php if ($jabatan == "admin") { ?>
-                                        <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;"><i class="fa-solid fa-plus"></i>Add Pesanan</button>
                                     <?php } ?>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
@@ -65,6 +65,12 @@
                                                 <th>Jumlah</th>
                                                 <th>Bahan Baku</th>
                                                 <th>Dateline</th>
+                                                <th>XS</th>
+                                                <th>S</th>
+                                                <th>M</th>
+                                                <th>L</th>
+                                                <th>XL</th>
+                                                <th>XXL</th>
                                                 <!-- <th>Finishing</th> -->
                                                 <th>Action</th>
 
@@ -147,6 +153,7 @@
                                     <div class="form-group">
                                         <label>Produk</label>
                                         <select class="form-control" id="produk" name="produk">
+                                            <option>Pilih</option>
                                             <option value="jersey">Jersey</option>
                                             <option value="jacket">Jacket</option>
                                         </select>
@@ -154,6 +161,30 @@
                                     <div class="form-group">
                                         <label>jumlah</label>
                                         <input type="number" class="form-control" placeholder="Jumlah" name="jumlah" id="jumlah">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>XS</label>
+                                        <input type="number" class="form-control" placeholder="XS" name="xs" id="xs">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>S</label>
+                                        <input type="number" class="form-control" placeholder="S" name="s" id="s">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>M</label>
+                                        <input type="number" class="form-control" placeholder="M" name="m" id="m">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>L</label>
+                                        <input type="number" class="form-control" placeholder="L" name="l" id="l">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>XL</label>
+                                        <input type="number" class="form-control" placeholder="XL" name="xl" id="xl">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>XXL</label>
+                                        <input type="number" class="form-control" placeholder="XXL" name="xxl" id="xxl">
                                     </div>
                                     <div class="form-group">
                                         <label>Bahan Baku</label>

@@ -41,8 +41,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel QC</h3>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                    <h3 class="card-title">Data QC</h3>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;"><i class="fa-solid fa-plus"></i>Add QC</button>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
                                 <!-- /.card-header -->

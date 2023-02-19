@@ -41,7 +41,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel cutting</h3>
+                                    <h3 class="card-title">Data cutting</h3>
                                     <!-- <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button> -->
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>

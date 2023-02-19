@@ -22,7 +22,7 @@
                 </div>
 
                 <!-- SidebarSearch Form -->
-                <div class="form-inline">
+                <!-- <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
@@ -31,7 +31,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -41,9 +41,9 @@
                         <li class="nav-item">
                             <!-- <a href="dashboard" class="nav-link"> -->
                             <a href="<?php echo site_url('dashboard') ?>" class="nav-link <?php echo $uri == 'dashboard' || $uri == '' ? 'active' : 'no' ?>">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
                                 <p>
-                                    Dashboard
+                                    Home
                                 </p>
                             </a>
                         </li>
@@ -52,7 +52,7 @@
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('user') ?>" class=" nav-link <?php echo $uri == 'user' || $uri == '' ? 'active' : 'no' ?>">
                                     <!-- <a href="User_controller" class="nav-link <?php echo $uri == 'User' || $uri == '' ? 'active' : 'no' ?>"> -->
-                                    <i class="nav-icon fas fa-user"></i>
+                                    <!-- <i class="nav-icon fas fa-user"></i> -->
                                     <p>
                                         User
                                     </p>
@@ -64,7 +64,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('pesanan') ?>" class=" nav-link <?php echo $uri == 'pesanan' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Data Pesanan
                                     </p>
@@ -76,7 +76,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('produksi') ?>" class=" nav-link <?php echo $uri == 'produksi' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Data Produksi
                                     </p>
@@ -88,7 +88,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('laporan_produksi') ?>" class=" nav-link <?php echo $uri == 'laporan_produksi' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Data Laporan Produksi
                                     </p>
@@ -99,7 +99,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('penggunaan_bahan') ?>" class=" nav-link <?php echo $uri == 'penggunaan_bahan' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Data Penggunaan Bahan
                                     </p>
@@ -108,7 +108,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('retur_bahan') ?>" class=" nav-link <?php echo $uri == 'retur_bahan' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Data Retur Bahan
                                     </p>
@@ -119,7 +119,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('bahan') ?>" class=" nav-link <?php echo $uri == 'bahan' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Data Bahan
                                     </p>
@@ -139,7 +139,7 @@
                         <li class="nav-item">
                             <!-- <a href="user" class="nav-link"> -->
                             <a href="<?php echo site_url('mesin') ?>" class=" nav-link <?php echo $uri == 'mesin' || $uri == '' ? 'active' : 'no' ?>" hidden>
-                                <i class="nav-icon fas fa-solid fa-circle"></i>
+                                <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                 <p>
                                     Mesin Jersey
                                 </p>
@@ -148,7 +148,7 @@
                         <li class="nav-item">
                             <!-- <a href="user" class="nav-link"> -->
                             <a href="<?php echo site_url('mesin_jaket') ?>" class=" nav-link <?php echo $uri == 'mesin_jaket' || $uri == '' ? 'active' : 'no' ?>" hidden>
-                                <i class="nav-icon fas fa-solid fa-circle"></i>
+                                <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                 <p>
                                     Mesin Jaket
                                 </p>
@@ -158,7 +158,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('estimasi') ?>" class=" nav-link <?php echo $uri == 'estimasi' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Estimasi
                                     </p>
@@ -169,7 +169,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('penjadwalan') ?>" class=" nav-link <?php echo $uri == 'penjadwalan' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Penjadwalan
                                     </p>
@@ -180,7 +180,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('desain') ?>" class=" nav-link <?php echo $uri == 'desain' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Desain
                                     </p>
@@ -191,7 +191,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('qc') ?>" class=" nav-link <?php echo $uri == 'qc' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         QC
                                     </p>
@@ -202,7 +202,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('print') ?>" class=" nav-link <?php echo $uri == 'print' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Print
                                     </p>
@@ -213,7 +213,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('press') ?>" class=" nav-link <?php echo $uri == 'press' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Press
                                     </p>
@@ -224,7 +224,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('cutting') ?>" class=" nav-link <?php echo $uri == 'cutting' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Cutting
                                     </p>
@@ -235,7 +235,7 @@
                             <li class="nav-item">
                                 <!-- <a href="user" class="nav-link"> -->
                                 <a href="<?php echo site_url('jahit') ?>" class=" nav-link <?php echo $uri == 'jahit' || $uri == '' ? 'active' : 'no' ?>">
-                                    <i class="nav-icon fas fa-solid fa-circle"></i>
+                                    <!-- <i class="nav-icon fas fa-solid fa-circle"></i> -->
                                     <p>
                                         Jahit
                                     </p>

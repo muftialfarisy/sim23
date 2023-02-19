@@ -45,7 +45,7 @@ class Print_controller extends CI_Controller
                     'waktu_print' => $print->waktu_print,
                     'status_print' => $print->status_print,
                     'alasan_print' => $print->alasan_print,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="editPrint(' . $print->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $print->id . ')">Delete</button>'
+                    'action' => '<button class="btn btn-sm btn-success" onclick="editPrint(' . $print->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $print->id . ')">Hapus</button>'
                 );
             }
         } else {

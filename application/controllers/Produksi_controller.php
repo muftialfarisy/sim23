@@ -58,7 +58,13 @@ class Produksi_controller extends CI_Controller
                     'produk' => $produksi->produk,
                     'bahan' => $produksi->bahann,
                     'jumlah_produk' => $produksi->jumlah_produk,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $id . ')">Delete</button>'
+                    'xs' => $produksi->xs,
+                    's' => $produksi->s,
+                    'm' => $produksi->m,
+                    'l' => $produksi->l,
+                    'xl' => $produksi->xl,
+                    'xxl' => $produksi->xxl,
+                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $id . ')">Hapus</button>'
                 );
             }
         } else {

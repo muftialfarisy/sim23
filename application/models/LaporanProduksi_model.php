@@ -69,12 +69,18 @@ class LaporanProduksi_model extends CI_Model
         // $this->db->where('nama_bahan', $bahan);
         return $this->db->get($this->bahan);
     }
-    // public function getBahan($id)
-    // {
-    //     // $this->db->select('*');
-    //     $this->db->where('id', $id);
-    //     return $this->db->get($this->table);
-    // }
+    public function get_detail($id)
+    {
+        $this->db->select('produksi.id as idd,produksi.tanggal_order,produksi.dateline,produksi.no_po,produksi.invoice_po,produksi.customer,produksi.tema_design,produksi.jumlah_pesanan,produksi.produk,produksi.bahan,produksi.jumlah_produk,produksi.desain,progress.print as print,progress.cutting as cutting,progress.press as press,progress.jahit as jahit ,progress.overdeck as overdeck,progress.obras as obras,progress.waktu_print,progress.waktu_press,progress.waktu_cutting,progress.waktu_jahit,progress.waktu_overdeck,progress.waktu_obras,progress.status_print,progress.status_press,progress.status_cutting,progress.status_jahit,progress.status_overdeck,progress.status_obras,progress.alasan_print,progress.alasan_press,progress.alasan_cutting,progress.alasan_jahit,progress.alasan_overdeck,progress.alasan_obras,qc.desain as qc_desain,qc.print as qc_print,qc.cutting as qc_cutting,qc.press as qc_press,qc.jahit as qc_jahit,qc.overdeck as qc_overdeck,qc.obras as qc_obras,qc.jumlah_diterima as jumlah_diterima,qc.jumlah_ditolak as jumlah_ditolak,qc.alasan as alasan_qc,qc.status as status_qc,produksi.status as status,bahan.id,bahan.nama_bahan as bahann');
+        $this->db->from($this->table);
+        $this->db->join('bahan', 'produksi.id_bahan = bahan.id');
+        $this->db->join('progress', 'produksi.id = progress.produksi_id');
+        $this->db->join('qc', 'produksi.id = qc.produksi_id');
+        $this->db->where('produksi.id', $id);
+        // return $this->db->get($this->table);
+        // return $this->db->get();
+        return $this->db->get()->row();
+    }
 
     public function search($search = "")
     {

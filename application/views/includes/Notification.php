@@ -6,18 +6,29 @@ $hasil_produksi = $this->db->select('count(notifikasi) as jumlah_notifikasi')
     ->get()
     ->result();
 if ($jabatan == "kepala_produksi") {
-    $hasil_permintaan = $this->db->select('count(notifikasi) as jumlah_notifikasi')
+    $hasil_permintaan = $this->db->select('count(status) as jumlah_notifikasi')
         ->from('penggunaan_bahan')
-        ->where('notifikasi', 2)
+        ->where('status', 3)
+        ->get()
+        ->result();
+    $hasil_retur_kproduksi = $this->db->select('count(status) as jumlah_notifikasi_kproduksi')
+        ->from('retur_bahan')
+        ->where('status', "Selesai")
         ->get()
         ->result();
 } else {
-    $hasil_permintaan = $this->db->select('count(notifikasi) as jumlah_notifikasi')
+    $hasil_permintaan = $this->db->select('count(status) as jumlah_notifikasi')
         ->from('penggunaan_bahan')
-        ->where('notifikasi', 3)
+        ->where('status', 1)
+        ->get()
+        ->result();
+    $hasil_retur_gudang = $this->db->select('count(status) as jumlah_notifikasi_gudang')
+        ->from('retur_bahan')
+        ->where('status', "Pengajuan")
         ->get()
         ->result();
 }
+
 $hasil_pesanan = $this->db->select('count(notifikasi) as jumlah_notifikasi')
     ->from('pesanan')
     ->where('notifikasi', 1)
@@ -29,13 +40,20 @@ foreach ($hasil_produksi as $jumlah) {
 foreach ($hasil_permintaan as $jumlah) {
     $jumlah_permintaan = $jumlah->jumlah_notifikasi;
 }
+
 foreach ($hasil_pesanan as $jumlah) {
     $jumlah_pesanan = $jumlah->jumlah_notifikasi;
 }
 if ($jabatan == "kepala_produksi") {
-    $total_notifikasi = (int) $jumlah_produksi + (int) $jumlah_permintaan;
+    foreach ($hasil_retur_kproduksi as $jumlah) {
+        $jumlah_retur = $jumlah->jumlah_notifikasi_kproduksi;
+    }
+    $total_notifikasi = (int) $jumlah_produksi + (int) $jumlah_permintaan + (int) $jumlah_retur;
 } else if ($jabatan == "gudang") {
-    $total_notifikasi = (int) $jumlah_permintaan;
+    foreach ($hasil_retur_gudang as $jumlah) {
+        $jumlah_retur = $jumlah->jumlah_notifikasi_gudang;
+    }
+    $total_notifikasi = (int) $jumlah_permintaan + (int) $jumlah_retur;
 } else {
     $total_notifikasi = (int) $jumlah_produksi + (int) $jumlah_pesanan;
 }
@@ -70,12 +88,12 @@ if ($jabatan == "kepala_produksi") {
         <?php } ?>
         <div class="dropdown-divider"></div>
         <?php if ($jabatan == "kepala_produksi") { ?>
-            <a href="<?php echo site_url('penggunaan_bahan') ?>" class="dropdown-item" onclick='updatePenggunaanBahan()'>
+            <a href="<?php echo site_url('penggunaan_bahan') ?>" class="dropdown-item">
                 <ion-icon name="albums-sharp"></ion-icon>
                 <?php
-                    $hasil = $this->db->select('count(notifikasi) as jumlah_notifikasi')
+                    $hasil = $this->db->select('count(status) as jumlah_notifikasi')
                         ->from('penggunaan_bahan')
-                        ->where('notifikasi', 2)
+                        ->where('status', 3)
                         ->get()
                         ->result();
                     foreach ($hasil as $jumlah) {
@@ -83,19 +101,47 @@ if ($jabatan == "kepala_produksi") {
                         echo $jumlah_notifikasi . " " . "Permintaan Bahan Baru";
                         ?>
             </a>
+            <a href="<?php echo site_url('retur_bahan') ?>" class="dropdown-item">
+                <ion-icon name="albums-sharp"></ion-icon>
+                <?php
+                        $hasil = $this->db->select('count(status) as jumlah_notifikasi')
+                            ->from('retur_bahan')
+                            ->where('status', "Selesai")
+                            ->get()
+                            ->result();
+                        foreach ($hasil as $jumlah) {
+                            $jumlah_notifikasi = $jumlah->jumlah_notifikasi;
+                            echo $jumlah_notifikasi . " " . "Retur Bahan Selesai";
+                        }
+                        ?>
+            </a>
         <?php } ?>
     <?php } else if ($jabatan == "gudang") { ?>
-        <a href="<?php echo site_url('penggunaan_bahan') ?>" class="dropdown-item" onclick='updatePenggunaanBahan()'>
+        <a href="<?php echo site_url('penggunaan_bahan') ?>" class="dropdown-item">
             <ion-icon name="albums-sharp"></ion-icon>
             <?php
-                $hasil = $this->db->select('count(notifikasi) as jumlah_notifikasi')
+                $hasil = $this->db->select('count(status) as jumlah_notifikasi')
                     ->from('penggunaan_bahan')
-                    ->where('notifikasi', 3)
+                    ->where('status', 1)
                     ->get()
                     ->result();
                 foreach ($hasil as $jumlah) {
                     $jumlah_notifikasi = $jumlah->jumlah_notifikasi;
                     echo $jumlah_notifikasi . " " . "Permintaan Bahan Baru";
+                }
+                ?>
+        </a>
+        <a href="<?php echo site_url('retur_bahan') ?>" class="dropdown-item">
+            <ion-icon name="albums-sharp"></ion-icon>
+            <?php
+                $hasil = $this->db->select('count(status) as jumlah_notifikasi')
+                    ->from('retur_bahan')
+                    ->where('status', "Pengajuan")
+                    ->get()
+                    ->result();
+                foreach ($hasil as $jumlah) {
+                    $jumlah_notifikasi = $jumlah->jumlah_notifikasi;
+                    echo $jumlah_notifikasi . " " . "Retur Bahan";
                 }
                 ?>
         </a>

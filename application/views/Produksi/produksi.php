@@ -41,8 +41,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Produksi</h3>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                    <h3 class="card-title">Data Produksi</h3>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;"><i class="fa-solid fa-plus"></i>Add Produksi</button>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
                                 <!-- /.card-header -->
@@ -62,6 +62,12 @@
                                                 <th>Produk</th>
                                                 <th>Bahan</th>
                                                 <th>Jumlah Produk</th>
+                                                <th>XS</th>
+                                                <th>S</th>
+                                                <th>M</th>
+                                                <th>L</th>
+                                                <th>XL</th>
+                                                <th>XXL</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -196,6 +202,30 @@
                                 <div class="form-group">
                                     <label>Jumlah Produk</label>
                                     <input type="number" class="form-control" placeholder="Jumlah Produk" name="jumlah_produk" id="jumlah_produk">
+                                </div>
+                                <div class="form-group">
+                                    <label>XS</label>
+                                    <input type="number" class="form-control" placeholder="XS" name="xs" id="xs" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>S</label>
+                                    <input type="number" class="form-control" placeholder="S" name="s" id="s" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>M</label>
+                                    <input type="number" class="form-control" placeholder="M" name="m" id="m" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>L</label>
+                                    <input type="number" class="form-control" placeholder="L" name="l" id="l" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>XL</label>
+                                    <input type="number" class="form-control" placeholder="XL" name="xl" id="xl" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>XXL</label>
+                                    <input type="number" class="form-control" placeholder="XXL" name="xxl" id="xxl" readonly>
                                 </div>
                                 <button class="btn btn-success" type="submit">Add</button>
                                 <button class="btn btn-danger" data-dismiss="modal">Close</button>

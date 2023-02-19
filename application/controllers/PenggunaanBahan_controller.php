@@ -52,9 +52,9 @@ class PenggunaanBahan_controller extends CI_Controller
                     // $status1 = "Tersedia";
                 }
                 if ($jabatan == "kepala_produksi") {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->idd . ')">Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->idd . ')">Hapus</button>';
                 } else {
-                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->idd . ')" hidden>Delete</button>';
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->idd . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->idd . ')" hidden>Hapus</button>';
                 }
                 $data[] = array(
                     'id' => $bahan->idd,
@@ -108,9 +108,9 @@ class PenggunaanBahan_controller extends CI_Controller
         $total_bahan =  $this->input->post('total_bahan');
         $jumlah_bahan =  $this->input->post('jumlahbahan');
         $total = $jumlah_bahan - $total_bahan;
-        if($status == 3){
+        if ($status == 3) {
             $notifikasi = 2;
-        }else if ($status == 1){
+        } else if ($status == 1) {
             $notifikasi = 3;
         }
         // if ($status == 3) {

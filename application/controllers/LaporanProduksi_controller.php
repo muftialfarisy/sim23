@@ -54,6 +54,9 @@ class LaporanProduksi_controller extends CI_Controller
                 }
                 if ($jabatan == "operasional_produksi") {
                     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')">Edit</button>';
+                } else if ($jabatan == "kepala_produksi") {
+                    $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')"hidden>Edit</button> <a class="btn btn-sm btn-success" target="_blank" rel="noopener noreferrer" href="' . site_url('LaporanProduksi_controller/detail/') . $produksi->idd . '">Detail</a>';
+                    // $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')"hidden>Edit</button> <button class="btn btn-sm btn-success"><a href="produksi_detail" style="color:white;" onclick="detail(' . $produksi->idd . ')">Detail</a></button>';
                 } else {
                     $action = '<button class="btn btn-sm btn-success" onclick="edit(' . $produksi->idd . ')"hidden>Edit</button>';
                 }
@@ -95,6 +98,10 @@ class LaporanProduksi_controller extends CI_Controller
             'data' => $data
         );
         echo json_encode($produksi);
+    }
+    public function viewDetail()
+    {
+        $this->load->view('Produksi/laporan_produksi_detail');
     }
     public function add()
     {
@@ -180,5 +187,142 @@ class LaporanProduksi_controller extends CI_Controller
         if ($user->row()) {
             echo json_encode($user->row());
         }
+    }
+    public function get_detail()
+    {
+        $user = $this->LaporanProduksi_model->get_detail();
+        if ($user->row()) {
+            echo json_encode($user->row());
+        }
+    }
+    public function detail($id)
+    {
+        // $where = implode(',', $barcode);
+        // $produk = $this->db->query("select * from produk where id='$id'")->row();
+        $produk = $this->LaporanProduksi_model->get_detail($id);
+        $desain =  $produk->desain;
+        $print =  $produk->print;
+        if ($print == "Selesai Dikerjakan") {
+            $total_print = 100;
+        } else if ($print == "Sedang Dikerjakan") {
+            $total_print = 50;
+        } else {
+            $total_print = 0;
+        }
+        $press =  $produk->press;
+        if ($press == "Selesai Dikerjakan") {
+            $total_press = 100;
+        } else if ($press == "Sedang Dikerjakan") {
+            $total_press = 50;
+        } else {
+            $total_press = 0;
+        }
+        $cutting =  $produk->cutting;
+        if ($cutting == "Selesai Dikerjakan") {
+            $total_cutting = 100;
+        } else if ($cutting == "Sedang Dikerjakan") {
+            $total_cutting = 50;
+        } else {
+            $total_cutting = 0;
+        }
+        $jahit =  $produk->jahit;
+        if ($jahit == "Selesai Dikerjakan") {
+            $total_jahit = 100;
+        } else if ($jahit == "Sedang Dikerjakan") {
+            $total_jahit = 50;
+        } else {
+            $total_jahit = 0;
+        }
+        $overdeck =  $produk->overdeck;
+        if ($overdeck == "Selesai Dikerjakan") {
+            $total_overdeck = 100;
+        } else if ($overdeck == "Sedang Dikerjakan") {
+            $total_overdeck = 50;
+        } else {
+            $total_overdeck = 0;
+        }
+        $obras =  $produk->obras;
+        if ($obras == "Selesai Dikerjakan") {
+            $total_obras = 100;
+        } else if ($obras == "Sedang Dikerjakan") {
+            $total_obras = 50;
+        } else {
+            $total_obras = 0;
+        }
+        if ($desain == 100) {
+            $status_desain = "Selesai Dikerjakan";
+        }
+        $qc = $produk->status_qc;
+        if ($qc == "diterima") {
+            $total_qc = 100;
+        } else if ($qc == "Sedang Dikerjakan") {
+            $total_qc = 50;
+        } else {
+            $total_qc = 0;
+        }
+        $progress = ((int) $desain +  $total_print +  $total_cutting +  $total_press + $total_jahit +  $total_overdeck +  $total_obras +  $total_qc) / 8;
+        $data = array(
+            'tanggal_order' => $produk->tanggal_order,
+            'dateline' => $produk->dateline,
+            'no_po' => $produk->no_po,
+            'invoice_po' => $produk->invoice_po,
+            'customer' => $produk->customer,
+            'tema_design' => $produk->tema_design,
+            'produk' => $produk->produk,
+            'bahan' => $produk->bahan,
+            'jumlah_produk' => $produk->jumlah_produk,
+            'status' => $produk->status,
+            'desain' => $status_desain,
+            'desain2' => $produk->desain,
+            'print' => $produk->print,
+            'cutting' => $produk->cutting,
+            'press' => $produk->press,
+            'jahit' => $produk->jahit,
+            'overdeck' => $produk->overdeck,
+            'obras' => $produk->obras,
+            // 'waktu_desain' => $produk->waktu_desain,
+            'waktu_print' => $produk->waktu_print,
+            'waktu_press' => $produk->waktu_press,
+            'waktu_cutting' => $produk->waktu_cutting,
+            'waktu_jahit' => $produk->waktu_jahit,
+            'waktu_overdeck' => $produk->waktu_overdeck,
+            'waktu_obras' => $produk->waktu_obras,
+            // 'status_desain' => $produk->status_desain,
+            'status_print' => $produk->status_print,
+            'status_press' => $produk->status_press,
+            'status_cutting' => $produk->status_cutting,
+            'status_jahit' => $produk->status_jahit,
+            'status_overdeck' => $produk->status_overdeck,
+            'status_obras' => $produk->status_obras,
+            // 'alasan_desain' => $produk->alasan_desain,
+            'alasan_print' => $produk->alasan_print,
+            'alasan_press' => $produk->alasan_press,
+            'alasan_cutting' => $produk->alasan_cutting,
+            'alasan_jahit' => $produk->alasan_jahit,
+            'alasan_overdeck' => $produk->alasan_overdeck,
+            'alasan_obras' => $produk->alasan_obras,
+            'alasan_qc' => $produk->alasan_qc,
+            'qc_desain' => $produk->qc_desain,
+            'qc_print' => $produk->qc_print,
+            'qc_press' => $produk->qc_press,
+            'qc_cutting' => $produk->qc_cutting,
+            'qc_jahit' => $produk->qc_jahit,
+            'qc_overdeck' => $produk->qc_overdeck,
+            'qc_obras' => $produk->qc_obras,
+            'status_qc' => $produk->status_qc,
+            'jumlah_diterima' => $produk->jumlah_diterima,
+            'jumlah_ditolak' => $produk->jumlah_ditolak,
+            'progress' => $progress,
+            'total_print' => $total_print,
+            'total_press' => $total_press,
+            'total_cutting' => $total_cutting,
+            'total_jahit' => $total_jahit,
+            'total_overdeck' => $total_overdeck,
+            'total_obras' => $total_obras,
+            'total_qc' => $total_qc,
+
+        );
+        $this->load->view('Produksi/laporan_produksi_detail', $data);
+        // $this->load->view('includes/Script');
     }
 }

@@ -44,7 +44,7 @@ class ReturBahan_controller extends CI_Controller
                     'jumlah' => $bahan->jumlah,
                     'alasan' => $bahan->alasan,
                     'status' => $bahan->status,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->id . ')">Delete</button>'
+                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->id . ')">Hapus</button>'
                 );
             }
         } else {

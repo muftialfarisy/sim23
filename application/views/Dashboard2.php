@@ -41,6 +41,11 @@
 
       <!-- Main content -->
       <section class="content">
+        <div style="text-align: center; border: 1px solid black; border-radius: 10px;">
+          <h3>Selamat Datang</h3>
+          <p>di Sistem Informasi Manajemen Produksi UMKM Sarang Tomket 23</p>
+        </div>
+        <hr />
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <?php $this->load->view('includes/Cards'); ?>
@@ -49,9 +54,9 @@
           <!-- Main row -->
           <div class="row">
             <!-- Left col -->
-            <section class="col connectedSortable">
-              <!-- Custom tabs (Charts with tabs)-->
-              <?php if ($jabatan == "kepala_produksi" || $jabatan == "operasional_produksi") { ?>
+            <?php if ($jabatan == "kepala_produksi" || $jabatan == "operasional_produksi") { ?>
+              <section class="col connectedSortable">
+                <!-- Custom tabs (Charts with tabs)-->
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">
@@ -66,13 +71,13 @@
                     </div>
                   </div><!-- /.card-body -->
                 </div>
-              <?php } ?>
-              <!-- /.card -->
-            </section>
+                <!-- /.card -->
+              </section>
+            <?php } ?>
             <!-- /.Left col -->
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-5 connectedSortable">
-              <?php if ($jabatan == "kepala_produksi") { ?>
+            <?php if ($jabatan == "kepala_produksi") { ?>
+              <section class="col-lg-5 connectedSortable">
                 <div class="card card-danger">
                   <div class="card-header">
                     <h3 class="card-title">Pengunaan Bahan</h3>
@@ -93,11 +98,11 @@
                   </div>
                   <!-- /.card-body -->
                 </div>
-              <?php } ?>
-              <!-- /.card-body -->
-            </section>
-            <section class="col-md-7 connectedSortable">
-              <?php if ($jabatan == "kepala_produksi") { ?>
+                <!-- /.card-body -->
+              </section>
+            <?php } ?>
+            <?php if ($jabatan == "kepala_produksi") { ?>
+              <section class="col-md-7 connectedSortable">
                 <div class="card card-danger">
                   <div class="card-header">
                     <h3 class="card-title">Chart Progress Produksi</h3>
@@ -118,9 +123,9 @@
                   </div>
                   <!-- /.card-body -->
                 </div>
-              <?php } ?>
-              <!-- /.card-body -->
-            </section>
+                <!-- /.card-body -->
+              </section>
+            <?php } ?>
 
           </div>
           <!-- /.container-fluid -->

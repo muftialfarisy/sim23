@@ -28,7 +28,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pesanan</li>
+                                <li class="breadcrumb-item active">Permintaan Bahan</li>
                             </ol>
                         </div>
                     </div>
@@ -42,9 +42,9 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tabel Pesanan</h3>
+                                    <h3 class="card-title">Data Permintaan Bahan</h3>
                                     <?php if ($jabatan == "kepala_produksi") { ?>
-                                        <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;">Add</button>
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="add()" style="float:right;"><i class="fa-solid fa-plus"></i>Add Permintaan</button>
                                     <?php } ?>
                                     <!-- <button style="float:right;">Tambah Data User</button> -->
                                 </div>
@@ -113,7 +113,7 @@
                                             $id = $hasil_bahan->id;
                                             $bahan = $hasil_bahan->nama_bahan;
                                             $jumlah = $hasil_bahan->jumlah;
-                                        ?>
+                                            ?>
                                             <option value="<?php echo $id ?>"><?= $bahan ?></option>
                                         <?php } ?>
                                     </select>
@@ -129,7 +129,7 @@
                                 foreach ($hasil as $hasil_bahann) {
                                     $id2 = $hasil_bahann->id;
                                     $jumlah2 = $hasil_bahann->jumlah;
-                                ?>
+                                    ?>
                                     <input type="text" name="id_bahan" id="id_bahan" value="<?= $id2 ?>">
                                     <!-- <input type="text" name="jumlah_bahan" id="jumlah_bahan" value="<?= $jumlah2 ?>"> -->
                                 <?php } ?>

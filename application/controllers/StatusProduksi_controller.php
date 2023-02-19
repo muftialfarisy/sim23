@@ -45,7 +45,7 @@ class StatusProduksi_controller extends CI_Controller
                     'kg' => $bahan->kg,
                     'jumlah_baju' => $bahan->jumlah_baju,
                     'status' => $bahan->status,
-                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->id . ')">Delete</button>'
+                    'action' => '<button class="btn btn-sm btn-success" onclick="edit(' . $bahan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $bahan->id . ')">Hapus</button>'
                 );
             }
         } else {

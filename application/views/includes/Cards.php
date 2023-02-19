@@ -44,6 +44,33 @@
                 <a href="<?php echo site_url('bahan') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-light">
+                <div class="inner">
+                    <?php
+                        $hasil = $this->db->select('count(status) as jumlah')
+                            ->from('retur_bahan')
+                            ->where('status', "Pengajuan")
+                            ->get()
+                            ->result();
+                        $result = $this->db->get('bahan')->num_rows();
+                        ?>
+                    <?php
+                        foreach ($hasil as $jumlah) {
+                            $jumlah_bahan = $jumlah->jumlah;
+                            ?>
+                        <h3><?php echo $jumlah_bahan ?></h3>
+                    <?php } ?>
+
+                    <p>Pengajuan Retur Bahan</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="<?php echo site_url('retur_bahan') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
     <?php } ?>
     <?php if ($jabatan == "operasional_produksi") { ?>
         <div class="col-lg-3 col-6">
@@ -74,7 +101,7 @@
         </div>
     <?php } ?>
     <!-- ./col -->
-    <?php if ($jabatan == "admin") { ?>
+    <?php if ($divisi == "admin") { ?>
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-light">
@@ -213,7 +240,7 @@
         </div>
     <?php } ?>
     <!-- ./col -->
-    <?php if ($jabatan == "operasional_produksi" || $divisi == "admin") { ?>
+    <?php if ($jabatan == "operasional_produksi" || $divisi == "admin_cs") { ?>
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-light">

@@ -30,10 +30,10 @@ class Penjadwalan_controller extends CI_Controller
 
     public function index()
     {
-               $mesin_jaket = $this->Penjadwalan_model->getUsernames2();
+        $mesin_jaket = $this->Penjadwalan_model->getUsernames2();
 
         $data['mesin_jaket'] = $mesin_jaket;
-        $this->load->view('Mesin/penjadwalan',$data);
+        $this->load->view('Mesin/penjadwalan', $data);
     }
     public function read()
     {
@@ -44,20 +44,18 @@ class Penjadwalan_controller extends CI_Controller
             foreach ($this->Penjadwalan_model->read()->result() as $pesanan) {
                 $tanggal_pesanan = new DateTime($pesanan->tanggal_pesanan);
                 $tgl = $tanggal_pesanan->format('d-m-Y');
-                $dateline =  $pesanan->dateline;
+                $dateline =  new DateTime($pesanan->dateline);
+                $dtl = $dateline->format('d-m-Y');
                 $finishing = $pesanan->finishing;
-                $day1  = date('d-m-Y', strtotime($tgl . '+'  . $dateline . 'days'));
+                // $day1  = date('d-m-Y', strtotime($tgl . '+'  . $dateline . 'days'));
                 // $day2 = date('d-m-Y', strtotime($tgl . ' + 5 days'));
-                if($finishing == null){
+                if ($finishing == null) {
                     $day2 = "";
-                    
-                }
-                else{
-                    if($finishing == 0){
-                    $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing . 'days'));
-                    }
-                    else{
-                        $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing-1 . 'days'));
+                } else {
+                    if ($finishing == 0) {
+                        $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing . 'days'));
+                    } else {
+                        $day2 = date('d-m-Y', strtotime($tgl . '+'  . $finishing - 1 . 'days'));
                     }
                 }
                 // if ($jabatan == "admin") {
@@ -76,10 +74,10 @@ class Penjadwalan_controller extends CI_Controller
                     'jumlah' => $pesanan->jumlah,
                     'bahan_baku' => $pesanan->bahan_baku,
                     // 'dateline' => $pesanan->dateline,
-                    'dateline' => $day1,
+                    'dateline' => $dtl,
                     // 'finishing' => $pesanan->finishing,
                     'finishing' => $day2,
-                    'action' =>      '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Delete</button>'
+                    'action' =>      '<button class="btn btn-sm btn-success" onclick="edit(' . $pesanan->id . ')">Edit</button> <button class="btn btn-sm btn-danger" onclick="remove(' . $pesanan->id . ')">Hapus</button>'
                 );
             }
         } else {
@@ -120,7 +118,7 @@ class Penjadwalan_controller extends CI_Controller
     public function edit()
     {
         $id = $this->input->post('id');
-        $urutan_order =$this->input->post('urutan_order');
+        $urutan_order = $this->input->post('urutan_order');
         $data = array(
             'urutan_order' => $this->input->post('urutan_order'),
             'nama_pelanggan' => $this->input->post('nama_pelanggan'),
@@ -130,7 +128,7 @@ class Penjadwalan_controller extends CI_Controller
             'produk' => $this->input->post('produk'),
             'jumlah' => $this->input->post('jumlah'),
             'bahan_baku' => $this->input->post('bahan_baku'),
-            'dateline' => $this->input->post('dateline'),
+            // 'dateline' => $this->input->post('dateline'),
             'finishing' => $this->input->post('finishing')
         );
         if ($this->Penjadwalan_model->update($id, $data)) {
@@ -146,7 +144,7 @@ class Penjadwalan_controller extends CI_Controller
             echo json_encode($user->row());
         }
     }
-        public function jadwal()
+    public function jadwal()
     {
         header('Content-type: application/json');
         $estimasi2 = $this->Penjadwalan_model->getJadwal();
@@ -154,5 +152,4 @@ class Penjadwalan_controller extends CI_Controller
         echo json_encode($estimasi2);
         // }
     }
-
 }
